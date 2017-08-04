@@ -15,10 +15,9 @@ class MockFoodDataSource {
         self.food = [MockFood]()
     }
     
-    init(food: MockFood) {
-        var foodArray = [MockFood]()
-        foodArray.append(food)
-        self.food = foodArray
+    convenience init(food: MockFood) {
+        self.init()
+        self.food.append(food)
     }
     required init(foodArray: [MockFood]) {
         self.food = foodArray

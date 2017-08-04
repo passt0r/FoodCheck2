@@ -61,26 +61,44 @@ class YourFoodViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FoodItemCell
         
         let currentFoodItem = dataSource.getFood(at: indexPath)
-        cell.configureCell(for: currentFoodItem)
+        configure(cell: cell, with: currentFoodItem)
         
         return cell
+    }
+    
+    func configure(cell: FoodItemCell, with foodItem: MockFood) {
+        let foodIcon = UIImage(named: foodItem.imageName)
+        let foodName = foodItem.name
+        
+        cell.foodName.text = foodName
+        
+        if let foodIcon = foodIcon {
+            cell.foodIcon.image = foodIcon
+        } else {
+            cell.foodIcon.image = UIImage(named: "fruit")!
+        }
     }
 
     // MARK: UICollectionViewDelegate
 
-    /*
+    
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    */
+    
 
-    /*
+    
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    */
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        dataSource.deleteFood(at: indexPath)
+        collectionView.deleteItems(at: [indexPath])
+    }
 
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

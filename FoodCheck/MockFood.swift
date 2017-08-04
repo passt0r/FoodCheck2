@@ -17,7 +17,7 @@ class MockFood {
     let dateTo = Date(timeIntervalSinceNow: 100 + MockFood.elementsCount)
     
     init(name: String, imageName: String) {
-        self.name = name
+        self.name = name + " \(MockFood.elementsCount)"
         self.imageName = imageName
         MockFood.elementsCount += 1
     }

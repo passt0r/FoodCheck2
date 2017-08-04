@@ -65,7 +65,6 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Your Food" id="Y4i-UR-T7k">
                         <barButtonItem key="leftBarButtonItem" image="Calendar" id="K4O-dN-C3B">
-                            <color key="tintColor" red="0.94117647058823528" green="0.5490196078431373" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="G8P-6F-iev" kind="presentation" identifier="Present_calendar" id="gQd-0H-L10"/>
                             </connections>
@@ -278,10 +277,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back_icon" width="37" height="37"/>
-        <image name="Calendar" width="37" height="37"/>
-        <image name="Check_image" width="37" height="37"/>
-        <image name="Info_icon" width="37" height="37"/>
-        <image name="Qr_code" width="37" height="37"/>
+        <image name="Back_icon" width="25" height="25"/>
+        <image name="Calendar" width="25" height="25"/>
+        <image name="Check_image" width="25" height="25"/>
+        <image name="Info_icon" width="25" height="25"/>
+        <image name="Qr_code" width="25" height="25"/>
     </resources>
 </document>

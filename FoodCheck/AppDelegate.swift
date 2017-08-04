@@ -10,7 +10,6 @@ import UIKit
 import Fabric
 import Crashlytics
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,10 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var dataSource: MockFoodDataSource!
     
-    let peachTint = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
-    
     func customizeAppearance() {
        window?.tintColor = peachTint
+        
     }
     
     func generateSampleDataSource() {

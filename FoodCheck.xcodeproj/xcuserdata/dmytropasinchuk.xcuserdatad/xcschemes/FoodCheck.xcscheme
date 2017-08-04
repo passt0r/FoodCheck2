@@ -39,6 +39,26 @@
                ReferencedContainer = "container:FoodCheck.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "599213681F35169A00FBC5BA"
+               BuildableName = "YourFoodControllerTests.xctest"
+               BlueprintName = "YourFoodControllerTests"
+               ReferencedContainer = "container:FoodCheck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "599213761F35182400FBC5BA"
+               BuildableName = "YourFoodScreenUITests.xctest"
+               BlueprintName = "YourFoodScreenUITests"
+               ReferencedContainer = "container:FoodCheck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

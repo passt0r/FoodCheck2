@@ -51,6 +51,11 @@ class FoodCheckTests: XCTestCase {
         XCTAssert(testableDataSource.foodCount() == 6)
     }
     
+    func testDeletingAllFood() {
+        testableDataSource.deleteAllFood()
+        XCTAssert(testableDataSource.foodCount() == 0)
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
