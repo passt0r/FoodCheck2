@@ -19,11 +19,11 @@ class ShelfCollectionReusableView: UICollectionReusableView {
         //addBackgroundImageView(with: self.bounds)
     }
     
-//    private func addBackgroundImageView(with frame: CGRect) {
-//        guard let shelfImage = UIImage(named: "Shelf") else { return }
-//        let shelfImageView = UIImageView(image: shelfImage)
-//        shelfImageView.frame = frame
-//        self.addSubview(shelfImageView)
-//    }
+    private func addBackgroundImageView(with frame: CGRect) {
+        guard let shelfImage = UIImage(named: "Shelf") else { return }
+        let shelfImageView = UIImageView(image: shelfImage)
+        shelfImageView.frame = frame
+        self.addSubview(shelfImageView)
+    }
     
 }
