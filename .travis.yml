@@ -4,4 +4,4 @@ language: swift
 before_install:
 - brew update
 - brew outdated xctool || brew upgrade xctool
-script: xctool -workspace FoodCheck.xcworkspace -scheme FoodCheckTest run-tests
+script: xctool -workspace FoodCheck.xcworkspace -scheme FoodCheckTest test
