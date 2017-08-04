@@ -1,7 +1,5 @@
 os: osx
 osx_image: xcode8.3
 language: swift
-before_install:
-- brew update
-- brew outdated xctool || brew upgrade xctool
-script: xctool -workspace FoodCheck.xcworkspace -scheme FoodCheckTest test
+xcode_workspace: FoodCheck.xcworkspace
+xcode_scheme: FoodCheckTest
