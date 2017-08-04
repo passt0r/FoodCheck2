@@ -1,5 +1,7 @@
 os: osx
 osx_image: xcode8.3
 language: swift
-xcode_workspace: FoodCheck.xcworkspace
-xcode_scheme: FoodCheckTest
+before_install:
+	- brew update
+	- brew install xctool
+script: xctool -workspace FoodCheck.xcworkspace -scheme FoodCheckTest
