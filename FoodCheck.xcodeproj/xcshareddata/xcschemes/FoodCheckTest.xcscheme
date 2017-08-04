@@ -112,6 +112,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "593EDE871F32618500CC7E27"
+               BuildableName = "FoodCheckTests.xctest"
+               BlueprintName = "FoodCheckTests"
+               ReferencedContainer = "container:FoodCheck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
