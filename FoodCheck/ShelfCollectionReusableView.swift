@@ -9,5 +9,21 @@
 import UIKit
 
 class ShelfCollectionReusableView: UICollectionReusableView {
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addBackgroundImageView(with: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        addBackgroundImageView(with: self.bounds)
+    }
+    
+    private func addBackgroundImageView(with frame: CGRect) {
+        guard let shelfImage = UIImage(named: "Shelf") else { return }
+        let shelfImageView = UIImageView(image: shelfImage)
+        shelfImageView.frame = frame
+        self.addSubview(shelfImageView)
+    }
+    
 }

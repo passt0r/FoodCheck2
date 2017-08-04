@@ -1,0 +1,27 @@
+PODS:
+  - Crashlytics (3.8.5):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.12)
+  - lottie-ios (1.5.2)
+  - Realm (2.9.0):
+    - Realm/Headers (= 2.9.0)
+  - Realm/Headers (2.9.0)
+  - RealmSwift (2.9.0):
+    - Realm (= 2.9.0)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - lottie-ios
+  - RealmSwift (~> 2.9.0)
+
+SPEC CHECKSUMS:
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  lottie-ios: 255a0e95973a5c4424e809d7a5c19f7384c73e84
+  Realm: f14ab1673502559cb16592ddb8f383c474c13e05
+  RealmSwift: 16ad2c187042c4934f49750375582fe508627dcb
+
+PODFILE CHECKSUM: 987c77f1d5583f01221acf0a81da696a5ad50f77
+
+COCOAPODS: 1.3.0

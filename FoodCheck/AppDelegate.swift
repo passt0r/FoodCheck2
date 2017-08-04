@@ -7,15 +7,44 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var dataSource: MockFoodDataSource!
+    
+    let peachTint = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
+    
+    func customizeAppearance() {
+       window?.tintColor = peachTint
+    }
+    
+    func generateSampleDataSource() {
+        for _ in 0...10 {
+            let newFoodItem = MockFood(name: "Sample", imageName: "fruit")
+            dataSource?.add(element: newFoodItem)
+        }
+    }
+    
+    func initialDataSource() {
+        dataSource = MockFoodDataSource()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Fabric.with([Crashlytics.self])
+        customizeAppearance()
+        
+        initialDataSource()
+        generateSampleDataSource()
+        let rootViewController = window?.rootViewController as! UINavigationController
+        let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
+        rootContentController.dataSource = dataSource
+        
         return true
     }
 

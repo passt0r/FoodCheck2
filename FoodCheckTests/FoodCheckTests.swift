@@ -2,28 +2,53 @@
 //  FoodCheckTests.swift
 //  FoodCheckTests
 //
-//  Created by Dmytro Pasinchuk on 05.07.17.
+//  Created by Dmytro Pasinchuk on 02.08.17.
 //  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
 //
 
 import XCTest
+
 @testable import FoodCheck
 
 class FoodCheckTests: XCTestCase {
+    var testableDataSource = MockFoodDataSource()
+    
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+            for _ in 0...5 {
+            let newFoodElement = MockFood(name: "Food", imageName: "fruit")
+            testableDataSource.add(element: newFoodElement)
+        }
+        let newFoodElement = MockFood(name: "Food", imageName: "apple")
+        testableDataSource.add(element: newFoodElement)
+        
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        testableDataSource.deleteAllFood()
+        MockFood.elementsCount = 0
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFoodArrayCreated() {
+        XCTAssert(testableDataSource.foodCount() != 0)
+    }
+    
+    func testFoodDate() {
+        XCTAssert(MockFood.elementsCount == 7)
+    }
+    
+    func testFoodImage() {
+        for testElement in testableDataSource.getFood() {
+            let elementName = testElement.imageName
+            XCTAssertNotNil(testElement.foodImage(for: elementName))
+        }
+    }
+    
+    func testDeletingFood() {
+        testableDataSource.deleteFood(at: IndexPath(row: 0, section: 0))
+        XCTAssert(testableDataSource.foodCount() == 6)
     }
     
     func testPerformanceExample() {

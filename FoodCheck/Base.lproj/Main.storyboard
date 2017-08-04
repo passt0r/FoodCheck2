@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YSG-Du-VQG">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,19 +12,19 @@
         <!--Your Food-->
         <scene sceneID="pFb-pW-CDx">
             <objects>
-                <collectionViewController title="Your Food" id="D9e-1b-Zwx" sceneMemberID="viewController">
+                <collectionViewController title="Your Food" id="D9e-1b-Zwx" customClass="YourFoodViewController" customModule="FoodCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JmP-HQ-nnT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d3d-Bg-bDM">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="10" id="d3d-Bg-bDM" customClass="YourFoodFlowLayout" customModule="FoodCheck" customModuleProvider="target">
                             <size key="itemSize" width="56" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="20" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8FD-WE-d1s" customClass="FoodItemCell" customModule="FoodCheck" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FoodItemCell" id="8FD-WE-d1s" customClass="FoodItemCell" customModule="FoodCheck" customModuleProvider="target">
                                 <rect key="frame" x="10" y="20" width="56" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -36,7 +36,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZd-gH-hvr">
                                             <rect key="frame" x="0.0" y="56" width="56" height="14"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="bottom" secondItem="nZd-gH-hvr" secondAttribute="bottom" id="9Ba-59-FTj"/>
                                     <constraint firstItem="ciN-EL-KKq" firstAttribute="leading" secondItem="8FD-WE-d1s" secondAttribute="leading" id="ClV-HD-njX"/>
                                     <constraint firstAttribute="bottom" secondItem="ciN-EL-KKq" secondAttribute="bottom" constant="14" id="L1g-DT-rNC"/>
-                                    <constraint firstItem="nZd-gH-hvr" firstAttribute="top" secondItem="ciN-EL-KKq" secondAttribute="bottom" id="bVd-DQ-rrM"/>
+                                    <constraint firstItem="nZd-gH-hvr" firstAttribute="top" secondItem="ciN-EL-KKq" secondAttribute="bottom" id="Lwx-My-WYc"/>
                                     <constraint firstAttribute="trailing" secondItem="ciN-EL-KKq" secondAttribute="trailing" id="z0f-py-5TY"/>
                                 </constraints>
                                 <connections>
@@ -63,11 +63,23 @@
                             <outlet property="delegate" destination="D9e-1b-Zwx" id="pRv-iR-ODZ"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Your Food" id="Y4i-UR-T7k"/>
+                    <navigationItem key="navigationItem" title="Your Food" id="Y4i-UR-T7k">
+                        <barButtonItem key="leftBarButtonItem" image="Calendar" id="K4O-dN-C3B">
+                            <color key="tintColor" red="0.94117647058823528" green="0.5490196078431373" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="G8P-6F-iev" kind="presentation" identifier="Present_calendar" id="gQd-0H-L10"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Qr_code" id="gON-nQ-h4q">
+                            <connections>
+                                <segue destination="cpw-wz-AhK" kind="presentation" identifier="Present_qr_reader" id="4VY-Xp-asq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e3-py-1wU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149.5999999999999" y="150.67466266866569"/>
+            <point key="canvasLocation" x="1149.375" y="150"/>
         </scene>
         <!--QR Reader Screen-->
         <scene sceneID="N4K-KC-5v4">
@@ -78,14 +90,17 @@
                         <viewControllerLayoutGuide type="bottom" id="fYx-Y5-WAa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="q44-dH-xBb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Read Bar Code" id="dBE-Oe-s27">
+                        <barButtonItem key="leftBarButtonItem" image="Back_icon" id="306-Ko-2bZ"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFm-6V-RWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2108" y="151"/>
+            <point key="canvasLocation" x="2983" y="150"/>
         </scene>
         <!--Choose Food Type Screen-->
         <scene sceneID="fgL-kV-Aqe">
@@ -96,14 +111,14 @@
                         <viewControllerLayoutGuide type="bottom" id="sgi-vb-wkU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="o57-Lt-ykU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaR-DJ-9lS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3185" y="151"/>
+            <point key="canvasLocation" x="4043" y="150"/>
         </scene>
         <!--Choose Food Screen-->
         <scene sceneID="t32-sn-XXu">
@@ -114,14 +129,14 @@
                         <viewControllerLayoutGuide type="bottom" id="0he-Io-6AT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="26a-6t-0tc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iA-zp-ctN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4321" y="151"/>
+            <point key="canvasLocation" x="5003" y="150"/>
         </scene>
         <!--Add Food Screen-->
         <scene sceneID="Wkl-As-tiP">
@@ -132,14 +147,18 @@
                         <viewControllerLayoutGuide type="bottom" id="n7a-Cq-Idj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B06-ci-dAB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Add Food" id="Ub1-SB-zvX">
+                        <barButtonItem key="leftBarButtonItem" image="Back_icon" id="B5f-UL-tl1"/>
+                        <barButtonItem key="rightBarButtonItem" image="Check_image" style="done" id="05y-ra-DMU"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soB-Kp-iVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4306" y="929"/>
+            <point key="canvasLocation" x="5003" y="931"/>
         </scene>
         <!--Calendar Screen-->
         <scene sceneID="trd-p9-BYG">
@@ -150,32 +169,40 @@
                         <viewControllerLayoutGuide type="bottom" id="waV-6s-ovh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9CA-0h-gsJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Food Calendar" id="mlA-e6-mYQ">
+                        <barButtonItem key="leftBarButtonItem" image="Back_icon" style="done" id="P36-Qp-pb4"/>
+                        <barButtonItem key="rightBarButtonItem" image="Info_icon" id="Brj-vE-2mf">
+                            <connections>
+                                <segue destination="PrJ-bp-SAp" kind="show" identifier="Show_app_info" id="vOe-ac-0yg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RK2-na-nRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044" y="-573"/>
+            <point key="canvasLocation" x="2983.1999999999998" y="-573.46326836581716"/>
         </scene>
         <!--Info Screen-->
         <scene sceneID="lT0-QW-8dG">
             <objects>
-                <viewController id="PrJ-bp-SAp" userLabel="Info Screen" sceneMemberID="viewController">
+                <viewController title="About App" id="PrJ-bp-SAp" userLabel="Info Screen" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p1q-M4-I5d"/>
                         <viewControllerLayoutGuide type="bottom" id="68f-rm-KW8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="79b-T3-zln">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Tl-kw-EUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3205" y="-587"/>
+            <point key="canvasLocation" x="4044" y="-574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YJg-gR-Dps">
@@ -195,5 +222,66 @@
             </objects>
             <point key="canvasLocation" x="210.40000000000001" y="150.67466266866569"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wNR-wL-eG6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G8P-6F-iev" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XCI-Qm-qHt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ter-SA-XEN" kind="relationship" relationship="rootViewController" id="yB6-G0-hNh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jrh-xP-N4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2044" y="-573.46326836581716"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BtN-fE-lSj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cpw-wz-AhK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ac5-hf-h4M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="es4-AK-QQs" kind="relationship" relationship="rootViewController" id="O90-d0-lJv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sta-1U-oAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2044" y="150"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xtU-18-ppv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KZe-bg-PE2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WZ9-Mh-JFD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HYd-SQ-RDu" kind="relationship" relationship="rootViewController" id="bCO-8D-2iJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o5X-eK-nOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4043" y="931"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Back_icon" width="37" height="37"/>
+        <image name="Calendar" width="37" height="37"/>
+        <image name="Check_image" width="37" height="37"/>
+        <image name="Info_icon" width="37" height="37"/>
+        <image name="Qr_code" width="37" height="37"/>
+    </resources>
 </document>

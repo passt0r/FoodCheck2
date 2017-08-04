@@ -12,12 +12,17 @@ class FoodItemCell: UICollectionViewCell {
     @IBOutlet weak var foodIcon: UIImageView!
     @IBOutlet weak var foodName: UILabel!
     
-    public func configureCell() {
-        let foodIcon = UIImage()
-        let foodName = String()
+    public func configureCell(for foodItem: MockFood) {
+        let foodIcon = UIImage(named: foodItem.imageName)
+        let foodName = foodItem.name
         
-        self.foodIcon.image = foodIcon
         self.foodName.text = foodName
+        
+        if let foodIcon = foodIcon {
+            self.foodIcon.image = foodIcon
+        } else {
+            self.foodIcon.image = UIImage(named: "fruit")!
+        }
     }
     
 }

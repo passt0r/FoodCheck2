@@ -8,20 +8,25 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "FoodItemCell"
 
 class YourFoodViewController: UICollectionViewController {
 
+    var dataSource: MockFoodDataSource!
+    
+    func addBackgroundView() {
+        guard let backgroundImage = UIImage(named: "Fridge_background") else { return }
+        let backgroundView = UIImageView(image: backgroundImage)
+        collectionView?.backgroundView = backgroundView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        addBackgroundView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,20 +48,21 @@ class YourFoodViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        guard let dataSource = dataSource else { return 0 }
+        return dataSource.foodCount()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FoodItemCell
+        
+        let currentFoodItem = dataSource.getFood(at: indexPath)
+        cell.configureCell(for: currentFoodItem)
+        
         return cell
     }
 
