@@ -2,4 +2,4 @@ os: osx
 osx_image: xcode8.3
 language: swift
 script:
-- xcodebuild -workspace FoodCheck.xcworkspace -scheme FoodCheckTest -destination 'platform=iOS Simulator, name=iPhone 5S, OS=10.3' CODE_SIGNING_REQUIRED=NO clean build test
+- xcodebuild -workspace FoodCheck.xcworkspace -scheme FoodCheckTest -destination 'platform=iOS Simulator, name=iPhone 5S, OS=10.3' clean build test
