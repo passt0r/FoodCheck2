@@ -1,1 +1,21 @@
 
+/* Class = "UICollectionViewController"; title = "Your Food"; ObjectID = "D9e-1b-Zwx"; */
+"D9e-1b-Zwx.title" = "Ваша Еда";
+
+/* Class = "UIViewController"; title = "About App"; ObjectID = "PrJ-bp-SAp"; */
+"PrJ-bp-SAp.title" = "О Приложении";
+
+/* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "Ub1-SB-zvX"; */
+"Ub1-SB-zvX.title" = "Добавить";
+
+/* Class = "UINavigationItem"; title = "Your Food"; ObjectID = "Y4i-UR-T7k"; */
+"Y4i-UR-T7k.title" = "Ваша Еда";
+
+/* Class = "UINavigationItem"; title = "Read Bar Code"; ObjectID = "dBE-Oe-s27"; */
+"dBE-Oe-s27.title" = "Считать QR";
+
+/* Class = "UINavigationItem"; title = "Food Calendar"; ObjectID = "mlA-e6-mYQ"; */
+"mlA-e6-mYQ.title" = "Календарь";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "nZd-gH-hvr"; */
+"nZd-gH-hvr.text" = "Наименование";

@@ -45,6 +45,7 @@
 		59092A1F1F2E5B2C00EBB75D /* YourFoodFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourFoodFlowLayout.swift; sourceTree = "<group>"; };
 		59092A211F2E5CBC00EBB75D /* YourFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourFoodViewController.swift; sourceTree = "<group>"; };
 		59092A231F2E5D5100EBB75D /* FoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCell.swift; sourceTree = "<group>"; };
+		590A82231F3A4A7500386E48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		593EDE821F325C0700CC7E27 /* MockFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFood.swift; sourceTree = "<group>"; };
 		593EDE881F32618500CC7E27 /* FoodCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCheckTests.swift; sourceTree = "<group>"; };
@@ -571,6 +572,7 @@
 				5975C9511F0D67FA0006B5F9 /* Base */,
 				59092A1B1F2E59A700EBB75D /* uk */,
 				59092A1C1F2E59B800EBB75D /* ru */,
+				590A82231F3A4A7500386E48 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

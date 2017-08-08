@@ -1,21 +1,20 @@
-
 /* Class = "UICollectionViewController"; title = "Your Food"; ObjectID = "D9e-1b-Zwx"; */
-"D9e-1b-Zwx.title" = "Ваша Їжа";
+"D9e-1b-Zwx.title" = "Your Food";
 
 /* Class = "UIViewController"; title = "About App"; ObjectID = "PrJ-bp-SAp"; */
-"PrJ-bp-SAp.title" = "Про додаток";
+"PrJ-bp-SAp.title" = "About App";
 
 /* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "Ub1-SB-zvX"; */
-"Ub1-SB-zvX.title" = "Додати";
+"Ub1-SB-zvX.title" = "Add Food";
 
 /* Class = "UINavigationItem"; title = "Your Food"; ObjectID = "Y4i-UR-T7k"; */
-"Y4i-UR-T7k.title" = "Ваша Їжа";
+"Y4i-UR-T7k.title" = "Your Food";
 
 /* Class = "UINavigationItem"; title = "Read Bar Code"; ObjectID = "dBE-Oe-s27"; */
-"dBE-Oe-s27.title" = "Зчитати QR";
+"dBE-Oe-s27.title" = "Read Bar Code";
 
 /* Class = "UINavigationItem"; title = "Food Calendar"; ObjectID = "mlA-e6-mYQ"; */
-"mlA-e6-mYQ.title" = "Календар";
+"mlA-e6-mYQ.title" = "Food Calendar";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "nZd-gH-hvr"; */
-"nZd-gH-hvr.text" = "Найменування";
+"nZd-gH-hvr.text" = "Name";

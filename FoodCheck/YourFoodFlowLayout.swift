@@ -68,7 +68,9 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     
     override func prepare() {
         super.prepare()
-        
+        cashedDecorationView.removeAll()
+        let topInset = collectionView?.contentInset.top
+        //TODO: implement calculating for decorationView
     }
     
     override var collectionViewContentSize: CGSize {
@@ -76,9 +78,9 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        
         return super.layoutAttributesForItem(at: indexPath)
     }
+
     
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
@@ -89,6 +91,4 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
     }
-    
-    
 }
