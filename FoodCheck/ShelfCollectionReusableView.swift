@@ -11,6 +11,7 @@ import UIKit
 class ShelfCollectionReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor.white
         //addBackgroundImageView(with: frame)
     }
     
