@@ -22,15 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func generateSampleDataSource() {
-        for _ in 0...10 {
-            let newFoodItem = MockFood(name: "Sample", imageName: "fruit")
-            dataSource?.add(element: newFoodItem)
-        }
-    }
-    
     func initialDataSource() {
-        dataSource = MockFoodDataSource()
+        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -38,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeAppearance()
         
         initialDataSource()
-        generateSampleDataSource()
         let rootViewController = window?.rootViewController as! UINavigationController
         let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
         rootContentController.dataSource = dataSource

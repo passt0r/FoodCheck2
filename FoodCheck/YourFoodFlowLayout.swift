@@ -13,6 +13,8 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         case shelfView = "ShelfView"
     }
     
+    private var cashedDecorationView = [UICollectionViewLayoutAttributes]()
+    
     override init() {
         super.init()
         self.register(ShelfCollectionReusableView.self, forDecorationViewOfKind: DecorationViewKind.shelfView.rawValue)
@@ -30,45 +32,52 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         }
         var mutatingAtributes = atributes
         //find max Y position of the cells
+        
         var position = CGRect.zero
         position.size.width = rect.size.width
-        position.size.height = 20
-        var rowsYCoordinates = [CGFloat]()
+        position.size.height = 16
         
         for atribute in mutatingAtributes {
             atribute.zIndex = 1
             if atribute.frame.maxY > position.origin.y {
                 position.origin.y = atribute.frame.maxY
-                rowsYCoordinates.append(atribute.frame.maxY)
+                if rect.intersects(position) {
+                    var atribute: UICollectionViewLayoutAttributes? = nil
+                    for decorationView in cashedDecorationView {
+                        if decorationView.frame == position {
+                            atribute = decorationView
+                        }
+                    }
+                    if let atribute = atribute {
+                        mutatingAtributes.append(atribute)
+                    } else {
+                        guard let shelfAtribute = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: IndexPath(index: cashedDecorationView.count)) else {
+                            continue
+                        }
+                        shelfAtribute.frame = position
+                        cashedDecorationView.append(shelfAtribute)
+                        mutatingAtributes.append(shelfAtribute)
+                    }
+                }
+                
             }
         }
-        
-        //if this view in rect, than create this view atribute and add it to the atributes array
-        for rowYCoordinate in rowsYCoordinates {
-            position.origin.y = rowYCoordinate
-            let indexNumber = rowsYCoordinates.index(of: rowYCoordinate)!
-            if rect.intersects(position) {
-                let indexPath = IndexPath(row: indexNumber, section: 0)
-                let shelfAtribute = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: indexPath)!
-                shelfAtribute.frame = position
-                shelfAtribute.zIndex = 0
-                mutatingAtributes.append(shelfAtribute)
-            }
-        }
-        
+
         return mutatingAtributes
     }
     
     override func prepare() {
         super.prepare()
+        
+    }
+    
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + 16)
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let atributes = super.layoutAttributesForItem(at: indexPath) else {
-            return nil
-        }
         
-        return atributes
+        return super.layoutAttributesForItem(at: indexPath)
     }
     
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -80,4 +89,6 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
             return nil
         }
     }
+    
+    
 }

@@ -19,6 +19,16 @@ class MockFoodDataSource {
         self.init()
         self.food.append(food)
     }
+    
+    convenience init(generateWithSamples: Bool, withItemCount item: Int) {
+        self.init()
+        if generateWithSamples {
+            for _ in 0...item {
+                let newFoodItem = MockFood(name: "Sample", imageName: "fruit")
+                self.food.append(newFoodItem)
+            }
+        }
+    }
     required init(foodArray: [MockFood]) {
         self.food = foodArray
     }
