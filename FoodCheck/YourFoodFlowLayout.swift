@@ -13,6 +13,8 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         case shelfView = "ShelfView"
     }
     
+    private let shelfSize: CGFloat = 16
+    
     private var cachedDecorationView = [UICollectionViewLayoutAttributes]()
     
     override init() {
@@ -28,37 +30,24 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        //FIXME: Tip: layoutAtributes with the same indexPath may can not be allowed for reusing
+        //Tip: layoutAtributes with the same indexPath may can not be allowed for reusing
         guard let atributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
         var mutatingAtributes = atributes
         
-        var findedDecorations: [UICollectionViewLayoutAttributes] = []
-        for cache in cachedDecorationView {
-            if rect.intersects(cache.frame) {
-                findedDecorations.append(cache)
-            }
-        }
-        if !findedDecorations.isEmpty {
-            mutatingAtributes.append(contentsOf: findedDecorations)
-            return mutatingAtributes
-        }
         //find max Y position of the cells
         var position = CGRect.zero
         position.size.width = rect.size.width
-        position.size.height = 16
+        position.size.height = shelfSize
         
         for atribute in mutatingAtributes {
             atribute.zIndex = 1
             if atribute.frame.maxY > position.origin.y {
                 position.origin.y = atribute.frame.maxY
-                let indexForNewDecoration = Int(position.origin.y/itemSize.height + 16)
-                let decoratorView = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: IndexPath(item: indexForNewDecoration, section: 0))!
-                decoratorView.frame = position
-                cachedDecorationView.append(decoratorView)
                 if rect.intersects(position) {
-                    mutatingAtributes.append(decoratorView)
+                    let shelf = prerareShelves(for: position)
+                    mutatingAtributes.append(shelf)
                 }
                 
             }
@@ -67,8 +56,17 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         return mutatingAtributes
     }
     
-    func prerareShelves(for atributes: [UICollectionViewLayoutAttributes]) {
-        
+    func prerareShelves(for rect: CGRect) -> UICollectionViewLayoutAttributes {
+        for cache in cachedDecorationView {
+            if cache.frame == rect {
+                return cache
+            }
+        }
+        let indexForNewDecoration = Int(rect.origin.y/itemSize.height + shelfSize)
+        let decoratorView = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: IndexPath(item: indexForNewDecoration, section: 0))!
+        decoratorView.frame = rect
+        cachedDecorationView.append(decoratorView)
+        return decoratorView
     }
     
     override func prepare() {
@@ -76,7 +74,7 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
+        return collectionView?.bounds.size != newBounds.size
     }
     
     override func invalidateLayout() {
@@ -87,7 +85,7 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     
     
     override var collectionViewContentSize: CGSize {
-        return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + 16)
+        return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + shelfSize)
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -103,5 +101,14 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
             print("Unexpected decoration layout element kind")
             return nil
         }
+    }
+    
+    override func finalLayoutAttributesForDisappearingDecorationElement(ofKind elementKind: String, at decorationIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let atribute = layoutAttributesForDecorationView(ofKind: elementKind, at: decorationIndexPath)
+        guard let size = collectionView?.bounds.size else {
+            return atribute
+        }
+        atribute?.center.x = size.width * 2
+        return atribute
     }
 }
