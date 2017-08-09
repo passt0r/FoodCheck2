@@ -98,6 +98,7 @@ class YourFoodViewController: UICollectionViewController {
         collectionView.deselectItem(at: indexPath, animated: true)
         dataSource.deleteFood(at: indexPath)
         collectionView.deleteItems(at: [indexPath])
+        collectionViewLayout.invalidateLayout()
     }
 
     /*

@@ -13,11 +13,12 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         case shelfView = "ShelfView"
     }
     
-    private var cashedDecorationView = [UICollectionViewLayoutAttributes]()
+    private var cachedDecorationView = [UICollectionViewLayoutAttributes]()
     
     override init() {
         super.init()
         self.register(ShelfCollectionReusableView.self, forDecorationViewOfKind: DecorationViewKind.shelfView.rawValue)
+        
     }
     
     
@@ -27,12 +28,23 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        //FIXME: Tip: layoutAtributes with the same indexPath may can not be allowed for reusing
         guard let atributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
         var mutatingAtributes = atributes
-        //find max Y position of the cells
         
+        var findedDecorations: [UICollectionViewLayoutAttributes] = []
+        for cache in cachedDecorationView {
+            if rect.intersects(cache.frame) {
+                findedDecorations.append(cache)
+            }
+        }
+        if !findedDecorations.isEmpty {
+            mutatingAtributes.append(contentsOf: findedDecorations)
+            return mutatingAtributes
+        }
+        //find max Y position of the cells
         var position = CGRect.zero
         position.size.width = rect.size.width
         position.size.height = 16
@@ -41,23 +53,12 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
             atribute.zIndex = 1
             if atribute.frame.maxY > position.origin.y {
                 position.origin.y = atribute.frame.maxY
+                let indexForNewDecoration = Int(position.origin.y/itemSize.height + 16)
+                let decoratorView = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: IndexPath(item: indexForNewDecoration, section: 0))!
+                decoratorView.frame = position
+                cachedDecorationView.append(decoratorView)
                 if rect.intersects(position) {
-                    var atribute: UICollectionViewLayoutAttributes? = nil
-                    for decorationView in cashedDecorationView {
-                        if decorationView.frame == position {
-                            atribute = decorationView
-                        }
-                    }
-                    if let atribute = atribute {
-                        mutatingAtributes.append(atribute)
-                    } else {
-                        guard let shelfAtribute = layoutAttributesForDecorationView(ofKind: DecorationViewKind.shelfView.rawValue, at: IndexPath(index: cashedDecorationView.count)) else {
-                            continue
-                        }
-                        shelfAtribute.frame = position
-                        cashedDecorationView.append(shelfAtribute)
-                        mutatingAtributes.append(shelfAtribute)
-                    }
+                    mutatingAtributes.append(decoratorView)
                 }
                 
             }
@@ -66,12 +67,24 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
         return mutatingAtributes
     }
     
+    func prerareShelves(for atributes: [UICollectionViewLayoutAttributes]) {
+        
+    }
+    
     override func prepare() {
         super.prepare()
-        cashedDecorationView.removeAll()
-        let topInset = collectionView?.contentInset.top
-        //TODO: implement calculating for decorationView
     }
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
+    
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        //delete all cached decoration views before new layout process
+        cachedDecorationView.removeAll()
+    }
+    
     
     override var collectionViewContentSize: CGSize {
         return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + 16)
