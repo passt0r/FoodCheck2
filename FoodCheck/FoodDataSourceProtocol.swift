@@ -13,18 +13,46 @@ import RealmSwift
 //It can be used in general data source and user manipulating data source
 protocol MutableFoodDataSource: class {
     //TODO: Use generics to implement protocol
-    init() throws
+    init(with baseData: ImmutableFoodDataSource) throws
     
-    func getFood(byName: String) -> UserFood
-    func getFood(byQR: String) -> UserFood?
+    //Add food to user food model
+    func addFood(byName: String) -> Bool
+    func addFood(byQR: String) -> Bool
     
+    //Get food elements for Your Food screen
     func getFoodItemCount() -> Int
     func get(at indexPath: IndexPath) -> UserFood
+    //Use for deleting UserFood item
+    func delete(food: UserFood)
+    
+    //Uses for manual searching of food
+    func getAllFood(by type: String) -> [UserFoodInformation]
+    
+    func addUserCreatedFood(_ food: AddedUserFood)
+    
+    //Use for modifyUserCreatedFood
+    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood
+    
+    func modifyUserCreatedFood(_ food: AddedUserFood)
+    
+    //Delete all UserFood
+    func deleteAllUserFood()
+    
+    //Delete all AddedUserFood
+    func deleteAllUserAddedFood()
+    
+}
+
+protocol ImmutableFoodDataSource: class {
+    init() throws
+    
+    func getAllFoodTypes() -> [FoodType]
     
     func getAllFood(by type: String) -> [UserFoodInformation]
     
-    func delete(food: UserFood)
+    func findFoodBy(name: String) -> UserFood?
     
+    func findFoodBy(qr: String) -> UserFood? 
 }
 
 protocol UserFoodInformation: class {
@@ -32,5 +60,4 @@ protocol UserFoodInformation: class {
     var foodType: String { get set }
     var iconName: String { get set }
     var shelfLife: TimeInterval { get set }
-    var qrCode: String? { get set }
 }

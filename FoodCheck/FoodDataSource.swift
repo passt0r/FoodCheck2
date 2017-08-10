@@ -9,21 +9,29 @@
 import Foundation
 import RealmSwift
 
-class FoodDataSource: MutableFoodDataSource {
-    private let userFoodDataSource: UserDataSource
-    private let baseFoodDataSource: BaseUserFoodDataSource
+class FoodDataSource {
+    private let userFoodDataSource: MutableFoodDataSource
+    private let baseFoodDataSource: ImmutableFoodDataSource
     
     required init() throws {
-        userFoodDataSource = try UserDataSource()
         baseFoodDataSource = try BaseUserFoodDataSource()
+        userFoodDataSource = try UserDataSource(with: baseFoodDataSource)
+        
     }
     
-    func getFood(byName: String) -> UserFood {
-        return UserFood()
+    //Use for create data source for testing, initiate with mock objects
+    init(withGenerateTestData: Bool) throws {
+        //TODO: initiate userFoodDataSource with mock object
+        baseFoodDataSource = try BaseUserFoodDataSource()
+        userFoodDataSource = try UserDataSource(with: baseFoodDataSource)
     }
     
-    func getFood(byQR: String) -> UserFood? {
-        return nil
+    func addFood(byName: String) -> Bool {
+        return false
+    }
+    
+    func addFood(byQR: String) -> Bool {
+        return false
     }
     
     func getFoodItemCount() -> Int {
@@ -40,6 +48,26 @@ class FoodDataSource: MutableFoodDataSource {
     }
     
     func delete(food: UserFood) {
+        
+    }
+    
+    func addUserCreatedFood(_ food: AddedUserFood) {
+        
+    }
+    
+    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood {
+        return AddedUserFood()
+    }
+    
+    func modifyUserCreatedFood(_ food: AddedUserFood) {
+        
+    }
+    
+    func deleteAllUserFood() {
+        
+    }
+    //Delete all AddedUserFood
+    func deleteAllUserAddedFood() {
         
     }
 }

@@ -83,7 +83,7 @@
         <!--QR Reader Screen-->
         <scene sceneID="N4K-KC-5v4">
             <objects>
-                <viewController id="es4-AK-QQs" userLabel="QR Reader Screen" sceneMemberID="viewController">
+                <viewController id="es4-AK-QQs" userLabel="QR Reader Screen" customClass="ReadQRViewController" customModule="FoodCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0yw-2g-QAj"/>
                         <viewControllerLayoutGuide type="bottom" id="fYx-Y5-WAa"/>
@@ -94,7 +94,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Read Bar Code" id="dBE-Oe-s27">
-                        <barButtonItem key="leftBarButtonItem" image="Back_icon" id="306-Ko-2bZ"/>
+                        <barButtonItem key="leftBarButtonItem" image="Back_icon" id="306-Ko-2bZ">
+                            <connections>
+                                <action selector="backToYourFood" destination="es4-AK-QQs" id="CQ3-Li-JBT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFm-6V-RWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -162,7 +166,7 @@
         <!--Calendar Screen-->
         <scene sceneID="trd-p9-BYG">
             <objects>
-                <viewController id="ter-SA-XEN" userLabel="Calendar Screen" sceneMemberID="viewController">
+                <viewController id="ter-SA-XEN" userLabel="Calendar Screen" customClass="CalendarViewController" customModule="FoodCheck" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Msj-pH-8fx"/>
                         <viewControllerLayoutGuide type="bottom" id="waV-6s-ovh"/>
@@ -173,7 +177,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Food Calendar" id="mlA-e6-mYQ">
-                        <barButtonItem key="leftBarButtonItem" image="Back_icon" style="done" id="P36-Qp-pb4"/>
+                        <barButtonItem key="leftBarButtonItem" image="Back_icon" style="done" id="P36-Qp-pb4">
+                            <connections>
+                                <action selector="backToYourFood" destination="ter-SA-XEN" id="zuU-kw-rQn"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Info_icon" id="Brj-vE-2mf">
                             <connections>
                                 <segue destination="PrJ-bp-SAp" kind="show" identifier="Show_app_info" id="vOe-ac-0yg"/>

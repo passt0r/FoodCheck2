@@ -24,14 +24,27 @@ class BaseFood: Object, UserFoodInformation {
 //  }
 }
 
+class FoodType: Object {
+    dynamic var typeName = ""
+    dynamic var typeIcon = ""
+}
+
 //TODO: Implement dataSource here
 
-class BaseUserFoodDataSource {
+class BaseUserFoodDataSource: ImmutableFoodDataSource {
     private var dataBase: Realm!
     
-    init() throws {
+    required init() throws {
         
         dataBase = try Realm()
+    }
+    
+    func getAllFoodTypes() -> [FoodType] {
+        return [FoodType()]
+    }
+    
+    func getAllFood(by type: String) -> [UserFoodInformation] {
+        return [BaseFood()]
     }
     
     func findFoodBy(name: String) -> UserFood? {

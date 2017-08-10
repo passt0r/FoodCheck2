@@ -22,6 +22,8 @@
 		5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9501F0D67FA0006B5F9 /* Main.storyboard */; };
 		5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9531F0D67FA0006B5F9 /* Assets.xcassets */; };
 		59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */; };
+		59BB953C1F3C55C00077447F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953B1F3C55C00077447F /* CalendarViewController.swift */; };
+		59BB953E1F3C56B50077447F /* ReadQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953D1F3C56B50077447F /* ReadQRViewController.swift */; };
 		59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */; };
 		59BFEA201F33ECAE00B92F98 /* warning.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA1F1F33ECAE00B92F98 /* warning.json */; };
 		59BFEA221F33ECB400B92F98 /* checked_done_.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA211F33ECB400B92F98 /* checked_done_.json */; };
@@ -63,6 +65,8 @@
 		5975C9531F0D67FA0006B5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C9581F0D67FA0006B5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSourceProtocol.swift; sourceTree = "<group>"; };
+		59BB953B1F3C55C00077447F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		59BB953D1F3C56B50077447F /* ReadQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadQRViewController.swift; sourceTree = "<group>"; };
 		59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFoodDataSource.swift; sourceTree = "<group>"; };
 		59BFEA1F1F33ECAE00B92F98 /* warning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = warning.json; sourceTree = "<group>"; };
 		59BFEA211F33ECB400B92F98 /* checked_done_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checked_done_.json; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 		59A651201F34D142005BA42C /* QRReader */ = {
 			isa = PBXGroup;
 			children = (
+				59BB953D1F3C56B50077447F /* ReadQRViewController.swift */,
 			);
 			name = QRReader;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 		59A651241F34D178005BA42C /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				59BB953B1F3C55C00077447F /* CalendarViewController.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -560,8 +566,10 @@
 				5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */,
 				59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */,
 				59092A241F2E5D5100EBB75D /* FoodItemCell.swift in Sources */,
+				59BB953C1F3C55C00077447F /* CalendarViewController.swift in Sources */,
 				5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */,
 				5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */,
+				59BB953E1F3C56B50077447F /* ReadQRViewController.swift in Sources */,
 				59092A201F2E5B2C00EBB75D /* YourFoodFlowLayout.swift in Sources */,
 				5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */,
 			);
