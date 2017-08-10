@@ -61,7 +61,7 @@ class UserDataSource: MutableFoodDataSource {
         return resultOfQueryingUserFood.count
     }
     
-    func get(at indexPath: IndexPath) -> UserFood {
+    func getFood(at indexPath: IndexPath) -> UserFood {
         return resultOfQueryingUserFood[indexPath.item]
     }
     
@@ -82,15 +82,12 @@ class UserDataSource: MutableFoodDataSource {
         return AddedUserFood()
     }
     
-    func modifyUserCreatedFood(_ food: AddedUserFood) {
-        
-    }
-    
-    func deleteAllUserFood() {
-        
-    }
+//    func modificateUserCreatedFood(_ food: AddedUserFood) {
+//    
+//    }
+
     //Delete all AddedUserFood
-    func deleteAllUserAddedFood() {
+    func deleteAllUserInfo() {
         
     }
 }

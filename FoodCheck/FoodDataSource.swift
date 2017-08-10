@@ -20,10 +20,20 @@ class FoodDataSource {
     }
     
     //Use for create data source for testing, initiate with mock objects
+    //Testable userFoodData will be delete all info at base that was create and rewrite it with testable data, if "withGenerateTestData = false", than just delete all data from it
     init(withGenerateTestData: Bool) throws {
         //TODO: initiate userFoodDataSource with mock object
         baseFoodDataSource = try BaseUserFoodDataSource()
         userFoodDataSource = try UserDataSource(with: baseFoodDataSource)
+    }
+    
+    func getAllFoodTypes() -> [FoodType] {
+        return [FoodType()]
+    }
+    
+    func getAllFood(by type: String) -> [UserFoodInformation] {
+        let array = [UserFoodInformation]()
+        return array
     }
     
     func addFood(byName: String) -> Bool {
@@ -38,13 +48,8 @@ class FoodDataSource {
         return 0
     }
     
-    func get(at indexPath: IndexPath) -> UserFood {
+    func getFood(at indexPath: IndexPath) -> UserFood {
         return UserFood()
-    }
-    
-    func getAllFood(by type: String) -> [UserFoodInformation] {
-        let array = [UserFoodInformation]()
-        return array
     }
     
     func delete(food: UserFood) {
@@ -59,15 +64,12 @@ class FoodDataSource {
         return AddedUserFood()
     }
     
-    func modifyUserCreatedFood(_ food: AddedUserFood) {
-        
-    }
+//    func modifyUserCreatedFood(_ food: AddedUserFood) {
+//        
+//    }
     
-    func deleteAllUserFood() {
-        
-    }
     //Delete all AddedUserFood
-    func deleteAllUserAddedFood() {
+    func deleteAllUserInfo() {
         
     }
 }

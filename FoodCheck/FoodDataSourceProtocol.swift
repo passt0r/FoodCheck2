@@ -9,8 +9,6 @@
 import UIKit
 import RealmSwift
 
-//This protocol uses for declarating base functionality of the user interacting data source
-//It can be used in general data source and user manipulating data source
 protocol MutableFoodDataSource: class {
     //TODO: Use generics to implement protocol
     init(with baseData: ImmutableFoodDataSource) throws
@@ -21,7 +19,7 @@ protocol MutableFoodDataSource: class {
     
     //Get food elements for Your Food screen
     func getFoodItemCount() -> Int
-    func get(at indexPath: IndexPath) -> UserFood
+    func getFood(at indexPath: IndexPath) -> UserFood
     //Use for deleting UserFood item
     func delete(food: UserFood)
     
@@ -33,13 +31,10 @@ protocol MutableFoodDataSource: class {
     //Use for modifyUserCreatedFood
     func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood
     
-    func modifyUserCreatedFood(_ food: AddedUserFood)
-    
-    //Delete all UserFood
-    func deleteAllUserFood()
+//    func modificateUserCreatedFood(_ food: AddedUserFood)
     
     //Delete all AddedUserFood
-    func deleteAllUserAddedFood()
+    func deleteAllUserInfo()
     
 }
 
