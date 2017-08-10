@@ -12,7 +12,7 @@ private let reuseIdentifier = "FoodItemCell"
 
 class YourFoodViewController: UICollectionViewController {
 
-    var dataSource: MockFoodDataSource!
+    var dataSource: FoodDataSource!
     
     func addBackgroundView() {
         guard let backgroundImage = UIImage(named: "Fridge_background") else { return }
@@ -54,7 +54,7 @@ class YourFoodViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let dataSource = dataSource else { return 0 }
-        return dataSource.foodCount()
+        return dataSource.getFoodItemCount()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,8 +66,8 @@ class YourFoodViewController: UICollectionViewController {
         return cell
     }
     
-    func configure(cell: FoodItemCell, with foodItem: MockFood) {
-        let foodIcon = UIImage(named: foodItem.imageName)
+    func configure(cell: FoodItemCell, with foodItem: UserFood) {
+        let foodIcon = UIImage(named: foodItem.iconName)
         let foodName = foodItem.name
         
         cell.foodName.text = foodName
@@ -96,7 +96,8 @@ class YourFoodViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        dataSource.deleteFood(at: indexPath)
+        let deletedFood = dataSource.getFood(at: indexPath)
+        dataSource.delete(food: deletedFood)
         collectionView.deleteItems(at: [indexPath])
         collectionViewLayout.invalidateLayout()
     }

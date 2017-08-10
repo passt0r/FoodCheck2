@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var dataSource: MockFoodDataSource!
+    var dataSource: FoodDataSource!
     
     func customizeAppearance() {
        window?.tintColor = peachTint
@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initialDataSource() {
-        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
-//        do {
-//            dataSource = try FoodDataSource()
-//        }
-//        catch let error as NSError {
-//            fatalRealmError(error)
-//        }
+//        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
+        do {
+            dataSource = try FoodDataSource()
+        }
+        catch let error as NSError {
+            fatalRealmError(error)
+        }
 
     }
     
