@@ -85,7 +85,7 @@ class YourFoodFlowLayout: UICollectionViewFlowLayout {
     
     
     override var collectionViewContentSize: CGSize {
-        return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + shelfSize)
+        return CGSize(width: super.collectionViewContentSize.width, height: super.collectionViewContentSize.height + shelfSize/1.5)
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

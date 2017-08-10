@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MockFood {
+class MockFood{
     let name: String
     let imageName: String
     

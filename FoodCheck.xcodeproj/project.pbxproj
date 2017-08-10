@@ -12,13 +12,16 @@
 		59092A201F2E5B2C00EBB75D /* YourFoodFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59092A1F1F2E5B2C00EBB75D /* YourFoodFlowLayout.swift */; };
 		59092A221F2E5CBC00EBB75D /* YourFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59092A211F2E5CBC00EBB75D /* YourFoodViewController.swift */; };
 		59092A241F2E5D5100EBB75D /* FoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59092A231F2E5D5100EBB75D /* FoodItemCell.swift */; };
+		5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */; };
+		5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */; };
+		5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFB1F3BA4C000B8C89D /* Globals.swift */; };
+		5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */; };
 		593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE821F325C0700CC7E27 /* MockFood.swift */; };
 		593EDE8B1F32618600CC7E27 /* FoodCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */; };
 		5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */; };
 		5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9501F0D67FA0006B5F9 /* Main.storyboard */; };
 		5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9531F0D67FA0006B5F9 /* Assets.xcassets */; };
 		59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */; };
-		59A6512D1F34DA0B005BA42C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6512C1F34DA0B005BA42C /* Colors.swift */; };
 		59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */; };
 		59BFEA201F33ECAE00B92F98 /* warning.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA1F1F33ECAE00B92F98 /* warning.json */; };
 		59BFEA221F33ECB400B92F98 /* checked_done_.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA211F33ECB400B92F98 /* checked_done_.json */; };
@@ -46,6 +49,10 @@
 		59092A211F2E5CBC00EBB75D /* YourFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourFoodViewController.swift; sourceTree = "<group>"; };
 		59092A231F2E5D5100EBB75D /* FoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCell.swift; sourceTree = "<group>"; };
 		590A82231F3A4A7500386E48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFoodDataSource.swift; sourceTree = "<group>"; };
+		5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFoodDataSource.swift; sourceTree = "<group>"; };
+		5914FBFB1F3BA4C000B8C89D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSource.swift; sourceTree = "<group>"; };
 		593EDE821F325C0700CC7E27 /* MockFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFood.swift; sourceTree = "<group>"; };
 		593EDE881F32618500CC7E27 /* FoodCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCheckTests.swift; sourceTree = "<group>"; };
@@ -56,7 +63,6 @@
 		5975C9531F0D67FA0006B5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C9581F0D67FA0006B5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSourceProtocol.swift; sourceTree = "<group>"; };
-		59A6512C1F34DA0B005BA42C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFoodDataSource.swift; sourceTree = "<group>"; };
 		59BFEA1F1F33ECAE00B92F98 /* warning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = warning.json; sourceTree = "<group>"; };
 		59BFEA211F33ECB400B92F98 /* checked_done_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checked_done_.json; sourceTree = "<group>"; };
@@ -99,9 +105,12 @@
 		595B29751F349D8A003C2DD4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */,
+				5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */,
+				5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */,
+				59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */,
 				593EDE821F325C0700CC7E27 /* MockFood.swift */,
 				59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */,
-				59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -176,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */,
-				59A6512C1F34DA0B005BA42C /* Colors.swift */,
+				5914FBFB1F3BA4C000B8C89D /* Globals.swift */,
 				5975C9501F0D67FA0006B5F9 /* Main.storyboard */,
 				595B29751F349D8A003C2DD4 /* Models */,
 				595B29761F349DA3003C2DD4 /* Views */,
@@ -544,14 +553,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				59092A1E1F2E5AD400EBB75D /* ShelfCollectionReusableView.swift in Sources */,
-				59A6512D1F34DA0B005BA42C /* Colors.swift in Sources */,
 				593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */,
+				5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */,
 				59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */,
 				59092A221F2E5CBC00EBB75D /* YourFoodViewController.swift in Sources */,
+				5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */,
 				59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */,
 				59092A241F2E5D5100EBB75D /* FoodItemCell.swift in Sources */,
+				5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */,
 				5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */,
 				59092A201F2E5B2C00EBB75D /* YourFoodFlowLayout.swift in Sources */,
+				5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

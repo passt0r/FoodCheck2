@@ -9,6 +9,8 @@
 import UIKit
 
 class ShelfCollectionReusableView: UICollectionReusableView {
+    private let shelfImageName = "Shelf"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         //backgroundColor = UIColor.white
@@ -22,7 +24,7 @@ class ShelfCollectionReusableView: UICollectionReusableView {
     }
     
     private func addBackgroundImageView(with frame: CGRect) {
-        guard let shelfImage = UIImage(named: "Shelf") else { return }
+        guard let shelfImage = UIImage(named: shelfImageName) else { return }
         let shelfImageView = UIImageView(image: shelfImage)
         shelfImageView.contentMode = .scaleToFill
         shelfImageView.frame = frame

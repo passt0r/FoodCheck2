@@ -24,8 +24,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initialDataSource() {
         dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
-    }
+//        do {
+//            dataSource = try FoodDataSource()
+//        }
+//        catch let error as NSError {
+//            fatalRealmError(error)
+//        }
 
+    }
+    
+    func listenForRealmErrorNotification() {
+        NotificationCenter.default.addObserver(forName: MyDataModelDidFailNotification, object: nil, queue: OperationQueue.main, using: { notification in
+            
+            let alert = UIAlertController(title: NSLocalizedString("Internal alert", comment: "Internal error header"),
+                                          message: NSLocalizedString("There was an error while working whith your data", comment: "Internal error description") + "\n\n" + NSLocalizedString("Press OK to terminate the app. Sorry for the inconvenience", comment: "Internal error excuses"),
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Agree button on internal error"), style: .default, handler: {_ in
+                let exeption = NSException(name: NSExceptionName.internalInconsistencyException, reason: "Realm error", userInfo: nil)
+                exeption.raise()
+            })
+            alert.addAction(action)
+            self.viewControllerForShowingAlert().present(alert, animated: true, completion: nil)
+        })
+    }
+    
+    func viewControllerForShowingAlert() -> UIViewController {
+        let rootViewController = self.window!.rootViewController!
+        if let presentedViewController = rootViewController.presentedViewController {
+            return presentedViewController
+        } else {
+            return rootViewController
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         customizeAppearance()
@@ -34,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootViewController = window?.rootViewController as! UINavigationController
         let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
         rootContentController.dataSource = dataSource
+        
+        listenForRealmErrorNotification()
         
         return true
     }
