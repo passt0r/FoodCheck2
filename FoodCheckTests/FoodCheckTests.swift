@@ -13,29 +13,31 @@ import XCTest
 let validQRCodeInfo = "kek"
 let validFoodName = "Milk"
 let validIconName = "fruit"
+let userAddedFoodType = "User Added"
+
+func generateSampleFood() -> UserFood {
+    let testExample = UserFood()
+    testExample.name = "Test"
+    testExample.iconName = validIconName
+    testExample.endDate = Date(timeIntervalSinceNow: 10)
+    
+    return testExample
+}
+
+func generateSampleAddedUserFood() -> AddedUserFood {
+    let testExample = AddedUserFood()
+    testExample.name = "Test"
+    testExample.foodType = "Milk"
+    testExample.iconName = validIconName
+    testExample.shelfLife = 1
+    testExample.qrCode = validQRCodeInfo
+    
+    return testExample
+}
+
 
 class FoodDataSourceTests: XCTestCase {
     var testableDataSource: FoodDataSource!
-    
-    func generateSampleFood() -> UserFood {
-        let testExample = UserFood()
-        testExample.name = "Test"
-        testExample.iconName = validIconName
-        testExample.endDate = Date(timeIntervalSinceNow: 10)
-        
-        return testExample
-    }
-    
-    func generateSampleAddedUserFood() -> AddedUserFood {
-        let testExample = AddedUserFood()
-        testExample.name = "Test"
-        testExample.foodType = "Milk"
-        testExample.iconName = validIconName
-        testExample.shelfLife = 1
-        testExample.qrCode = validQRCodeInfo
-        
-        return testExample
-    }
     
     override func setUp() {
         super.setUp()
@@ -99,14 +101,7 @@ class FoodDataSourceTests: XCTestCase {
     }
     
     func testAddingFoodByUser() {
-        let testExample = AddedUserFood()
-        testExample.name = "Test"
-        testExample.foodType = "Milk"
-        testExample.iconName = "butter"
-        testExample.shelfLife = 1
-        testExample.qrCode = validQRCodeInfo
-        
-        testableDataSource.addUserCreatedFood(testExample)
+        testableDataSource.addUserCreatedFood(generateSampleAddedUserFood())
         
         let result = testableDataSource.addFood(byName: "Test")
         XCTAssert(result, "Problems with adding User Food")
@@ -123,9 +118,12 @@ class FoodDataSourceTests: XCTestCase {
         let food = testableDataSource.getFulInfo(about: generateSampleAddedUserFood())
         food.name = "Test 2"
         
-        let addedFoodArray = testableDataSource.getAllFood(by: "User Added")
-        let addedElementName = addedFoodArray.last?.name
-        XCTAssertEqual(addedElementName!, "Test 2", "Problems with modification of element")
+        let addedFoodArray = testableDataSource.getAllFood(by: userAddedFoodType)
+        guard let addedElementName = addedFoodArray.last?.name else {
+            XCTFail("Unable to find data after adding")
+            return
+        }
+        XCTAssertEqual(addedElementName, "Test 2", "Problems with modification of element")
         
     }
     
@@ -137,13 +135,19 @@ class FoodDataSourceTests: XCTestCase {
     
     func testPerformanceOfSearchingByName() {
         self.measure {
-            // Put the code you want to measure the time of here.
+            let _ = self.testableDataSource.addFood(byName: validFoodName)
         }
     }
     
     func testPerformanceOfSearchingByQR() {
         self.measure {
-            // Put the code you want to measure the time of here.
+            let _ = self.testableDataSource.addFood(byQR: validQRCodeInfo)
+        }
+    }
+    
+    func testPerformanceOfFindingAllUserAddedFood() {
+        self.measure { 
+            let _ = self.testableDataSource.getAllFood(by: userAddedFoodType)
         }
     }
     
@@ -198,23 +202,44 @@ class UserDataSourceTests: XCTestCase {
     }
     
     func testDeletingUserFood() {
-        
+        let numberOfFoodElements = testableDataSource.getFoodItemCount()
+        let _ = testableDataSource.addFood(byName: "Fruit")
+        let addedFood = testableDataSource.getFood(at: IndexPath(item: numberOfFoodElements - 1, section: 0))
+        testableDataSource.delete(food: addedFood)
+        XCTAssertEqual(numberOfFoodElements, testableDataSource.getFoodItemCount(), "Problems with deleting of food")
     }
     
     func testAddingFoodByUser() {
+        testableDataSource.addUserCreatedFood(generateSampleAddedUserFood())
         
+        let result = testableDataSource.addFood(byName: "Test")
+        XCTAssert(result, "Problems with adding User Food")
     }
     
     func testGettingFulInfoAboutUserAddedFood() {
-        
+        testableDataSource.addUserCreatedFood(generateSampleAddedUserFood())
+        let info = testableDataSource.getFulInfo(about: generateSampleAddedUserFood())
+        XCTAssertEqual(info.name, "Test", "Problems with deleting correct info about user added food")
     }
     
     func testModificationUserCreatedFood() {
+        testableDataSource.addUserCreatedFood(generateSampleAddedUserFood())
+        let food = testableDataSource.getFulInfo(about: generateSampleAddedUserFood())
+        food.name = "Test 2"
         
+        let addedFoodArray = testableDataSource.getAllFood(by: "User Added")
+        guard let addedElementName = addedFoodArray.last?.name else {
+            XCTFail("Unable to find data after adding")
+            return
+        }
+        XCTAssertEqual(addedElementName, "Test 2", "Problems with modification of element")
+
     }
     
     func testDeleteAllUserInfo() {
-        
+        testableDataSource.deleteAllUserInfo()
+        XCTAssertEqual(testableDataSource.getFoodItemCount(), 0, "Problems with deleting user info")
+
     }
 
     
