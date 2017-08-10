@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
         do {
             dataSource = try FoodDataSource()
+            
         }
         catch let error as NSError {
             fatalRealmError(error)

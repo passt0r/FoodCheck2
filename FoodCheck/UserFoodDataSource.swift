@@ -46,7 +46,7 @@ class UserDataSource: MutableFoodDataSource {
         
         resultOfQueryingUserFood = dataBase.objects(UserFood.self).sorted(byKeyPath: "endDate")
         resultOfQueryingBaseFood = dataBase.objects(AddedUserFood.self).sorted(byKeyPath: "name")
-        baseUserFoodDataSource = baseData
+        
     }
     
     func addFood(byName: String) -> Bool {

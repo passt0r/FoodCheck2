@@ -35,11 +35,37 @@ class BaseUserFoodDataSource: ImmutableFoodDataSource {
     private var dataBase: Realm!
     
     required init() throws {
+        let baseURL = Bundle.main.url(forResource: "bindedBaseFood", withExtension: "realm")
+        let config = Realm.Configuration(fileURL: baseURL, readOnly: true)
+        dataBase = try Realm(configuration: config)
         
-        dataBase = try Realm()
+    }
+    //Use only if need to generate sample data
+    private func generateSample() {
+        let testFoodType = FoodType()
+        testFoodType.typeName = "Test"
+        testFoodType.typeIcon = "fruit"
+        
+        let testBaseFood = BaseFood()
+        testBaseFood.name = "TestFood"
+        testBaseFood.foodType = "Test"
+        testBaseFood.shelfLife = 10
+        testBaseFood.qrCode = ""
+        
+        let testBaseFood2 = BaseFood()
+        testBaseFood2.name = "TestFood 2"
+        testBaseFood2.foodType = "Test"
+        testBaseFood2.shelfLife = 10
+
+        try! dataBase.write {
+            dataBase.add(testFoodType)
+            dataBase.add(testBaseFood)
+            dataBase.add(testBaseFood2)
+        }
     }
     
     func getAllFoodTypes() -> [FoodType] {
+        
         return [FoodType()]
     }
     

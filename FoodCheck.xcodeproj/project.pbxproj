@@ -16,6 +16,7 @@
 		5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */; };
 		5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFB1F3BA4C000B8C89D /* Globals.swift */; };
 		5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */; };
+		59219C1B1F3D132800DA7C98 /* bindedBaseFood.realm in Resources */ = {isa = PBXBuildFile; fileRef = 59219C1A1F3D132800DA7C98 /* bindedBaseFood.realm */; };
 		593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE821F325C0700CC7E27 /* MockFood.swift */; };
 		593EDE8B1F32618600CC7E27 /* FoodCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */; };
 		5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFoodDataSource.swift; sourceTree = "<group>"; };
 		5914FBFB1F3BA4C000B8C89D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSource.swift; sourceTree = "<group>"; };
+		59219C1A1F3D132800DA7C98 /* bindedBaseFood.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = bindedBaseFood.realm; sourceTree = "<group>"; };
 		593EDE821F325C0700CC7E27 /* MockFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFood.swift; sourceTree = "<group>"; };
 		593EDE881F32618500CC7E27 /* FoodCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCheckTests.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		595B29751F349D8A003C2DD4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				59219C1A1F3D132800DA7C98 /* bindedBaseFood.realm */,
 				5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */,
 				5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */,
 				5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */,
@@ -420,6 +423,7 @@
 				5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */,
 				59092A1A1F2E55BC00EBB75D /* iTunesArtwork in Resources */,
 				5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */,
+				59219C1B1F3D132800DA7C98 /* bindedBaseFood.realm in Resources */,
 				59BFEA201F33ECAE00B92F98 /* warning.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
