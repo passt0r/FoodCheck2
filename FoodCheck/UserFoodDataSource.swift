@@ -34,26 +34,65 @@ class AddedUserFood: Object, UserFoodInformation {
 //TODO: Implement dataSource here
 
 class UserDataSource: MutableFoodDataSource {
+    private let baseWorkingError = NSError(domain: "UserDataSourceError", code: 1, userInfo: nil)
+    
     private let dataBase: Realm
     
     private var resultOfQueryingUserFood: Results<UserFood>!
-    private var resultOfQueryingBaseFood: Results<AddedUserFood>!
     
     private var baseUserFoodDataSource: ImmutableFoodDataSource!
     
     required init(with baseData: ImmutableFoodDataSource) throws {
         dataBase = try Realm()
+        baseUserFoodDataSource = try BaseUserFoodDataSource()
         
         resultOfQueryingUserFood = dataBase.objects(UserFood.self).sorted(byKeyPath: "endDate")
-        resultOfQueryingBaseFood = dataBase.objects(AddedUserFood.self).sorted(byKeyPath: "name")
         
     }
     
-    func addFood(byName: String) -> Bool {
+    func getAllFoodTypes() -> [FoodType] {
+        return baseUserFoodDataSource.getAllFoodTypes()
+    }
+    
+    // If food do not find in bindedBase, than food will be surely find at this base
+    func findFoodBy(name: String) -> AddedUserFood? {
+            let predicate = NSPredicate(format: "name == %@", name)
+            let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
+            guard let findedFood = resultOfSearching.first else { return nil }
+            return findedFood
+    }
+    
+    func findFoodBy(qr: String) -> AddedUserFood? {
+        let predicate = NSPredicate(format: "qrCode == %@", qr)
+        let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
+        guard let findedFood = resultOfSearching.first else { return nil }
+        return findedFood
+    }
+    
+    //MARK: Can be possible add food without correct name? I think not, that's why it must throw exeption
+    func addFood(byName name: String) -> Bool {
+        if let findedFood = baseUserFoodDataSource.findFoodBy(name: name) {
+            
+            return true
+        } else if let findedFood = findFoodBy(name: name) {
+            
+            return true
+        }
+        
+        fatalRealmError(baseWorkingError)
+        
         return false
     }
     
-    func addFood(byQR: String) -> Bool {
+    func addFood(byQR code: String) -> Bool {
+        if let findedFood = baseUserFoodDataSource.findFoodBy(qr: code) {
+            
+            return true
+        } else if let findedFood = findFoodBy(qr: code){
+            
+            return true
+        }
+        
         return false
     }
     
@@ -66,7 +105,9 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func delete(food: UserFood) {
-        
+        try! dataBase.write {
+            dataBase.delete(food)
+        }
     }
     
     func getAllFood(by type: String) -> [UserFoodInformation] {
@@ -88,6 +129,8 @@ class UserDataSource: MutableFoodDataSource {
 
     //Delete all AddedUserFood
     func deleteAllUserInfo() {
-        
+        try! dataBase.write {
+            dataBase.deleteAll()
+        }
     }
 }

@@ -64,21 +64,39 @@ class BaseUserFoodDataSource: ImmutableFoodDataSource {
         }
     }
     
+    // I know that search result in Realm is lazy and go through tham in cycle is not the best sollution
+    // But we need those results be exactly in table view when it readed. That's why I deside to go through here
     func getAllFoodTypes() -> [FoodType] {
-        
-        return [FoodType()]
+        let resultOfSearching = dataBase.objects(FoodType.self).sorted(byKeyPath: "typeName")
+        var findedFoodTypes = [FoodType]()
+        for foodType in resultOfSearching {
+            findedFoodTypes.append(foodType)
+        }
+        return findedFoodTypes
     }
     
     func getAllFood(by type: String) -> [UserFoodInformation] {
-        return [BaseFood()]
+        let predicate = NSPredicate(format: "foodType == %@", type)
+        let resultOfSearching = dataBase.objects(BaseFood.self).filter(predicate).sorted(byKeyPath: "name")
+        var findedFood = [BaseFood]()
+        for searchedFood in resultOfSearching {
+            findedFood.append(searchedFood)
+        }
+        return findedFood
     }
     
-    func findFoodBy(name: String) -> UserFood? {
-        return nil
+    func findFoodBy(name: String) -> BaseFood? {
+        let predicate = NSPredicate(format: "name == %@", name)
+        let resultOfSearching = dataBase.objects(BaseFood.self).filter(predicate).sorted(byKeyPath: "name")
+        guard let findedFood = resultOfSearching.first else { return nil }
+        return findedFood
     }
     
-    func findFoodBy(qr: String) -> UserFood? {
-        return nil
+    func findFoodBy(qr: String) -> BaseFood? {
+        let predicate = NSPredicate(format: "qrCode == %@", qr)
+        let resultOfSearching = dataBase.objects(BaseFood.self).filter(predicate).sorted(byKeyPath: "name")
+        guard let findedFood = resultOfSearching.first else { return nil }
+        return findedFood
     }
     
 }

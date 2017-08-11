@@ -45,9 +45,9 @@ protocol ImmutableFoodDataSource: class {
     
     func getAllFood(by type: String) -> [UserFoodInformation]
     
-    func findFoodBy(name: String) -> UserFood?
+    func findFoodBy(name: String) -> BaseFood?
     
-    func findFoodBy(qr: String) -> UserFood? 
+    func findFoodBy(qr: String) -> BaseFood?
 }
 
 protocol UserFoodInformation: class {
