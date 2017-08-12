@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol MutableFoodDataSource: class {
     //TODO: Use generics to implement protocol
-    init(with baseData: ImmutableFoodDataSource) throws
+    init() throws
     
     //Add food to user food model
     func addFood(byName: String) -> Bool
@@ -29,7 +29,7 @@ protocol MutableFoodDataSource: class {
     func addUserCreatedFood(_ food: AddedUserFood)
     
     //Use for modifyUserCreatedFood
-    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood
+    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood?
     
 //    func modificateUserCreatedFood(_ food: AddedUserFood)
     

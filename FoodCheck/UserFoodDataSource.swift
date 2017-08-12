@@ -24,6 +24,10 @@ class AddedUserFood: Object, UserFoodInformation {
     dynamic var shelfLife = TimeInterval()
     dynamic var qrCode: String? = nil
     
+    override static func primaryKey() -> String? {
+        return "name"
+    }
+    
 // Specify properties to ignore (Realm won't persist these)
     
 //  override static func ignoredProperties() -> [String] {
@@ -42,12 +46,28 @@ class UserDataSource: MutableFoodDataSource {
     
     private var baseUserFoodDataSource: ImmutableFoodDataSource!
     
-    required init(with baseData: ImmutableFoodDataSource) throws {
+    required init() throws {
         dataBase = try Realm()
         baseUserFoodDataSource = try BaseUserFoodDataSource()
         
         resultOfQueryingUserFood = dataBase.objects(UserFood.self).sorted(byKeyPath: "endDate")
         
+    }
+    
+    private func createUserFood(from foodInfo: UserFoodInformation) -> UserFood {
+        let userFood = UserFood()
+        userFood.name = foodInfo.name
+        userFood.iconName = foodInfo.iconName
+        userFood.endDate = Date(timeIntervalSinceNow: foodInfo.shelfLife)
+        
+        return userFood
+    }
+    
+    private func addToFridge(food: UserFoodInformation) {
+        let foodToFridge = createUserFood(from: food)
+        try! dataBase.write {
+            dataBase.add(foodToFridge)
+        }
     }
     
     func getAllFoodTypes() -> [FoodType] {
@@ -72,10 +92,10 @@ class UserDataSource: MutableFoodDataSource {
     //MARK: Can be possible add food without correct name? I think not, that's why it must throw exeption
     func addFood(byName name: String) -> Bool {
         if let findedFood = baseUserFoodDataSource.findFoodBy(name: name) {
-            
+            addToFridge(food: findedFood)
             return true
         } else if let findedFood = findFoodBy(name: name) {
-            
+            addToFridge(food: findedFood)
             return true
         }
         
@@ -86,10 +106,10 @@ class UserDataSource: MutableFoodDataSource {
     
     func addFood(byQR code: String) -> Bool {
         if let findedFood = baseUserFoodDataSource.findFoodBy(qr: code) {
-            
+            addToFridge(food: findedFood)
             return true
         } else if let findedFood = findFoodBy(qr: code){
-            
+            addToFridge(food: findedFood)
             return true
         }
         
@@ -116,17 +136,26 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func addUserCreatedFood(_ food: AddedUserFood) {
-        
+        try! dataBase.write {
+            dataBase.add(food, update: true)
+        }
     }
     
-    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood {
-        return AddedUserFood()
+    func deleteUserCreatedFood(_ food: AddedUserFood) {
+        try! dataBase.write {
+            dataBase.delete(food)
+        }
     }
     
-//    func modificateUserCreatedFood(_ food: AddedUserFood) {
-//    
-//    }
-
+    func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood? {
+        let predicate = NSPredicate(format: "foodType == %@ AND name == %@", userFood.foodType, userFood.name)
+        let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate)
+        guard let findFood = resultOfSearching.first else {
+            return nil 
+        }
+        return findFood
+    }
+    
     //Delete all AddedUserFood
     func deleteAllUserInfo() {
         try! dataBase.write {
