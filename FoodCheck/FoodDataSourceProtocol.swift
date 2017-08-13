@@ -13,6 +13,10 @@ protocol MutableFoodDataSource: class {
     //TODO: Use generics to implement protocol
     init() throws
     
+    func findFoodBy(name: String) -> AddedUserFood?
+    
+    func findFoodBy(qr: String) -> AddedUserFood?
+    
     //Add food to user food model
     func addFood(byName: String) -> Bool
     func addFood(byQR: String) -> Bool

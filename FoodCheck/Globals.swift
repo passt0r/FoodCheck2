@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 //MARK: Appearance property
 //MARK: Colors are global for posibility to use them over all app
@@ -16,7 +17,8 @@ let peachTint = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
 let MyDataModelDidFailNotification = Notification.Name(rawValue: "MyDataModelDidFailNotification")
 
 func fatalRealmError(_ error: Error) {
-    print("***Fatal error: \(error)")
+    print("***Fatal error with dataBase: \(error)")
+    Crashlytics.sharedInstance().recordError(error)
     NotificationCenter.default.post(name: MyDataModelDidFailNotification, object: nil)
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Crashlytics
 
 class UserFood: Object {
     
@@ -38,7 +39,6 @@ class AddedUserFood: Object, UserFoodInformation {
 //TODO: Implement dataSource here
 
 class UserDataSource: MutableFoodDataSource {
-    private let baseWorkingError = NSError(domain: "UserDataSourceError", code: 1, userInfo: nil)
     
     private let dataBase: Realm
     
@@ -65,8 +65,12 @@ class UserDataSource: MutableFoodDataSource {
     
     private func addToFridge(food: UserFoodInformation) {
         let foodToFridge = createUserFood(from: food)
-        try! dataBase.write {
-            dataBase.add(foodToFridge)
+        do {
+            try dataBase.write {
+                dataBase.add(foodToFridge)
+            }
+        } catch let error as NSError {
+            Crashlytics.sharedInstance().recordError(error)
         }
     }
     
@@ -78,7 +82,10 @@ class UserDataSource: MutableFoodDataSource {
     func findFoodBy(name: String) -> AddedUserFood? {
             let predicate = NSPredicate(format: "name == %@", name)
             let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
-            guard let findedFood = resultOfSearching.first else { return nil }
+            guard let findedFood = resultOfSearching.first else {
+                let baseWorkingError = NSError(domain: "UserDataSourceError", code: 1, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Cannot add food by name", comment: "Error description")])
+                Crashlytics.sharedInstance().recordError(baseWorkingError)
+                return nil }
             return findedFood
     }
     
@@ -99,7 +106,7 @@ class UserDataSource: MutableFoodDataSource {
             return true
         }
         
-        fatalRealmError(baseWorkingError)
+        
         
         return false
     }
@@ -125,8 +132,12 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func delete(food: UserFood) {
-        try! dataBase.write {
-            dataBase.delete(food)
+        do {
+            try dataBase.write {
+                dataBase.delete(food)
+            }
+        } catch let error as NSError {
+            Crashlytics.sharedInstance().recordError(error)
         }
     }
     
@@ -136,14 +147,22 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func addUserCreatedFood(_ food: AddedUserFood) {
-        try! dataBase.write {
-            dataBase.add(food, update: true)
+        do {
+            try dataBase.write {
+                dataBase.add(food, update: true)
+            }
+        } catch let error as NSError {
+            Crashlytics.sharedInstance().recordError(error)
         }
     }
     
     func deleteUserCreatedFood(_ food: AddedUserFood) {
-        try! dataBase.write {
-            dataBase.delete(food)
+        do {
+            try dataBase.write {
+                dataBase.delete(food)
+            }
+        } catch let error as NSError {
+            Crashlytics.sharedInstance().recordError(error)
         }
     }
     
@@ -158,8 +177,12 @@ class UserDataSource: MutableFoodDataSource {
     
     //Delete all AddedUserFood
     func deleteAllUserInfo() {
-        try! dataBase.write {
-            dataBase.deleteAll()
+        do {
+            try dataBase.write {
+                dataBase.deleteAll()
+            }
+        } catch let error as NSError {
+            Crashlytics.sharedInstance().recordError(error)
         }
     }
 }

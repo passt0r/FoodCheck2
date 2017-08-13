@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
         do {
             dataSource = try UserDataSource()
-            
         }
         catch let error as NSError {
             fatalRealmError(error)
@@ -49,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
+    //FIXME: Implement correct version for this function
+    //FIXME: rebuild bindedBaseFood, we change schema
     func viewControllerForShowingAlert() -> UIViewController {
         let rootViewController = self.window!.rootViewController!
         if let presentedViewController = rootViewController.presentedViewController {
@@ -59,16 +60,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
         customizeAppearance()
         
+        listenForRealmErrorNotification()
         initialDataSource()
         let rootViewController = window?.rootViewController as! UINavigationController
         let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
         rootContentController.dataSource = dataSource
         
-        listenForRealmErrorNotification()
-        
+        Fabric.with([Crashlytics.self])
         return true
     }
 
