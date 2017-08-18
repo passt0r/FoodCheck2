@@ -4,6 +4,6 @@ language: swift
 script:
 - xcodebuild -workspace FoodCheck.xcworkspace -scheme FoodCheckTest -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.3.1' -enableCodeCoverage YES CODE_SIGNING_REQUIRED=NO clean build test
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -cF ios
+  - bash <(curl -s https://codecov.io/bash) -X xcodeplist
 notifications:
     slack: passcoding:VFYINiqpYIL4ei4NPjLgyq38
