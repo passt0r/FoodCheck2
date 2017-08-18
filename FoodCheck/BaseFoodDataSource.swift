@@ -39,6 +39,12 @@ class BaseUserFoodDataSource: ImmutableFoodDataSource {
         let config = Realm.Configuration(fileURL: baseURL, readOnly: true)
         dataBase = try Realm(configuration: config)
         
+        //MARK: You can uncomment this for generating new file
+//        var config = Realm.Configuration()
+//        config.fileURL = config.fileURL?.deletingLastPathComponent().appendingPathComponent("bindedBaseFood.realm")
+//        dataBase = try Realm(configuration: config)
+//        try dataBase.writeCopy(toFile: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!, encryptionKey: nil)
+        
     }
     //Use only if need to generate sample data
     private func generateSample() {

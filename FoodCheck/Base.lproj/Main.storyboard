@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YSG-Du-VQG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YSG-Du-VQG">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -71,7 +71,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Qr_code" id="gON-nQ-h4q">
                             <connections>
-                                <segue destination="cpw-wz-AhK" kind="presentation" identifier="Present_qr_reader" id="4VY-Xp-asq"/>
+                                <segue destination="cpw-wz-AhK" kind="presentation" identifier="Read_QR" id="nrw-4y-XXB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

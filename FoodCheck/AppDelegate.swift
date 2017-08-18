@@ -15,27 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var dataSource: UserDataSource!
+    var dataSource: MutableFoodDataSource!
     
     func customizeAppearance() {
        window?.tintColor = peachTint
         
     }
     
+    var launchAlert: UIAlertController?
+    
     func initialDataSource() {
-//        dataSource = MockFoodDataSource(generateWithSamples: true, withItemCount: 50)
         do {
             dataSource = try UserDataSource()
         }
         catch let error as NSError {
             fatalRealmError(error)
         }
-
     }
     
     func listenForRealmErrorNotification() {
         NotificationCenter.default.addObserver(forName: MyDataModelDidFailNotification, object: nil, queue: OperationQueue.main, using: { notification in
-            
             let alert = UIAlertController(title: NSLocalizedString("Internal alert", comment: "Internal error header"),
                                           message: NSLocalizedString("There was an error while working whith your data", comment: "Internal error description") + "\n\n" + NSLocalizedString("Press OK to terminate the app. Sorry for the inconvenience", comment: "Internal error excuses"),
                                           preferredStyle: .alert)
@@ -44,19 +43,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 exeption.raise()
             })
             alert.addAction(action)
+            print("***Observe error")
+            self.launchAlert = alert
             self.viewControllerForShowingAlert().present(alert, animated: true, completion: nil)
         })
     }
     
-    //FIXME: Implement correct version for this function
-    //FIXME: rebuild bindedBaseFood, we change schema
     func viewControllerForShowingAlert() -> UIViewController {
         let rootViewController = self.window!.rootViewController!
-        if let presentedViewController = rootViewController.presentedViewController {
-            return presentedViewController
-        } else {
-            return rootViewController
+        return topViewController(from: rootViewController)
+    }
+    
+    func topViewController(from controller: UIViewController) -> UIViewController {
+        if controller is UINavigationController {
+            return topViewController(from: (controller as! UINavigationController).topViewController!)
         }
+        if controller is UITabBarController {
+            return topViewController(from:(controller as! UITabBarController).selectedViewController!)
+        }
+        if let presentedViewController = controller.presentedViewController {
+            return topViewController(from:presentedViewController)
+        }
+        
+        return controller
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -64,9 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         listenForRealmErrorNotification()
         initialDataSource()
-        let rootViewController = window?.rootViewController as! UINavigationController
-        let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
-        rootContentController.dataSource = dataSource
+        
+        if let rootViewController = window?.rootViewController as? UINavigationController {
+            let rootContentController = rootViewController.viewControllers[0] as! YourFoodViewController
+            rootContentController.dataSource = dataSource
+        }
         
         Fabric.with([Crashlytics.self])
         return true
@@ -88,6 +99,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if let presentLaunchAlert = launchAlert {
+            viewControllerForShowingAlert().present(presentLaunchAlert, animated: true, completion: nil)
+            launchAlert = nil
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

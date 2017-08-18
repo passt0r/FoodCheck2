@@ -12,7 +12,7 @@ private let reuseIdentifier = "FoodItemCell"
 
 class YourFoodViewController: UICollectionViewController {
 
-    var dataSource: UserDataSource!
+    var dataSource: MutableFoodDataSource!
     
     func addBackgroundView() {
         guard let backgroundImage = UIImage(named: "Fridge_background") else { return }

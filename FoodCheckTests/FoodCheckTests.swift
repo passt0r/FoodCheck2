@@ -62,7 +62,7 @@ class UserDataSourceTests: XCTestCase {
         testableDataSource.addUserCreatedFood(foodToAdd)
         
         guard let result = testableDataSource.findFoodBy(name: validFoodName) else {
-            XCTFail("Error when find food, food not find")
+            XCTFail("Error when find food, food not found")
             return
         }
         
@@ -75,7 +75,7 @@ class UserDataSourceTests: XCTestCase {
         testableDataSource.addUserCreatedFood(foodToAdd)
         
         guard let result = testableDataSource.findFoodBy(qr: validFoodName) else {
-            XCTFail("Error when find food, food not find")
+            XCTFail("Error when find food, food not found")
             return
         }
         
