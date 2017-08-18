@@ -74,7 +74,7 @@ class UserDataSourceTests: XCTestCase {
         
         testableDataSource.addUserCreatedFood(foodToAdd)
         
-        guard let result = testableDataSource.findFoodBy(qr: validFoodName) else {
+        guard let result = testableDataSource.findFoodBy(qr: validQRCodeInfo) else {
             XCTFail("Error when find food, food not found")
             return
         }
@@ -125,6 +125,7 @@ class UserDataSourceTests: XCTestCase {
     }
     
     func testDeletingUserFood() {
+        let _ = testableDataSource.addFood(byName: validFoodName)
         let numberOfFoodElements = testableDataSource.getFoodItemCount()
         let _ = testableDataSource.addFood(byName: validFoodName)
         let addedFood = testableDataSource.getFood(at: IndexPath(item: numberOfFoodElements - 1, section: 0))
@@ -157,15 +158,23 @@ class UserDataSourceTests: XCTestCase {
     
     func testModificationUserCreatedFood() {
         testableDataSource.addUserCreatedFood(generateSampleAddedUserFood())
-        let food = testableDataSource.getFulInfo(about: generateSampleAddedUserFood())
-        food!.name = "Test 2"
+        let food = testableDataSource.getFulInfo(about: generateSampleAddedUserFood())!
+        let newInfo = AddedUserFood()
+        newInfo.name = "Test 2"
+        newInfo.foodType = food.foodType
+        newInfo.iconName = food.iconName
+        newInfo.qrCode = food.qrCode
+        newInfo.shelfLife = food.shelfLife
+        
+        testableDataSource.modifyUserCreatedFood(food, withInfo: newInfo)
         
         let addedFoodArray = testableDataSource.getAllFood(by: userAddedFoodType)
         guard let addedElementName = addedFoodArray.last?.name else {
             XCTFail("Unable to find data after adding")
             return
         }
-        XCTAssertEqual(addedElementName, "Test 2", "Problems with modification of element")
+        
+        XCTAssertEqual(addedElementName, "Test 2", "Problems with modification of element, find \(addedElementName)")
 
     }
     
@@ -228,7 +237,7 @@ class BaseUserFoodDataSourceTests: XCTestCase {
     }
     
     func testFindFoodByName() {
-        let food = testableDataSource.findFoodBy(name: "Bread")
+        let food = testableDataSource.findFoodBy(name: validFoodName)
         XCTAssertNotNil(food, "Can't find food by name (BaseFoodDataSource)")
     }
     

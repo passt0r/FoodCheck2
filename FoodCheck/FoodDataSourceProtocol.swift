@@ -59,4 +59,5 @@ protocol UserFoodInformation: class {
     var foodType: String { get set }
     var iconName: String { get set }
     var shelfLife: TimeInterval { get set }
+    var qrCode: String? { get set }
 }

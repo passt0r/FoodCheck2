@@ -142,10 +142,17 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func getAllFood(by type: String) -> [UserFoodInformation] {
-        let element = AddedUserFood()
-        return [element]
+        var findedFood = [UserFoodInformation]()
+        findedFood.append(contentsOf: baseUserFoodDataSource.getAllFood(by: type))
+        let predicate = NSPredicate(format: "foodType == %@", type)
+        let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
+        for searchedFood in resultOfSearching {
+            findedFood.append(searchedFood)
+        }
+        return findedFood
     }
     
+    //MARK: food.name is a primary key that can not be modifiing, if you want to modify food name, you must first delete this food element and than re-create it
     func addUserCreatedFood(_ food: AddedUserFood) {
         do {
             try dataBase.write {
@@ -173,6 +180,16 @@ class UserDataSource: MutableFoodDataSource {
             return nil 
         }
         return findFood
+    }
+    
+    //AddedUserFood use primaryKey, and when you want to modify user name, than you must use it
+    func modifyUserCreatedFood(_ food: AddedUserFood, withInfo info: UserFoodInformation) {
+        if info.name == food.name {
+            addUserCreatedFood(food)
+        } else {
+           deleteUserCreatedFood(food)
+            addUserCreatedFood(info as! AddedUserFood)
+        }
     }
     
     //Delete all AddedUserFood
