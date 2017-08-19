@@ -12,17 +12,37 @@ import Crashlytics
 //MARK: Appearance property
 //MARK: Colors are global for posibility to use them over all app
 let peachTint = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
+let grassGreen = UIColor(red: 70/255, green: 170/255, blue: 0/255, alpha: 1.0)
 
 //MARK: Error handling
+
+func record(error: NSError) {
+    Crashlytics.sharedInstance().recordError(error)
+}
+
 let MyDataModelDidFailNotification = Notification.Name(rawValue: "MyDataModelDidFailNotification")
 
 func fatalRealmError(_ error: Error) {
     print("***Fatal error with dataBase: \(error)")
-    Crashlytics.sharedInstance().recordError(error)
+    record(error: error as NSError)
     NotificationCenter.default.post(name: MyDataModelDidFailNotification, object: nil)
 }
 
-//MARK: Food Types 
+//MARK: Massage Label generation
+
+func generateMassageLabel() -> UILabel {
+    let label = UILabel()
+    label.textColor = grassGreen
+    label.backgroundColor = UIColor.clear
+    label.font = UIFont.systemFont(ofSize: 18)
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
+    
+    return label
+}
+
+//MARK: Food Types
 
 let foodTypesArray: [String] = [
     "Fruit",
@@ -35,6 +55,9 @@ let foodTypesArray: [String] = [
     "Canned Goods",
     "User Added",
     "Without Type"
+]
+
+let foodIconsArray: [String] = [
 ]
 
 //enum FoodTypes: String {

@@ -70,7 +70,7 @@ class UserDataSource: MutableFoodDataSource {
                 dataBase.add(foodToFridge)
             }
         } catch let error as NSError {
-            Crashlytics.sharedInstance().recordError(error)
+            record(error: error)
         }
     }
     
@@ -84,7 +84,7 @@ class UserDataSource: MutableFoodDataSource {
             let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
             guard let findedFood = resultOfSearching.first else {
                 let baseWorkingError = NSError(domain: "UserDataSourceError", code: 1, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Cannot add food by name", comment: "Error description")])
-                Crashlytics.sharedInstance().recordError(baseWorkingError)
+                record(error: baseWorkingError)
                 return nil }
             return findedFood
     }
@@ -137,7 +137,7 @@ class UserDataSource: MutableFoodDataSource {
                 dataBase.delete(food)
             }
         } catch let error as NSError {
-            Crashlytics.sharedInstance().recordError(error)
+            record(error: error)
         }
     }
     
@@ -159,7 +159,7 @@ class UserDataSource: MutableFoodDataSource {
                 dataBase.add(food, update: true)
             }
         } catch let error as NSError {
-            Crashlytics.sharedInstance().recordError(error)
+            record(error: error)
         }
     }
     
@@ -169,7 +169,7 @@ class UserDataSource: MutableFoodDataSource {
                 dataBase.delete(food)
             }
         } catch let error as NSError {
-            Crashlytics.sharedInstance().recordError(error)
+            record(error: error)
         }
     }
     
@@ -199,7 +199,7 @@ class UserDataSource: MutableFoodDataSource {
                 dataBase.deleteAll()
             }
         } catch let error as NSError {
-            Crashlytics.sharedInstance().recordError(error)
+            record(error: error)
         }
     }
 }

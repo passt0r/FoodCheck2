@@ -14,12 +14,30 @@ class YourFoodViewController: UICollectionViewController {
 
     var dataSource: MutableFoodDataSource!
     
-    func addBackgroundView() {
+    private let emptyMassage = NSLocalizedString("Seems like your fridge is empty. Press \"Add\" to get some food to your fridge", comment: "Massage for empty fridge")
+    
+    private lazy var messageLabel: UILabel = {
+        return generateMassageLabel()
+    }()
+    
+    private func addBackgroundView() {
         guard let backgroundImage = UIImage(named: "Fridge_background") else { return }
         let backgroundView = UIImageView(image: backgroundImage)
         collectionView?.backgroundView = backgroundView
     }
     
+    private func checkEmptyFridge() {
+        let itemsCount = dataSource.getFoodItemCount()
+        if itemsCount == 0 {
+        view.addSubview(messageLabel)
+        messageLabel.setupMessage(with: emptyMassage)
+            
+        } else {
+            messageLabel.removeFromSuperview()
+            
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +45,10 @@ class YourFoodViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         addBackgroundView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkEmptyFridge()
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +122,7 @@ class YourFoodViewController: UICollectionViewController {
         dataSource.delete(food: deletedFood)
         collectionView.deleteItems(at: [indexPath])
         collectionViewLayout.invalidateLayout()
+        checkEmptyFridge()
     }
 
     /*

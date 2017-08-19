@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func customizeAppearance() {
        window?.tintColor = peachTint
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSForegroundColorAttributeName: grassGreen]
+        UILabel.appearance().textColor = peachTint
         
     }
     
