@@ -56,15 +56,24 @@ class YourFoodViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        switch segue.identifier! {
+        case "Read_QR":
+            let destinationNV = segue.destination as! UINavigationController
+            let destination = destinationNV.topViewController as! ReadQRViewController
+            destination.dataSource = dataSource
+        default :
+            let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: nil)
+            record(error: error)
+        }
     }
-    */
+    
 
     // MARK: UICollectionViewDataSource
 

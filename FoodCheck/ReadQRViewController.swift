@@ -58,7 +58,9 @@ class ReadQRViewController: UIViewController {
     ]
     
     private let captureVideoDeviceErrorMassage = NSLocalizedString("Oops, we get some problems with your camera", comment: "Error massage when get capture device error")
-
+    
+    private let elementsCornerRadius: CGFloat = 10
+    
     @IBAction func backToYourFood() {
         dismiss(animated: true, completion: nil)
     }
@@ -80,15 +82,33 @@ class ReadQRViewController: UIViewController {
         }
     }
     
+    //MARK: Working with DB
     fileprivate func performSearch(withCode code: String) {
         let wasAdded = dataSource.addFood(byQR: code)
+        if wasAdded {
+            statusLabel.text = statusLabelText[.Find]
+        } else {
+            statusLabel.text = statusLabelText[.NotFound]
+        }
+    }
+
+    //MARK: Prepare UI elements
+    private func initiateCustomizeUIElements() {
+        statusLabel.text = statusLabelText[.Searching]
+        
+        //statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.backgroundColor = UIColor.white
+        statusLabel.layer.cornerRadius = elementsCornerRadius
+        statusLabel.clipsToBounds = true
+        
+        actionButton.backgroundColor = UIColor.white
+        actionButton.layer.cornerRadius = elementsCornerRadius
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setBackground(image: UIImage(named: "Fridge_background")!)
-        
-        statusLabel.text = statusLabelText[.Searching]
+        initiateCustomizeUIElements()
         
         //Get device for capture video info
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -133,6 +153,7 @@ class ReadQRViewController: UIViewController {
             view.addSubview(messageLabel)
             messageLabel.setupMessage(with: captureVideoDeviceErrorMassage)
             statusLabel.text = statusLabelText[.Error]
+            statusLabel.isHidden = true
         }
         
     }
@@ -159,7 +180,11 @@ extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = .zero
-            statusLabel.text = statusLabelText[.Searching]
+            if fromAdd && !qrCodeMessage.isEmpty {
+                statusLabel.text = statusLabelText[.SearchDone]
+            } else {
+                statusLabel.text = statusLabelText[.Searching]
+            }
             return
         }
         
@@ -172,7 +197,7 @@ extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
                 qrCodeMessage = metadataObj.stringValue
                 statusLabel.text = statusLabelText[.SearchDone]
                 if !fromAdd {
-                    performSearch(withCode: metadataObj.stringValue)
+                    performSearch(withCode: qrCodeMessage)
                 }
             }
         }
