@@ -22,7 +22,13 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     
     fileprivate var fromAdd: Bool = false
     
-    fileprivate var qrCodeMessage: String = ""
+    fileprivate var qrCodeMessage: String = "" {
+        didSet {
+            if fromAdd {
+                actionButton.isEnabled = true
+            }
+        }
+    }
     
     fileprivate var capturedSession: AVCaptureSession?
     fileprivate var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -76,7 +82,7 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         if !fromAdd {
             //Perform segue to seach food manually
-            performSegue(withIdentifier: "", sender: self)
+            performSegue(withIdentifier: "ChooseFoodType", sender: self)
         } else {
             //Perform unwind segue for added new barcode to new food
             performSegue(withIdentifier: "", sender: self)
@@ -84,14 +90,6 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     }
     
     //MARK: - Methods
-    private func customizeForStages() {
-        if fromAdd {
-            actionButton.titleLabel?.text = NSLocalizedString("Add code", comment: "Action Button title text for add barcode stage")
-            actionButton.isEnabled = false
-        } else {
-            actionButton.titleLabel?.text = NSLocalizedString("Choose food", comment: "Action Button title text for add food stage")
-        }
-    }
     
     //MARK: Working with DB
      func performSearch(withInfo info: String) {
@@ -146,6 +144,15 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
         actionButton.backgroundColor = UIColor.white
         actionButton.layer.cornerRadius = elementsCornerRadius
         customizeForStages()
+    }
+    
+    private func customizeForStages() {
+        if fromAdd {
+            actionButton.titleLabel?.text = NSLocalizedString("Add code", comment: "Action Button title text for add barcode stage")
+            actionButton.isEnabled = false
+        } else {
+            actionButton.titleLabel?.text = NSLocalizedString("Choose food", comment: "Action Button title text for add food stage")
+        }
     }
     
     private func prepareBarcodeReader() {
@@ -222,6 +229,15 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        switch segue.identifier! {
+        case "ChooseFoodType":
+            let destination = segue.destination as! ChooseFoodTypeTableViewController
+            destination.dataSource = dataSource
+            destination.delegate = delegate
+        default:
+            let error = NSError(domain: "ReadQRSegueError", code: 1, userInfo: nil)
+            record(error: error)
+        }
     }
     
 
