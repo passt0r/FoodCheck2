@@ -37,7 +37,12 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
                               AVMetadataObjectTypeEAN13Code,
                               AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code,
-                              AVMetadataObjectTypeQRCode]
+                              AVMetadataObjectTypeQRCode,
+                              AVMetadataObjectTypeITF14Code,
+                              AVMetadataObjectTypeDataMatrixCode,
+                              AVMetadataObjectTypeInterleaved2of5Code
+                              ]
+    
     
     private lazy var messageLabel: UILabel = {
         return generateMassageLabel()
@@ -198,7 +203,7 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.setBackground(image: UIImage(named: "Fridge_background")!)
+        view.setBackground(image: backgroundImage!)
         initiateCustomizeUIElements()
         
         prepareBarcodeReader()

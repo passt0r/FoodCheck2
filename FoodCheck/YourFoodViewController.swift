@@ -21,7 +21,7 @@ class YourFoodViewController: UICollectionViewController {
     }()
     
     private func addBackgroundView() {
-        guard let backgroundImage = UIImage(named: "Fridge_background") else { return }
+        guard let backgroundImage = backgroundImage else { return }
         let backgroundView = UIImageView(image: backgroundImage)
         collectionView?.backgroundView = backgroundView
     }

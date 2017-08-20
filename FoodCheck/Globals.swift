@@ -14,6 +14,9 @@ import Crashlytics
 let peachTint = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
 let grassGreen = UIColor(red: 70/255, green: 170/255, blue: 0/255, alpha: 1.0)
 
+//MARK: Background image for screens, must use valid name
+let backgroundImage = UIImage(named: "Fridge_background")
+
 //MARK: Error handling
 
 func record(error: NSError) {
