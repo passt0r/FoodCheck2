@@ -17,6 +17,7 @@
 		5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */; };
 		5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFB1F3BA4C000B8C89D /* Globals.swift */; };
 		5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */; };
+		593B9CDC1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */; };
 		593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE821F325C0700CC7E27 /* MockFood.swift */; };
 		593EDE8B1F32618600CC7E27 /* FoodCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */; };
 		595804461F471314000BC5C6 /* bindedBaseFood.realm in Resources */ = {isa = PBXBuildFile; fileRef = 595804451F471314000BC5C6 /* bindedBaseFood.realm */; };
@@ -59,6 +60,7 @@
 		5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFoodDataSource.swift; sourceTree = "<group>"; };
 		5914FBFB1F3BA4C000B8C89D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSource.swift; sourceTree = "<group>"; };
+		593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodToFridgeDelegate.swift; sourceTree = "<group>"; };
 		593EDE821F325C0700CC7E27 /* MockFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFood.swift; sourceTree = "<group>"; };
 		593EDE881F32618500CC7E27 /* FoodCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCheckTests.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		593B9CDA1F49A6FA00F63C76 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		593EDE891F32618600CC7E27 /* FoodCheckTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +153,7 @@
 		595B29771F349DC2003C2DD4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				593B9CDA1F49A6FA00F63C76 /* Protocols */,
 				59A651251F34D180005BA42C /* About */,
 				59A651241F34D178005BA42C /* Calendar */,
 				59A651231F34D172005BA42C /* AddFood */,
@@ -584,6 +595,7 @@
 				5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */,
 				59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */,
 				59092A241F2E5D5100EBB75D /* FoodItemCell.swift in Sources */,
+				593B9CDC1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift in Sources */,
 				59BB953C1F3C55C00077447F /* CalendarViewController.swift in Sources */,
 				5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */,
 				5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */,

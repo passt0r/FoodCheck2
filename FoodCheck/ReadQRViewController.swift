@@ -10,13 +10,15 @@ import UIKit
 import AVFoundation
 import Lottie
 
-class ReadQRViewController: UIViewController {
-    
+class ReadQRViewController: UIViewController, FoodSearchingController {
+    //MARK: - Outlets
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     
     //MARK: - Properties
     var dataSource: MutableFoodDataSource!
+    
+    weak var delegate: AddFoodToFridgeDelegate?
     
     fileprivate var fromAdd: Bool = false
     
@@ -61,18 +63,22 @@ class ReadQRViewController: UIViewController {
     
     private let elementsCornerRadius: CGFloat = 10
     
+    //MARK: - Actions
     @IBAction func backToYourFood() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         if !fromAdd {
-            performSegue(withIdentifier: "", sender: sender)
+            //Perform segue to seach food manually
+            performSegue(withIdentifier: "", sender: self)
         } else {
-            
+            //Perform unwind segue for added new barcode to new food
+            performSegue(withIdentifier: "", sender: self)
         }
     }
     
+    //MARK: - Methods
     private func customizeForStages() {
         if fromAdd {
             actionButton.titleLabel?.text = NSLocalizedString("Add code", comment: "Action Button title text for add barcode stage")
@@ -83,33 +89,34 @@ class ReadQRViewController: UIViewController {
     }
     
     //MARK: Working with DB
-    fileprivate func performSearch(withCode code: String) {
-        let wasAdded = dataSource.addFood(byQR: code)
+     func performSearch(withInfo info: String) {
+        let wasAdded = dataSource.addFood(byQR: info)
         if wasAdded {
             statusLabel.text = statusLabelText[.Find]
+            //TODO: Add animation of finding
         } else {
+            if info != qrCodeMessage {
+                //TODO: Add animation of not founding
+            }
             statusLabel.text = statusLabelText[.NotFound]
         }
+        delegate?.foodAddToFridge(self, successfuly: wasAdded)
     }
 
     //MARK: Prepare UI elements
     private func initiateCustomizeUIElements() {
         statusLabel.text = statusLabelText[.Searching]
         
-        //statusLabel.adjustsFontSizeToFitWidth = true
         statusLabel.backgroundColor = UIColor.white
         statusLabel.layer.cornerRadius = elementsCornerRadius
         statusLabel.clipsToBounds = true
         
         actionButton.backgroundColor = UIColor.white
         actionButton.layer.cornerRadius = elementsCornerRadius
+        customizeForStages()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.setBackground(image: UIImage(named: "Fridge_background")!)
-        initiateCustomizeUIElements()
-        
+    private func prepareBarcodeReader() {
         //Get device for capture video info
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
@@ -123,6 +130,7 @@ class ReadQRViewController: UIViewController {
             
             let captureMetadataOutput = AVCaptureMetadataOutput()
             captureSession.addOutput(captureMetadataOutput)
+            //TODO: Rewrite delegate for using another queue, YOU MUST NOT BLOCK MAIN QUEUE!
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
             
@@ -149,13 +157,24 @@ class ReadQRViewController: UIViewController {
             
         } catch let error as NSError {
             // catch error when capture device input
-            record(error: error)
-            view.addSubview(messageLabel)
-            messageLabel.setupMessage(with: captureVideoDeviceErrorMassage)
-            statusLabel.text = statusLabelText[.Error]
-            statusLabel.isHidden = true
+            catchErrorWithReader(error)
         }
+    }
+    
+    private func catchErrorWithReader(_ error: NSError) {
+        record(error: error)
+        view.addSubview(messageLabel)
+        messageLabel.setupMessage(with: captureVideoDeviceErrorMassage)
+        statusLabel.isHidden = true
+        statusLabel.text = statusLabelText[.Error] //change text for error, label will not be visible, but if it be, it will be show error
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.setBackground(image: UIImage(named: "Fridge_background")!)
+        initiateCustomizeUIElements()
         
+        prepareBarcodeReader()
     }
 
     override func didReceiveMemoryWarning() {
@@ -164,7 +183,7 @@ class ReadQRViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -172,10 +191,11 @@ class ReadQRViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
 
+//MARK: - Extention: AVCaptureMetadataOutputObjectsDelegate
 extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if metadataObjects == nil || metadataObjects.count == 0 {
@@ -194,11 +214,11 @@ extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             if metadataObj.stringValue != nil {
-                qrCodeMessage = metadataObj.stringValue
                 statusLabel.text = statusLabelText[.SearchDone]
                 if !fromAdd {
-                    performSearch(withCode: qrCodeMessage)
+                    performSearch(withInfo: metadataObj.stringValue)
                 }
+                qrCodeMessage = metadataObj.stringValue
             }
         }
     }

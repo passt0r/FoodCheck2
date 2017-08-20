@@ -68,6 +68,7 @@ class YourFoodViewController: UICollectionViewController {
             let destinationNV = segue.destination as! UINavigationController
             let destination = destinationNV.topViewController as! ReadQRViewController
             destination.dataSource = dataSource
+            destination.delegate = self
         default :
             let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: nil)
             record(error: error)
@@ -149,4 +150,13 @@ class YourFoodViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension YourFoodViewController: AddFoodToFridgeDelegate {
+    func foodAddToFridge(_ source: FoodSearchingController, successfuly added: Bool) {
+        if added {
+            collectionView?.reloadData()
+            dismiss(animated: true, completion: nil)
+        }
+    }
 }
