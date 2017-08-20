@@ -94,13 +94,40 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
         if wasAdded {
             statusLabel.text = statusLabelText[.Find]
             //TODO: Add animation of finding
+            showAnimation(checked: wasAdded)
         } else {
             if info != qrCodeMessage {
                 //TODO: Add animation of not founding
+                showAnimation(checked: wasAdded)
             }
             statusLabel.text = statusLabelText[.NotFound]
         }
-        delegate?.foodAddToFridge(self, successfuly: wasAdded)
+    }
+    
+    func showAnimation(checked: Bool) {
+        var name: String
+        if !checked {
+            name = "warning"
+        } else {
+            name = "checked_done"
+        }
+        let animation = LOTAnimationView(name: name)
+        view.addSubview(animation)
+        animation.center = view.center
+        animation.animationSpeed = 1.2
+        animation.play(completion: { [weak self] _ in
+            //At some reason, reverse animation or animationSpeed = -1 not working at this version of Lottie
+            //That's why I'm using UIView.animate for removing animation
+            UIView.animate(withDuration: 0.1, animations: {
+                animation.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            }, completion: { _ in
+                animation.removeFromSuperview()
+                if let strongSelf = self {
+                    //If food not found, than nothing happens, else-screen dismiss
+                    strongSelf.delegate?.foodAddToFridge(strongSelf, successfuly: checked)
+                }
+            })
+        })
     }
 
     //MARK: Prepare UI elements
@@ -201,8 +228,11 @@ extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = .zero
             if fromAdd && !qrCodeMessage.isEmpty {
+                //Save previous qr code info if you are in saving new food info mode
                 statusLabel.text = statusLabelText[.SearchDone]
             } else {
+                //Clean qr code info from previous search if you are in reading mode
+                qrCodeMessage = ""
                 statusLabel.text = statusLabelText[.Searching]
             }
             return

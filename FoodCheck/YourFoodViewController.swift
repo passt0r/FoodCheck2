@@ -157,6 +157,8 @@ extension YourFoodViewController: AddFoodToFridgeDelegate {
         if added {
             collectionView?.reloadData()
             dismiss(animated: true, completion: nil)
+        } else {
+            //dismiss(animated: true, completion: nil)
         }
     }
 }
