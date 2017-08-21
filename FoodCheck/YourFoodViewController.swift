@@ -61,14 +61,14 @@ class YourFoodViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        switch segue.identifier! {
+        switch (segue.identifier ?? "") {
         case "Read_QR":
             let destinationNV = segue.destination as! UINavigationController
             let destination = destinationNV.topViewController as! ReadQRViewController
             destination.dataSource = dataSource
             destination.delegate = self
         default :
-            let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: nil)
+            let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseFoodTableViewController: UITableViewController {
+class ChooseFoodTableViewController: UITableViewController, FoodSearchingController {
     
     private let addUserFoodCellIdentifier = "AddUserFood"
     private let foodByTypeCellIdentifier = "FoodByType"
@@ -168,6 +168,16 @@ class ChooseFoodTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedFood = foodByType[indexPath.row]
+        performSearch(withInfo: selectedFood.name)
+    }
+    
+    func performSearch(withInfo info: String) {
+        let added = dataSource.addFood(byName: info)
+        delegate?.foodAddToFridge(self, successfuly: added)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -208,10 +218,29 @@ class ChooseFoodTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //TODO: Add support of modification of food
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    
+        switch (segue.identifier ?? "") {
+        case "AddNewFood":
+            let destinationNC = segue.destination as! UINavigationController
+            let destination = destinationNC.topViewController as! AddFoodTableViewController
+            destination.dataSource = dataSource
+            destination.delegate = self
+        default:
+            let error = NSError(domain: "ChooseFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
+            record(error: error)
 
+        }
+    }
+}
+
+extension ChooseFoodTableViewController: AddNewFoodDelegate {
+    func addOrChangeFood(_ source: MutatingUserAddedFoodController, successfully added: Bool) {
+        if added {
+            tableView.reloadData()
+            dismiss(animated: true, completion: nil)
+        }
+    }
 }

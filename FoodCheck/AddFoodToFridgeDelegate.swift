@@ -6,7 +6,7 @@
 //  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol FoodSearchingController: class {
     var dataSource: MutableFoodDataSource! { get set }

@@ -211,9 +211,12 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setBackground(image: backgroundImage!)
-        initiateCustomizeUIElements()
         
         prepareBarcodeReader()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initiateCustomizeUIElements()
     }
 
     override func didReceiveMemoryWarning() {
@@ -229,13 +232,15 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        switch segue.identifier! {
+        switch (segue.identifier ?? "") {
         case "ChooseFoodType":
             let destination = segue.destination as! ChooseFoodTypeTableViewController
             destination.dataSource = dataSource
             destination.delegate = delegate
+        case "AddNewFood":
+            fromAdd = false
         default:
-            let error = NSError(domain: "ReadQRSegueError", code: 1, userInfo: nil)
+            let error = NSError(domain: "ReadQRSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
         }
     }

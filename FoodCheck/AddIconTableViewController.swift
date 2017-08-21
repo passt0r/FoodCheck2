@@ -1,21 +1,18 @@
 //
-//  ChooseFoodTypeTableViewController.swift
+//  AddIconTableViewController.swift
 //  FoodCheck
 //
-//  Created by Dmytro Pasinchuk on 20.08.17.
+//  Created by Dmytro Pasinchuk on 21.08.17.
 //  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
 //
 
 import UIKit
 
-class ChooseFoodTypeTableViewController: UITableViewController {
-    private let cellIdentifier = "FoodTypeCell"
+class AddIconTableViewController: UITableViewController {
+    private let addIconCellIdentifier = "iconPickerCell"
     
-    var dataSource: MutableFoodDataSource!
-    weak var delegate: AddFoodToFridgeDelegate?
+    var choosedIconName = baseFoodIconName
     
-    private var foodTypes: [FoodType]!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         startSetup()
@@ -25,20 +22,19 @@ class ChooseFoodTypeTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    private func startSetup() {
+        setBackgroundView()
+        tableView.rowHeight = heighForRow
+    }
+    
+    private func setBackgroundView() {
+        tableView.backgroundView = generateBackgroundImageView()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func setBackgroundView() {
-        tableView.backgroundView = generateBackgroundImageView()
-    }
-    
-    func startSetup() {
-        setBackgroundView()
-        tableView.rowHeight = heighForRow
-        foodTypes = dataSource.getAllFoodTypes()
     }
 
     // MARK: - Table view data source
@@ -50,29 +46,23 @@ class ChooseFoodTypeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataSource.getAllFoodTypes().count
+        return iconsNamesArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ChooseFoodTypeTableViewCell
-
-        // Configure the cell...
-        var foodTypeName = foodTypes[indexPath.row].typeName
-        let iconName = foodTypes[indexPath.row].typeIcon
-        
-        //get localized version of food name
-        if let localizedFoodType = localizedFoodTypesArray[foodTypeName] {
-            foodTypeName = localizedFoodType
-        }
-        cell.textLabel?.text = foodTypeName
+        let cell = tableView.dequeueReusableCell(withIdentifier: addIconCellIdentifier, for: indexPath) as! AddIconTableViewCell
+        let foodIconName = iconsNamesArray[indexPath.row]
+        cell.imageView?.image = UIImage(named: foodIconName) ?? UIImage(named: baseFoodIconName)!
+        cell.textLabel?.text = localizedFoodIconsArray[foodIconName] ?? NSLocalizedString("Unnown", comment: "Name of unnown icon")
         cell.textLabel?.backgroundColor = UIColor.clear
-        guard let foodTypeImage = UIImage(named: iconName) else { return cell }
-        cell.imageView?.image = foodTypeImage
-        
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        choosedIconName = iconsNamesArray[indexPath.row]
+        performSegue(withIdentifier: "FromChooseIcon", sender: self)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -109,28 +99,14 @@ class ChooseFoodTypeTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        switch (segue.identifier ?? "") {
-        case "ChooseFood":
-            let senderRow = sender as! ChooseFoodTypeTableViewCell
-            let selectedRow = tableView.indexPath(for: senderRow)!
-            let selectedFoodType = foodTypes[selectedRow.row]
-            let destination = segue.destination as! ChooseFoodTableViewController
-            destination.dataSource = dataSource
-            destination.delegate = delegate
-            destination.choosedFoodType = selectedFoodType
-        default:
-            let error = NSError(domain: "ReadQRSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
-            record(error: error)
-
-        }
     }
-    
+    */
 
 }
