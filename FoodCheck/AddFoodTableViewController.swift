@@ -148,7 +148,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             prepareScreenForModifications(with: modifiedFood)
             isModifing = true
         }
-//        iconImageView.image = UIImage(named: iconName)
+        iconImageView.image = UIImage(named: iconName)
         if let _ = qrCode {
             qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.Added]
             qrCodeAddedLabel.textColor = grassGreen
@@ -233,6 +233,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         let createdFood = AddedUserFood()
         createdFood.name = name
         createdFood.foodType = choosedFoodType
+        createdFood.iconName = choosedIconName
         createdFood.shelfLife = shelfLife
         createdFood.qrCode = choosedCode
         
@@ -242,6 +243,9 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     func closeKeyboard() {
         foodNameField.resignFirstResponder()
         shelfLifeField.resignFirstResponder()
+        if let tapRecogniser = closeKeyboardTouchRecognizer {
+            view.removeGestureRecognizer(tapRecogniser)
+        }
     }
 
     // MARK: - Table view data source

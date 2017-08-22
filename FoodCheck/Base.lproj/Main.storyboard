@@ -238,6 +238,9 @@
                             <outlet property="delegate" destination="BCq-Rv-zjr" id="bKC-MQ-ByD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="KZe-bg-PE2" kind="presentation" identifier="ModifyUserAddedFood" id="Ngb-BY-Y5C"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwh-Vd-4ps" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -582,6 +585,7 @@
         <image name="Qr_code" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ngb-BY-Y5C"/>
         <segue reference="JMG-la-hf8"/>
     </inferredMetricsTieBreakers>
 </document>
