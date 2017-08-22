@@ -11,6 +11,8 @@ import UIKit
 //MARK: Heigh for rows
 let heighForRow: CGFloat = 68
 
+let secondsInDay: Double = 86400
+
 //MARK: Massage Label generation
 
 func generateMassageLabel() -> UILabel {

@@ -182,7 +182,7 @@ class UserDataSource: MutableFoodDataSource {
     //AddedUserFood use primaryKey, and when you want to modify user name, than you must use it
     func modifyUserCreatedFood(_ food: AddedUserFood, withInfo info: UserFoodInformation) {
         if info.name == food.name {
-            addUserCreatedFood(food)
+            addUserCreatedFood(info as! AddedUserFood)
         } else {
            deleteUserCreatedFood(food)
             addUserCreatedFood(info as! AddedUserFood)

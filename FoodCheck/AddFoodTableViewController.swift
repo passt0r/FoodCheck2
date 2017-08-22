@@ -159,18 +159,35 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         }
         navigationItem.title = headerOfScreen[isModifing]!
         addFoodButton.isEnabled = checkIfAddingAvailable()
+        addDoneButtonToNumKeyboard()
         foodNameField.becomeFirstResponder()
     }
     
     private func prepareScreenForModifications(with modifiedFood: AddedUserFood) {
         foodNameField.text = modifiedFood.name
-        shelfLifeField.text = String(modifiedFood.shelfLife)
+        let shelfLifeInDays = Int(modifiedFood.shelfLife/secondsInDay)
+        shelfLifeField.text = String(shelfLifeInDays)
         iconName = modifiedFood.iconName
         qrCode = modifiedFood.qrCode
     }
     
     private func setBackgroundView() {
         tableView.backgroundView = generateBackgroundImageView()
+    }
+    
+    private func addDoneButtonToNumKeyboard() {
+        let toolbarSize = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)
+        let doneToolbar = UIToolbar(frame: toolbarSize)
+        doneToolbar.barStyle = .default
+        var barButtons = [UIBarButtonItem]()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        barButtons.append(flexSpace)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeKeyboard))
+        barButtons.append(doneButton)
+        doneToolbar.items = barButtons
+        doneToolbar.sizeToFit()
+        
+        shelfLifeField.inputAccessoryView = doneToolbar
     }
     
     func checkIfAddingAvailable() -> Bool {
@@ -228,7 +245,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     func createNewUserFood() -> AddedUserFood {
         let name = foodNameField.text!
         let shelfLifeString = shelfLifeField.text!
-        let shelfLife = Double(shelfLifeString)!
+        let shelfLife = Double(shelfLifeString)! * secondsInDay
         let choosedIconName = iconName
         let choosedCode = qrCode
         

@@ -223,7 +223,7 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
             let foodForModifying = strongSelf.dataSource.getFulInfo(about: foodAtIndexPathInfo)
             strongSelf.performSegue(withIdentifier: "ModifyUserAddedFood", sender: foodForModifying)
         })
-        edit.backgroundColor = grassGreen
+        edit.backgroundColor = peachTint
         actions.append(edit)
         
         return actions
