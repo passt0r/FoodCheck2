@@ -36,6 +36,8 @@ protocol MutableFoodDataSource: class {
     
     func modifyUserCreatedFood(_ food: AddedUserFood, withInfo info: UserFoodInformation)
     
+    func deleteUserCreatedFood(_ food: AddedUserFood)
+    
     //Use for modifyUserCreatedFood
     func getFulInfo(about userFood: UserFoodInformation) -> AddedUserFood?
     

@@ -20,7 +20,7 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
     
     var choosedFoodType: FoodType!
     
-    private var foodByType: [UserFoodInformation]!
+    fileprivate var foodByType: [UserFoodInformation]!
     
     var isUserAddedType = false
     
@@ -63,6 +63,7 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
     private func checkIfTypeIsUserAdded() {
         if choosedFoodType.typeName == "User Added" {
             isUserAddedType = true
+            navigationItem.rightBarButtonItem = editButtonItem
         }
     }
 
@@ -179,25 +180,55 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        if isUserAddedType && indexPath.section == 0 {
+           return false
+        }
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let foodForDeleting = foodByType[indexPath.row] as! AddedUserFood
+            dataSource.deleteUserCreatedFood(foodForDeleting)
+            foodByType.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var actions = [UITableViewRowAction]()
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { [weak self]
+            action, editIndexPath in
+            guard let strongSelf = self else { return }
+            strongSelf.tableView(tableView, commit: .delete, forRowAt: editIndexPath)
+        })
+        actions.append(delete)
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self]
+            action, editIndexPath in
+            guard let strongSelf = self else { return }
+            let foodAtIndexPathInfo = strongSelf.foodByType[editIndexPath.row]
+            let foodForModifying = strongSelf.dataSource.getFulInfo(about: foodAtIndexPathInfo)
+            strongSelf.performSegue(withIdentifier: "ModifyUserAddedFood", sender: foodForModifying)
+        })
+        edit.backgroundColor = grassGreen
+        actions.append(edit)
+        
+        return actions
+    }
+    
 
     /*
     // Override to support rearranging the table view.
@@ -228,6 +259,14 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
             let destination = destinationNC.topViewController as! AddFoodTableViewController
             destination.dataSource = dataSource
             destination.delegate = self
+        case "ModifyUserAddedFood":
+            if let foodForModification = sender as? AddedUserFood? {
+                let destinationNC = segue.destination as! UINavigationController
+                let destination = destinationNC.topViewController as! AddFoodTableViewController
+                destination.dataSource = dataSource
+                destination.delegate = self
+                destination.modifiedUserFood = foodForModification
+            }
         default:
             let error = NSError(domain: "ChooseFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
@@ -239,6 +278,7 @@ class ChooseFoodTableViewController: UITableViewController, FoodSearchingControl
 extension ChooseFoodTableViewController: AddNewFoodDelegate {
     func addOrChangeFood(_ source: MutatingUserAddedFoodController, successfully added: Bool) {
         if added {
+            foodByType = dataSource.getAllFood(by: choosedFoodType.typeName)
             tableView.reloadData()
             dismiss(animated: true, completion: nil)
         }

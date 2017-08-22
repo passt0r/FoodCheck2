@@ -589,7 +589,7 @@
         <image name="Qr_code" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ngb-BY-Y5C"/>
         <segue reference="JMG-la-hf8"/>
+        <segue reference="Ngb-BY-Y5C"/>
     </inferredMetricsTieBreakers>
 </document>

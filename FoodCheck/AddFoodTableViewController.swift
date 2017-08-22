@@ -22,7 +22,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     
     var modifiedUserFood: AddedUserFood?
     
-    var isModifing = false
+    private var isModifing = false
     
     private enum qrCodeAddedStatus: String {
         case Added = "added"
@@ -83,7 +83,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     }
     
     private func showInvalidDataAlert() {
-        let alertController = UIAlertController(title: NSLocalizedString("Invalid data", comment: "Alert title while user enter invalid data for new food description"), message: NSLocalizedString("You have enter invalid data to new food \nPlease, check your info and try again", comment: "Alert message while user enter invalid data for new food description"), preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Invalid data", comment: "Alert title while user enter invalid data for new food description"), message: NSLocalizedString("You have enter invalid data to new food.\nPlease, check your info and try again", comment: "Alert message while user enter invalid data for new food description"), preferredStyle: .alert)
         let action = UIAlertAction(title: NSLocalizedString("Ok", comment: "Action for user enter invalid data for new food description"), style: .default, handler: nil)
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
@@ -91,13 +91,14 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     
     private func showDublicateDataAlert(withDublicate dublicate: AddedUserFood) {
         let alertController = UIAlertController(title: NSLocalizedString("Dublicate data", comment: "Alert title while user enter dublicate data for new food description"), message: NSLocalizedString("You have already food with this name.\nDo you want to rewrite it's data with new?", comment: "Alert message while user enter dublicate data for new food description"), preferredStyle: .alert)
-        let actionYes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Action approve for user enter rewrite data with new food description"), style: .cancel, handler: { _ in
+        let actionYes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Action approve for user enter rewrite data with new food description"), style: .destructive, handler: { _ in
             self.modifiedUserFood = dublicate
             self.modifyUserAddedFood()
         })
-        let actionNo = UIAlertAction(title: NSLocalizedString("No", comment: "Action refusal for user enter rewrite data with new food description"), style: .default, handler: nil)
+        let actionNo = UIAlertAction(title: NSLocalizedString("No", comment: "Action refusal for user enter rewrite data with new food description"), style: .cancel, handler: nil)
         alertController.addAction(actionNo)
         alertController.addAction(actionYes)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func unwindToAddUserFood(segue: UIStoryboardSegue) {
@@ -158,6 +159,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         }
         navigationItem.title = headerOfScreen[isModifing]!
         addFoodButton.isEnabled = checkIfAddingAvailable()
+        foodNameField.becomeFirstResponder()
     }
     
     private func prepareScreenForModifications(with modifiedFood: AddedUserFood) {

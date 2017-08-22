@@ -16,7 +16,7 @@ class AddFoodTableViewCell: UITableViewCell {
         super.awakeFromNib()
         configurateForFridgeCell()
         addFoodButton.backgroundColor = grassGreen
-        addFoodButton.tintColor = peachTint
+        addFoodButton.tintColor = UIColor.white
         addFoodButton.layer.cornerRadius = 15
     }
     
