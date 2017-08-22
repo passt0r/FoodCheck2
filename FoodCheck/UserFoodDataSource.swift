@@ -78,13 +78,10 @@ class UserDataSource: MutableFoodDataSource {
         return baseUserFoodDataSource.getAllFoodTypes()
     }
     
-    // If food do not find in bindedBase, than food will be surely find at this base
     func findFoodBy(name: String) -> AddedUserFood? {
             let predicate = NSPredicate(format: "name == %@", name)
             let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
             guard let findedFood = resultOfSearching.first else {
-                let baseWorkingError = NSError(domain: "UserDataSourceError", code: 1, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Cannot add food by name", comment: "Error description")])
-                record(error: baseWorkingError)
                 return nil }
             return findedFood
     }
@@ -98,10 +95,10 @@ class UserDataSource: MutableFoodDataSource {
     
     //MARK: Can be possible add food without correct name? I think not, that's why it must throw exeption
     func addFood(byName name: String) -> Bool {
-        if let findedFood = baseUserFoodDataSource.findFoodBy(name: name) {
+        if let findedFood = findFoodBy(name: name) {
             addToFridge(food: findedFood)
             return true
-        } else if let findedFood = findFoodBy(name: name) {
+        } else if let findedFood = baseUserFoodDataSource.findFoodBy(name: name) {
             addToFridge(food: findedFood)
             return true
         }
@@ -112,10 +109,10 @@ class UserDataSource: MutableFoodDataSource {
     }
     
     func addFood(byQR code: String) -> Bool {
-        if let findedFood = baseUserFoodDataSource.findFoodBy(qr: code) {
+        if let findedFood = findFoodBy(qr: code) {
             addToFridge(food: findedFood)
             return true
-        } else if let findedFood = findFoodBy(qr: code){
+        } else if let findedFood = baseUserFoodDataSource.findFoodBy(qr: code){
             addToFridge(food: findedFood)
             return true
         }

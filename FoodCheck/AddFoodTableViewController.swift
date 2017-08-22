@@ -39,8 +39,22 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         true: NSLocalizedString("Modify Food", comment: "Header message when modify exist food on AddFoodTableViewController")
     ]
     
-    var iconName: String = baseFoodIconName
-    var qrCode: String? = nil
+    //MARK: if add support of multiple food types, rewrite implementation and writing to choosedFoodType
+    let choosedFoodType = "User Added"
+    var iconName: String = baseFoodIconName {
+        didSet {
+            iconImageView.image = UIImage(named: iconName)
+        }
+    }
+    var qrCode: String? = nil {
+        didSet {
+            if let _ = qrCode {
+                qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.Added]
+            } else {
+                qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.NotAdded]
+            }
+        }
+    }
     
     var closeKeyboardTouchRecognizer: UITapGestureRecognizer?
     
@@ -54,9 +68,13 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             if isModifing {
                 modifyUserAddedFood()
             } else {
-                //TODO: add checking if food with proposal name already exist
-                addNewUserFood()
+                if let existFoodWithEnterName = dataSource.findFoodBy(name: foodNameField.text!) {
+                    showDublicateDataAlert(withDublicate: existFoodWithEnterName)
+                } else {
+                    addNewUserFood()
+                }
             }
+            
         } else {
             showInvalidDataAlert()
            let error = NSError(domain: "AddFoodTableUserDoneEnterError", code: 1, userInfo: nil)
@@ -71,10 +89,11 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         self.present(alertController, animated: true, completion: nil)
     }
     
-    private func showDublicateDataAlert() {
+    private func showDublicateDataAlert(withDublicate dublicate: AddedUserFood) {
         let alertController = UIAlertController(title: NSLocalizedString("Dublicate data", comment: "Alert title while user enter dublicate data for new food description"), message: NSLocalizedString("You have already food with this name.\nDo you want to rewrite it's data with new?", comment: "Alert message while user enter dublicate data for new food description"), preferredStyle: .alert)
         let actionYes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Action approve for user enter rewrite data with new food description"), style: .cancel, handler: { _ in
-            //TODO: implement rewrite exist food if user deside so
+            self.modifiedUserFood = dublicate
+            self.modifyUserAddedFood()
         })
         let actionNo = UIAlertAction(title: NSLocalizedString("No", comment: "Action refusal for user enter rewrite data with new food description"), style: .default, handler: nil)
         alertController.addAction(actionNo)
@@ -87,7 +106,19 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             let source = segue.source as! AddIconTableViewController
             let choosedIconName = source.choosedIconName
             iconName = choosedIconName
-            iconImageView.image = UIImage(named: iconName)
+        default:
+            let error = NSError(domain: "AddFoodTableViewControllerError", code: 2, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
+            record(error: error)
+        }
+    }
+    
+    @IBAction func unwindToAddUserFoodFromReader(segue: UIStoryboardSegue) {
+        switch (segue.identifier ?? "") {
+        case "AddCodeToNewFood":
+            let source = segue.source as! ReadQRViewController
+            if !source.qrCodeMessage.isEmpty {
+                qrCode = source.qrCodeMessage
+            }
         default:
             let error = NSError(domain: "AddFoodTableViewControllerError", code: 2, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
@@ -113,7 +144,11 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     private func startSetup() {
         setBackgroundView()
         tableView.rowHeight = heighForRow
-        iconImageView.image = UIImage(named: iconName)
+        if let modifiedFood = modifiedUserFood {
+            prepareScreenForModifications(with: modifiedFood)
+            isModifing = true
+        }
+//        iconImageView.image = UIImage(named: iconName)
         if let _ = qrCode {
             qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.Added]
             qrCodeAddedLabel.textColor = grassGreen
@@ -121,11 +156,15 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.NotAdded]
             qrCodeAddedLabel.textColor = peachTint
         }
-        if let _ = modifiedUserFood {
-            isModifing = true
-        }
         navigationItem.title = headerOfScreen[isModifing]!
         addFoodButton.isEnabled = checkIfAddingAvailable()
+    }
+    
+    private func prepareScreenForModifications(with modifiedFood: AddedUserFood) {
+        foodNameField.text = modifiedFood.name
+        shelfLifeField.text = String(modifiedFood.shelfLife)
+        iconName = modifiedFood.iconName
+        qrCode = modifiedFood.qrCode
     }
     
     private func setBackgroundView() {
@@ -133,7 +172,6 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     }
     
     func checkIfAddingAvailable() -> Bool {
-        //TODO: implement valid checking of posibility to add food
         guard let foodName = foodNameField.text else { return false }
         guard !foodName.isEmpty else {
             return false
@@ -186,7 +224,18 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     }
     
     func createNewUserFood() -> AddedUserFood {
-        //TODO: add new user food from info from screen
+        let name = foodNameField.text!
+        let shelfLifeString = shelfLifeField.text!
+        let shelfLife = Double(shelfLifeString)!
+        let choosedIconName = iconName
+        let choosedCode = qrCode
+        
+        let createdFood = AddedUserFood()
+        createdFood.name = name
+        createdFood.foodType = choosedFoodType
+        createdFood.shelfLife = shelfLife
+        createdFood.qrCode = choosedCode
+        
         return AddedUserFood()
     }
     
@@ -257,6 +306,18 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        switch (segue.identifier ?? "") {
+        case "СhooseIcon":
+            break
+        case "AddCodeToFood":
+            let destinationNC = segue.destination as! UINavigationController
+            let destination = destinationNC.viewControllers[0] as! ReadQRViewController
+            destination.fromAdd = true
+            
+        default:
+            let error = NSError(domain: "AddFoodTableSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
+            record(error: error)
+        }
     }
     
 

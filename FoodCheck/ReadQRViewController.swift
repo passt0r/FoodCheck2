@@ -20,9 +20,9 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     
     weak var delegate: AddFoodToFridgeDelegate?
     
-    fileprivate var fromAdd: Bool = false
+    var fromAdd: Bool = false
     
-    fileprivate var qrCodeMessage: String = "" {
+    var qrCodeMessage: String = "" {
         didSet {
             if fromAdd {
                 actionButton.isEnabled = true
@@ -82,10 +82,13 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         if !fromAdd {
             //Perform segue to seach food manually
+            qrCodeMessage = ""
             performSegue(withIdentifier: "ChooseFoodType", sender: self)
         } else {
             //Perform unwind segue for added new barcode to new food
-            performSegue(withIdentifier: "", sender: self)
+            //As is this view controller is already instantiated, that's why you must perform some cleanup after adding
+            fromAdd = false
+            performSegue(withIdentifier: "AddCodeToNewFood", sender: self)
         }
     }
     
@@ -148,10 +151,10 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     
     private func customizeForStages() {
         if fromAdd {
-            actionButton.titleLabel?.text = NSLocalizedString("Add code", comment: "Action Button title text for add barcode stage")
+            actionButton.setTitle(NSLocalizedString("Add code", comment: "Action Button title text for add barcode stage"), for: .normal)
             actionButton.isEnabled = false
         } else {
-            actionButton.titleLabel?.text = NSLocalizedString("Choose food", comment: "Action Button title text for add food stage")
+            actionButton.setTitle(NSLocalizedString("Choose food", comment: "Action Button title text for add food stage"), for: .normal)
         }
     }
     

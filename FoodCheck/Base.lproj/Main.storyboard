@@ -132,9 +132,11 @@
                         <outlet property="actionButton" destination="PEI-fh-xQs" id="e7R-Mi-EX0"/>
                         <outlet property="statusLabel" destination="MPo-Zu-mZT" id="KQr-c2-a8g"/>
                         <segue destination="MAj-Dk-6mr" kind="show" identifier="ChooseFoodType" id="QhR-dJ-L2T"/>
+                        <segue destination="UE3-4x-fI2" kind="unwind" identifier="AddCodeToNewFood" unwindAction="unwindToAddUserFoodFromReaderWithSegue:" id="MUT-h4-M1y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFm-6V-RWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UE3-4x-fI2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2983" y="150"/>
         </scene>
