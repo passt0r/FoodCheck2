@@ -176,7 +176,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     }
     
     private func addDoneButtonToNumKeyboard() {
-        let toolbarSize = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 50)
+        let toolbarSize = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 44)
         let doneToolbar = UIToolbar(frame: toolbarSize)
         doneToolbar.barStyle = .default
         var barButtons = [UIBarButtonItem]()

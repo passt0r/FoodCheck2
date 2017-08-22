@@ -73,7 +73,7 @@ class BaseUserFoodDataSource: ImmutableFoodDataSource {
     // I know that search result in Realm is lazy and go through tham in cycle is not the best sollution
     // But we need those results be exactly in table view when it readed. That's why I deside to go through here
     func getAllFoodTypes() -> [FoodType] {
-        let resultOfSearching = dataBase.objects(FoodType.self).sorted(byKeyPath: "typeName")
+        let resultOfSearching = dataBase.objects(FoodType.self)
         var findedFoodTypes = [FoodType]()
         for foodType in resultOfSearching {
             findedFoodTypes.append(foodType)
