@@ -18,7 +18,7 @@ let localizedFoodTypesArray: [String: String] = [
     "Bread": NSLocalizedString("Bread", comment: "Food type description for bread"),
     "Vegitables": NSLocalizedString("Vegitables", comment: "Food type description for vegitables"),
     "Sweets": NSLocalizedString("Sweets", comment: "Food type description for sweets"),
-    "Canned Goods": NSLocalizedString("Canned Goods", comment: "Food type description for canned food"),
+    "Canned Food": NSLocalizedString("Canned Food", comment: "Food type description for canned food"),
     "User Added": NSLocalizedString("User Added", comment: "Food type description for user added food"),
     "Without Type": NSLocalizedString("Without Type", comment: "Food type description for food without type")
 ]

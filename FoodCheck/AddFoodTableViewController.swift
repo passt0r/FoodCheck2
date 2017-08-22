@@ -218,7 +218,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             record(error: error)
             return
         }
-        let newInfo = createNewUserFood()
+        let newInfo =  createNewUserFood()
         dataSource.modifyUserCreatedFood(userModifiedFood, withInfo: newInfo)
         delegate.addOrChangeFood(self, successfully: true)
     }
@@ -237,7 +237,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         createdFood.shelfLife = shelfLife
         createdFood.qrCode = choosedCode
         
-        return AddedUserFood()
+        return createdFood
     }
     
     func closeKeyboard() {

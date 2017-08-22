@@ -402,7 +402,11 @@
                                 <action selector="cancelAdding:" destination="QQg-LO-5cy" id="nDj-wz-a3R"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="add" id="yiD-EA-X1W"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="add" id="yiD-EA-X1W">
+                            <connections>
+                                <action selector="userDoneEnterInfo:" destination="QQg-LO-5cy" id="WG6-Fy-MQu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addFoodButton" destination="yiD-EA-X1W" id="6ie-FI-wl9"/>

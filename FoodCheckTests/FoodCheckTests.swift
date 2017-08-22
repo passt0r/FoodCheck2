@@ -134,13 +134,14 @@ class UserDataSourceTests: XCTestCase {
     }
     
     func testGetAllFoodByType() {
+        let resultBeforeAdding = testableDataSource.getAllFood(by: userAddedFoodType)
         let foodForAdd = generateSampleAddedUserFood()
         
         testableDataSource.addUserCreatedFood(foodForAdd)
         
         let result = testableDataSource.getAllFood(by: userAddedFoodType)
         
-        XCTAssertGreaterThan(result.count, 0, "Error with getting food by type")
+        XCTAssertGreaterThan(result.count, resultBeforeAdding.count, "Error with getting food by type")
     }
     
     func testAddingFoodByUser() {
