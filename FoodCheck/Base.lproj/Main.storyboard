@@ -418,7 +418,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxs-m7-gv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4553" y="977"/>
+            <point key="canvasLocation" x="4043" y="1731"/>
         </scene>
         <!--Add Icon Table View Controller-->
         <scene sceneID="XZM-HG-Jf7">
@@ -459,7 +459,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fH-lM-3Ew" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9ft-GO-kiG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5582" y="977"/>
+            <point key="canvasLocation" x="5064" y="1730"/>
         </scene>
         <!--Calendar Screen-->
         <scene sceneID="trd-p9-BYG">
@@ -579,7 +579,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5X-eK-nOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3454" y="978"/>
+            <point key="canvasLocation" x="4043" y="953"/>
         </scene>
     </scenes>
     <resources>
