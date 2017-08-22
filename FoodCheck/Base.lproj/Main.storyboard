@@ -265,7 +265,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8V-e8-6bS">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Necessary" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8V-e8-6bS">
                                                     <rect key="frame" x="210" y="19" width="100" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="EhO-bt-jI1"/>
@@ -315,7 +315,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="sre-sU-6aX" kind="show" identifier="chooseIcon" id="XLH-ec-GNZ"/>
+                                            <segue destination="sre-sU-6aX" kind="show" identifier="СhooseIcon" id="XLH-ec-GNZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="mMH-q0-uOj" customClass="AddNewFoodTableViewCell" customModule="FoodCheck" customModuleProvider="target">
@@ -331,7 +331,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5SM-hV-coc">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Necessary" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5SM-hV-coc">
                                                     <rect key="frame" x="210" y="19" width="100" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="wnL-tT-PDK"/>
@@ -379,6 +379,9 @@
                                                 <constraint firstItem="fqh-dJ-YcU" firstAttribute="leading" secondItem="tnC-qw-dSI" secondAttribute="leading" constant="10" id="opA-RP-ueC"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cpw-wz-AhK" kind="presentation" identifier="AddCodeToFood" id="JMG-la-hf8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -406,7 +409,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxs-m7-gv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5002.5" y="981.33802816901414"/>
+            <point key="canvasLocation" x="4553" y="977"/>
         </scene>
         <!--Add Icon Table View Controller-->
         <scene sceneID="XZM-HG-Jf7">
@@ -447,7 +450,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fH-lM-3Ew" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9ft-GO-kiG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5956.875" y="978.16901408450701"/>
+            <point key="canvasLocation" x="5582" y="977"/>
         </scene>
         <!--Calendar Screen-->
         <scene sceneID="trd-p9-BYG">
@@ -567,7 +570,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5X-eK-nOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4043" y="978"/>
+            <point key="canvasLocation" x="3454" y="978"/>
         </scene>
     </scenes>
     <resources>
@@ -576,4 +579,7 @@
         <image name="Info_icon" width="25" height="25"/>
         <image name="Qr_code" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JMG-la-hf8"/>
+    </inferredMetricsTieBreakers>
 </document>

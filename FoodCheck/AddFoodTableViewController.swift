@@ -42,23 +42,43 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     var iconName: String = baseFoodIconName
     var qrCode: String? = nil
     
-    private var typePickerVisible = false
+    var closeKeyboardTouchRecognizer: UITapGestureRecognizer?
     
     @IBAction func cancelAdding(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func userDoneEnterInfo(_ sender: UIBarButtonItem) {
+        //TODO: check if food with enter name exist, if so-show message
         if checkIfAddingAvailable() {
             if isModifing {
                 modifyUserAddedFood()
             } else {
+                //TODO: add checking if food with proposal name already exist
                 addNewUserFood()
             }
         } else {
+            showInvalidDataAlert()
            let error = NSError(domain: "AddFoodTableUserDoneEnterError", code: 1, userInfo: nil)
             record(error: error)
         }
+    }
+    
+    private func showInvalidDataAlert() {
+        let alertController = UIAlertController(title: NSLocalizedString("Invalid data", comment: "Alert title while user enter invalid data for new food description"), message: NSLocalizedString("You have enter invalid data to new food \nPlease, check your info and try again", comment: "Alert message while user enter invalid data for new food description"), preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("Ok", comment: "Action for user enter invalid data for new food description"), style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showDublicateDataAlert() {
+        let alertController = UIAlertController(title: NSLocalizedString("Dublicate data", comment: "Alert title while user enter dublicate data for new food description"), message: NSLocalizedString("You have already food with this name.\nDo you want to rewrite it's data with new?", comment: "Alert message while user enter dublicate data for new food description"), preferredStyle: .alert)
+        let actionYes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Action approve for user enter rewrite data with new food description"), style: .cancel, handler: { _ in
+            //TODO: implement rewrite exist food if user deside so
+        })
+        let actionNo = UIAlertAction(title: NSLocalizedString("No", comment: "Action refusal for user enter rewrite data with new food description"), style: .default, handler: nil)
+        alertController.addAction(actionNo)
+        alertController.addAction(actionYes)
     }
     
     @IBAction func unwindToAddUserFood(segue: UIStoryboardSegue) {
@@ -101,8 +121,11 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.NotAdded]
             qrCodeAddedLabel.textColor = peachTint
         }
+        if let _ = modifiedUserFood {
+            isModifing = true
+        }
         navigationItem.title = headerOfScreen[isModifing]!
-        let _ = checkIfAddingAvailable()
+        addFoodButton.isEnabled = checkIfAddingAvailable()
     }
     
     private func setBackgroundView() {
@@ -116,7 +139,32 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
             return false
         }
         
-        addFoodButton.isEnabled = true
+        guard let foodShelfLife = shelfLifeField.text else { return false }
+        guard !foodShelfLife.isEmpty else {
+            return false
+        }
+        guard let foodShelfLifeIntoDouble = Double(foodShelfLife) else { return false }
+        guard foodShelfLifeIntoDouble > 0 else {
+            return false
+        }
+        return true
+    }
+    
+    func checkIfAddingAvailableWhileEditingData(from textField: UITextField, with string: NSString) -> Bool {
+        var unmuttedTextField: UITextField
+        if textField === foodNameField {
+            unmuttedTextField = shelfLifeField
+        } else {
+            unmuttedTextField = foodNameField
+        }
+        guard let unmuttedText = unmuttedTextField.text else { return false }
+        guard (unmuttedText as NSString).length > 0 else {
+            return false
+        }
+        guard string.length > 0 else {
+            return false
+        }
+
         return true
     }
     
@@ -140,6 +188,11 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     func createNewUserFood() -> AddedUserFood {
         //TODO: add new user food from info from screen
         return AddedUserFood()
+    }
+    
+    func closeKeyboard() {
+        foodNameField.resignFirstResponder()
+        shelfLifeField.resignFirstResponder()
     }
 
     // MARK: - Table view data source
@@ -197,7 +250,7 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -205,18 +258,36 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
 
 extension AddFoodTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let _ = checkIfAddingAvailable()
+        addFoodButton.isEnabled = checkIfAddingAvailable()
+        guard let tapRecognizer = closeKeyboardTouchRecognizer else { return true }
+        self.view.removeGestureRecognizer(tapRecognizer)
         return true
     }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        addFoodButton.isEnabled = false
+        closeKeyboardTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        closeKeyboardTouchRecognizer?.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(closeKeyboardTouchRecognizer!)
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let oldTextString = textField.text else {
+            return true
+        }
+        let oldText = oldTextString as NSString
+        let newString = oldText.replacingCharacters(in: range, with: string) as NSString
+        
+        if newString.length > 0 {
+           addFoodButton.isEnabled = checkIfAddingAvailableWhileEditingData(from: textField, with: newString)
+        } else {
+           addFoodButton.isEnabled = false
+        }
+        return true
     }
 }
