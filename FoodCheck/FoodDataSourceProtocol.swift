@@ -28,6 +28,8 @@ protocol MutableFoodDataSource: class {
     func getFood(at indexPath: IndexPath) -> UserFood
     
     func getFood(with endDate: Date) -> [UserFood]
+    
+    func getFood(fromDate: Date, toDate: Date) -> [UserFood]
     //Use for deleting UserFood item
     func delete(food: UserFood)
     

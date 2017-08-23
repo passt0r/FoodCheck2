@@ -11,6 +11,5 @@ import JTAppleCalendar
 
 class CalendarHeaderView: JTAppleCollectionReusableView {
 
-    
 
 }

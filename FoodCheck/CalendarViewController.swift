@@ -23,6 +23,7 @@ class CalendarViewController: UIViewController {
     
     var selectedDate: Date = Date()
     var foodThatShelfLifeEndAtSelectedDate: [UserFood] = [UserFood]()
+    var foodForMonth: [UserFood] = [UserFood]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +102,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
         let headerView = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: monthHeaderView, for: indexPath)
+        foodForMonth = dataSource.getFood(fromDate: range.start, toDate: range.end)
         
         return headerView
     }
