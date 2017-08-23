@@ -107,16 +107,11 @@ class YourFoodViewController: UICollectionViewController {
     }
     
     func configure(cell: FoodItemCell, with foodItem: UserFood) {
-        let foodIcon = UIImage(named: foodItem.iconName)
         let foodName = foodItem.name
         
         cell.foodName.text = foodName
+        cell.foodIcon.image = icon(for: foodItem)
         
-        if let foodIcon = foodIcon {
-            cell.foodIcon.image = foodIcon
-        } else {
-            cell.foodIcon.image = UIImage(named: "fruit")!
-        }
         let timesLeft = foodItem.endDate.timeIntervalSinceNow
         configure(cell, basedOn: timesLeft)
     }

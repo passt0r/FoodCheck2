@@ -25,6 +25,9 @@
 		5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9501F0D67FA0006B5F9 /* Main.storyboard */; };
 		5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9531F0D67FA0006B5F9 /* Assets.xcassets */; };
 		59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */; };
+		59AC70AB1F4E1DB4003094B9 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */; };
+		59AC70AD1F4E201D003094B9 /* UIView+bounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */; };
+		59AC70AF1F4E2501003094B9 /* FoodAtDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AE1F4E2501003094B9 /* FoodAtDateTableViewCell.swift */; };
 		59B8F8491F485A0800F4B2C7 /* UIView+ResizeForBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B8F8481F485A0800F4B2C7 /* UIView+ResizeForBackground.swift */; };
 		59BB953C1F3C55C00077447F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953B1F3C55C00077447F /* CalendarViewController.swift */; };
 		59BB953E1F3C56B50077447F /* ReadQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953D1F3C56B50077447F /* ReadQRViewController.swift */; };
@@ -89,6 +92,9 @@
 		5975C9531F0D67FA0006B5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C9581F0D67FA0006B5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSourceProtocol.swift; sourceTree = "<group>"; };
+		59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+bounce.swift"; sourceTree = "<group>"; };
+		59AC70AE1F4E2501003094B9 /* FoodAtDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodAtDateTableViewCell.swift; sourceTree = "<group>"; };
 		59B8F8481F485A0800F4B2C7 /* UIView+ResizeForBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ResizeForBackground.swift"; sourceTree = "<group>"; };
 		59BB953B1F3C55C00077447F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		59BB953D1F3C56B50077447F /* ReadQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadQRViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				59F10C1A1F4DBFED00F2DBCB /* CalendarItemCell.swift */,
+				59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */,
+				59AC70AE1F4E2501003094B9 /* FoodAtDateTableViewCell.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -350,6 +358,7 @@
 				5904CDA11F48C1E100B8671D /* UILabel+SetupWithMessage.swift */,
 				59F38CC61F4A388E0032838C /* UITableViewCell+ConfigurateForFridgeCell.swift */,
 				59F10C1C1F4DE41600F2DBCB /* Double+InDays.swift */,
+				59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */,
 			);
 			name = Extentions;
 			sourceTree = "<group>";
@@ -650,6 +659,7 @@
 			files = (
 				59F1C2511F4B41EC007EBD21 /* AddNewFoodTableViewCell.swift in Sources */,
 				59092A1E1F2E5AD400EBB75D /* ShelfCollectionReusableView.swift in Sources */,
+				59AC70AD1F4E201D003094B9 /* UIView+bounce.swift in Sources */,
 				59F38CBD1F4A18E50032838C /* Error_handling.swift in Sources */,
 				593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */,
 				5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */,
@@ -671,6 +681,8 @@
 				5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */,
 				59F1C24F1F4B41B6007EBD21 /* AddFoodTableViewCell.swift in Sources */,
 				5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */,
+				59AC70AF1F4E2501003094B9 /* FoodAtDateTableViewCell.swift in Sources */,
+				59AC70AB1F4E1DB4003094B9 /* CalendarHeaderView.swift in Sources */,
 				59F1C2551F4B5398007EBD21 /* AddIconTableViewCell.swift in Sources */,
 				59F1C2491F4B3AF6007EBD21 /* AddFoodTableViewController.swift in Sources */,
 				59F38CC71F4A388E0032838C /* UITableViewCell+ConfigurateForFridgeCell.swift in Sources */,
