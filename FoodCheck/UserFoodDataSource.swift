@@ -128,6 +128,21 @@ class UserDataSource: MutableFoodDataSource {
         return resultOfQueryingUserFood[indexPath.item]
     }
     
+    func getFood(with endDate: Date) -> [UserFood] {
+        let beginOfDay = Calendar.current.startOfDay(for: endDate)
+        let endOfDay: Date = {
+            let components = DateComponents(day: 1, second: -1)
+            return Calendar.current.date(byAdding: components, to: beginOfDay)!
+        }()
+        let predicate = NSPredicate(format: "endDate BETWEEN %@", [beginOfDay, endOfDay])
+        let resultOfQuerying = dataBase.objects(UserFood.self).filter(predicate)
+        var resultArray = [UserFood]()
+        for result in resultOfQuerying {
+            resultArray.append(result)
+        }
+        return resultArray
+    }
+    
     func delete(food: UserFood) {
         do {
             try dataBase.write {

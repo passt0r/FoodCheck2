@@ -31,6 +31,8 @@
 		59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */; };
 		59BFEA201F33ECAE00B92F98 /* warning.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA1F1F33ECAE00B92F98 /* warning.json */; };
 		59BFEA221F33ECB400B92F98 /* checked_done.json in Resources */ = {isa = PBXBuildFile; fileRef = 59BFEA211F33ECB400B92F98 /* checked_done.json */; };
+		59F10C1B1F4DBFED00F2DBCB /* CalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F10C1A1F4DBFED00F2DBCB /* CalendarItemCell.swift */; };
+		59F10C1D1F4DE41600F2DBCB /* Double+InDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F10C1C1F4DE41600F2DBCB /* Double+InDays.swift */; };
 		59F1C2491F4B3AF6007EBD21 /* AddFoodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F1C2481F4B3AF6007EBD21 /* AddFoodTableViewController.swift */; };
 		59F1C24F1F4B41B6007EBD21 /* AddFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F1C24E1F4B41B6007EBD21 /* AddFoodTableViewCell.swift */; };
 		59F1C2511F4B41EC007EBD21 /* AddNewFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F1C2501F4B41EC007EBD21 /* AddNewFoodTableViewCell.swift */; };
@@ -93,6 +95,8 @@
 		59BFEA1C1F33DE6000B92F98 /* MockFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFoodDataSource.swift; sourceTree = "<group>"; };
 		59BFEA1F1F33ECAE00B92F98 /* warning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = warning.json; sourceTree = "<group>"; };
 		59BFEA211F33ECB400B92F98 /* checked_done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checked_done.json; sourceTree = "<group>"; };
+		59F10C1A1F4DBFED00F2DBCB /* CalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItemCell.swift; sourceTree = "<group>"; };
+		59F10C1C1F4DE41600F2DBCB /* Double+InDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+InDays.swift"; sourceTree = "<group>"; };
 		59F1C2481F4B3AF6007EBD21 /* AddFoodTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodTableViewController.swift; sourceTree = "<group>"; };
 		59F1C24E1F4B41B6007EBD21 /* AddFoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodTableViewCell.swift; sourceTree = "<group>"; };
 		59F1C2501F4B41EC007EBD21 /* AddNewFoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewFoodTableViewCell.swift; sourceTree = "<group>"; };
@@ -239,7 +243,6 @@
 			children = (
 				5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */,
 				59F38CB91F4A18BC0032838C /* Globals */,
-				59B8F8471F4859E300F4B2C7 /* Extentions */,
 				5975C9501F0D67FA0006B5F9 /* Main.storyboard */,
 				595B29751F349D8A003C2DD4 /* Models */,
 				595B29761F349DA3003C2DD4 /* Views */,
@@ -328,6 +331,7 @@
 		59A6512A1F34D1E2005BA42C /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				59F10C1A1F4DBFED00F2DBCB /* CalendarItemCell.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -345,6 +349,7 @@
 				59B8F8481F485A0800F4B2C7 /* UIView+ResizeForBackground.swift */,
 				5904CDA11F48C1E100B8671D /* UILabel+SetupWithMessage.swift */,
 				59F38CC61F4A388E0032838C /* UITableViewCell+ConfigurateForFridgeCell.swift */,
+				59F10C1C1F4DE41600F2DBCB /* Double+InDays.swift */,
 			);
 			name = Extentions;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 		59F38CB91F4A18BC0032838C /* Globals */ = {
 			isa = PBXGroup;
 			children = (
+				59B8F8471F4859E300F4B2C7 /* Extentions */,
 				5914FBFB1F3BA4C000B8C89D /* Globals.swift */,
 				59F38CBA1F4A18D70032838C /* Images.swift */,
 				59F38CBC1F4A18E50032838C /* Error_handling.swift */,
@@ -516,12 +522,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FoodCheck/Pods-FoodCheck-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -647,6 +655,7 @@
 				5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */,
 				59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */,
 				59092A221F2E5CBC00EBB75D /* YourFoodViewController.swift in Sources */,
+				59F10C1B1F4DBFED00F2DBCB /* CalendarItemCell.swift in Sources */,
 				5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */,
 				59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */,
 				59F1C2571F4B6D1E007EBD21 /* AddNewFoodDelegate.swift in Sources */,
@@ -671,6 +680,7 @@
 				59F38CB61F4A03040032838C /* ChooseFoodTableViewController.swift in Sources */,
 				5904CDA21F48C1E100B8671D /* UILabel+SetupWithMessage.swift in Sources */,
 				59F38CB81F4A06220032838C /* ChooseFoodTypeTableViewCell.swift in Sources */,
+				59F10C1D1F4DE41600F2DBCB /* Double+InDays.swift in Sources */,
 				5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

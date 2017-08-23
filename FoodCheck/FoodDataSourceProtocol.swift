@@ -26,6 +26,8 @@ protocol MutableFoodDataSource: class {
     //Get food elements for Your Food screen
     func getFoodItemCount() -> Int
     func getFood(at indexPath: IndexPath) -> UserFood
+    
+    func getFood(with endDate: Date) -> [UserFood]
     //Use for deleting UserFood item
     func delete(food: UserFood)
     
