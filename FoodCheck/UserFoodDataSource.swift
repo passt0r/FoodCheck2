@@ -81,7 +81,7 @@ class UserDataSource: MutableFoodDataSource {
     func findFoodBy(name: String) -> AddedUserFood? {
             let predicate = NSPredicate(format: "name == %@", name)
             let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
-            guard let findedFood = resultOfSearching.first else {
+            guard let findedFood = resultOfSearching.last else {
                 return nil }
             return findedFood
     }
@@ -89,7 +89,7 @@ class UserDataSource: MutableFoodDataSource {
     func findFoodBy(qr: String) -> AddedUserFood? {
         let predicate = NSPredicate(format: "qrCode == %@", qr)
         let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
-        guard let findedFood = resultOfSearching.first else { return nil }
+        guard let findedFood = resultOfSearching.last else { return nil }
         return findedFood
     }
     

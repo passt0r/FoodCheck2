@@ -87,7 +87,6 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
         } else {
             //Perform unwind segue for added new barcode to new food
             //As is this view controller is already instantiated, that's why you must perform some cleanup after adding
-            fromAdd = false
             performSegue(withIdentifier: "AddCodeToNewFood", sender: self)
         }
     }
@@ -96,17 +95,18 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     
     //MARK: Working with DB
      func performSearch(withInfo info: String) {
+        guard info != qrCodeMessage else {
+            return
+        }
         let wasAdded = dataSource.addFood(byQR: info)
         if wasAdded {
             statusLabel.text = statusLabelText[.Find]
             //TODO: Add animation of finding
             showAnimation(checked: wasAdded)
         } else {
-            if info != qrCodeMessage {
                 //TODO: Add animation of not founding
+                statusLabel.text = statusLabelText[.NotFound]
                 showAnimation(checked: wasAdded)
-            }
-            statusLabel.text = statusLabelText[.NotFound]
         }
     }
     
@@ -186,7 +186,6 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
             captureSession.startRunning()
             view.bringSubview(toFront: statusLabel)
             view.bringSubview(toFront: actionButton)
-            
             //add greenbox around barcode
             qrCodeFrameView = UIView()
             
@@ -219,8 +218,16 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         initiateCustomizeUIElements()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fromAdd = false
+        qrCodeMessage = ""
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -240,8 +247,8 @@ class ReadQRViewController: UIViewController, FoodSearchingController {
             let destination = segue.destination as! ChooseFoodTypeTableViewController
             destination.dataSource = dataSource
             destination.delegate = delegate
-        case "AddNewFood":
-            fromAdd = false
+        case "AddCodeToNewFood":
+            break
         default:
             let error = NSError(domain: "ReadQRSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
@@ -273,9 +280,10 @@ extension ReadQRViewController: AVCaptureMetadataOutputObjectsDelegate {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             if metadataObj.stringValue != nil {
-                statusLabel.text = statusLabelText[.SearchDone]
                 if !fromAdd {
                     performSearch(withInfo: metadataObj.stringValue)
+                } else {
+                    statusLabel.text = statusLabelText[.SearchDone]
                 }
                 qrCodeMessage = metadataObj.stringValue
             }

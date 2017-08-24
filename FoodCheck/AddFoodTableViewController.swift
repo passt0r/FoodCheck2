@@ -50,8 +50,10 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         didSet {
             if let _ = qrCode {
                 qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.Added]
+                qrCodeAddedLabel.textColor = grassGreen
             } else {
                 qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.NotAdded]
+                qrCodeAddedLabel.textColor = peachTint
             }
         }
     }

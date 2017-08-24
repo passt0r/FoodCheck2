@@ -121,7 +121,7 @@ class YourFoodViewController: UICollectionViewController {
         switch daysLeft {
         case let x where x >= 3:
             cell.freshStage = .Normal
-        case let x where x > 0:
+        case let x where x >= 0:
             cell.freshStage = .SoonEnd
         default:
             cell.freshStage = .End
