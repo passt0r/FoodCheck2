@@ -12,8 +12,12 @@ class ChooseFoodTypeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configurateForFridgeCell()
         accessoryView = UIImageView(image: nextArrow)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configurateForFridgeCell()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

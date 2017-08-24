@@ -119,8 +119,8 @@ class YourFoodViewController: UICollectionViewController {
     func configure(_ cell: FoodItemCell, basedOn timeLeft: TimeInterval) {
         let daysLeft = timeLeft.inDays()
         switch daysLeft {
-        case let x where x > 3:
-            break
+        case let x where x >= 3:
+            cell.freshStage = .Normal
         case let x where x > 0:
             cell.freshStage = .SoonEnd
         default:

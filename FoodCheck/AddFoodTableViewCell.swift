@@ -14,10 +14,14 @@ class AddFoodTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configurateForFridgeCell()
         addFoodButton.backgroundColor = grassGreen
         addFoodButton.tintColor = UIColor.white
         addFoodButton.layer.cornerRadius = 15
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configurateForFridgeCell()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

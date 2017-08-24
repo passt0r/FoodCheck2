@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodTypeCell" textLabel="nfq-eF-s94" rowHeight="66" style="IBUITableViewCellStyleDefault" id="WFZ-Ek-JDa" customClass="ChooseFoodTypeTableViewCell" customModule="FoodCheck" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoodTypeCell" textLabel="nfq-eF-s94" rowHeight="66" style="IBUITableViewCellStyleDefault" id="WFZ-Ek-JDa" customClass="ChooseFoodTypeTableViewCell" customModule="FoodCheck" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WFZ-Ek-JDa" id="dfu-Ym-rOn">

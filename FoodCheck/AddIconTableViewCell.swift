@@ -12,6 +12,10 @@ class AddIconTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         configurateForFridgeCell()
     }
 
