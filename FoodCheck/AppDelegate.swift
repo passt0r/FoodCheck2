@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [NSForegroundColorAttributeName: grassGreen]
         UILabel.appearance().textColor = peachTint
         
-        
     }
     
     var launchAlert: UIAlertController?

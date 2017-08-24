@@ -555,6 +555,11 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIn-kH-s1p">
                                                                     <rect key="frame" x="37" y="0.0" width="36.5" height="22"/>
@@ -605,7 +610,7 @@
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                                    <color key="value" red="0.11764705882352941" green="0.62624782986111116" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="value" red="0.94117647058823528" green="0.5490196078431373" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
@@ -617,6 +622,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="iqd-qC-fNT" secondAttribute="trailing" id="xrj-ba-ARc"/>
                                                 <constraint firstItem="iqd-qC-fNT" firstAttribute="leading" secondItem="as7-S0-AIf" secondAttribute="leading" id="zKT-Tr-kqV"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="friLabel" destination="2u3-nR-uPf" id="th9-MR-pIm"/>
+                                                <outlet property="monLabel" destination="mt5-kO-1Hr" id="FGb-7a-I7z"/>
+                                                <outlet property="satLabel" destination="usn-ax-Go0" id="n7c-7M-LWk"/>
+                                                <outlet property="sunLabel" destination="z0D-Dy-pgs" id="aVH-TN-Z9Q"/>
+                                                <outlet property="thuLabel" destination="K7I-8h-8ds" id="fYS-IS-700"/>
+                                                <outlet property="tueLabel" destination="GIn-kH-s1p" id="nc2-XO-GYz"/>
+                                                <outlet property="wenLabel" destination="6Gh-Pe-b1d" id="tTd-Dl-5Yj"/>
+                                            </connections>
                                         </collectionReusableView>
                                         <connections>
                                             <outlet property="ibCalendarDataSource" destination="ter-SA-XEN" id="5IG-v0-1OT"/>
@@ -694,6 +708,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="foodTable" destination="RsA-4I-n4w" id="JfU-ZT-oqe"/>
+                        <outlet property="monthLabel" destination="GgU-t0-ILf" id="5RT-YN-g2f"/>
+                        <outlet property="yearLabel" destination="igT-qY-D7X" id="4Mr-GU-fFF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RK2-na-nRn" userLabel="First Responder" sceneMemberID="firstResponder"/>

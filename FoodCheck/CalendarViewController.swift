@@ -17,6 +17,8 @@ class CalendarViewController: UIViewController {
     let smallRowHeight:CGFloat = 44
     let formatter = DateFormatter()
     
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var foodTable: UITableView!
     
     var dataSource: MutableFoodDataSource!
@@ -44,6 +46,9 @@ class CalendarViewController: UIViewController {
         
         foodTable.backgroundColor = UIColor.clear
         
+        yearLabel.textColor = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 0.6)
+        monthLabel.textColor = grassGreen
+        
         //dataSource preparetions
         foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
     }
@@ -63,7 +68,8 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        calendar.backgroundColor = UIColor.clear
+//        calendar.backgroundColor = UIColor.clear
+        calendar.layer.cornerRadius = 20
         
         formatter.dateFormat = "yyyy MM dd"
         formatter.timeZone = Calendar.current.timeZone
@@ -81,7 +87,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         }()
         
         let endDate: Date = {
-            let components = DateComponents(year: 5)
+            let components = DateComponents(year: 2)
             return Calendar.current.date(byAdding: components, to: startDate)!
         }()
         
@@ -94,6 +100,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: calendarCellID, for: indexPath) as! CalendarItemCell
         cell.dateLabel.text = cellState.text
+        cell.layer.cornerRadius = 5
         //TODO: if any food at this date end it's shelf life, than make cproperty visible: 
         //cell.dotUnderDate.isHidden = false
         
@@ -101,7 +108,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
-        let headerView = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: monthHeaderView, for: indexPath)
+        let headerView = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: monthHeaderView, for: indexPath) as! CalendarHeaderView
+        headerView.setTextColor(to: grassGreen)
+        
         foodForMonth = dataSource.getFood(fromDate: range.start, toDate: range.end)
         
         return headerView
@@ -112,7 +121,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        
+        let selectedCell = cell as! CalendarItemCell
+        changeSelection(of: selectedCell)
         foodTable.beginUpdates()
         deleteRowsFromPreviousSelection()
         //get new date from selected index
@@ -124,6 +134,23 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         foodTable.endUpdates()
         
         cell?.bounce()
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        let selectedCell = cell as! CalendarItemCell
+        changeSelection(of: selectedCell)
+    }
+    
+    private func changeSelection(of cell: CalendarItemCell) {
+        if cell.isSelected {
+            cell.backgroundColor = peachTint
+            cell.dateLabel.textColor = UIColor.white
+            cell.dotUnderDate.textColor = UIColor.white
+        } else {
+            cell.backgroundColor = UIColor.clear
+            cell.dateLabel.textColor = peachTint
+            cell.dotUnderDate.textColor = peachTint
+            }
     }
     
     //TODO: Fix this to check insertion from empty array
