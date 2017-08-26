@@ -118,7 +118,12 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         
         changeSelection(of: cell, with: cellState, at: date)
         //TODO: if any food at this date end it's shelf life, than make cproperty visible: 
-        //cell.dotUnderDate.isHidden = false
+//        for food in foodForMonth {
+//            //FIXME: fix date compare
+//            if food.endDate == date {
+//                cell.dotUnderDate.isHidden = false
+//            }
+//        }
         
         return cell
     }
@@ -163,8 +168,12 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             cell.dateLabel.textColor = UIColor.white
             cell.dotUnderDate.textColor = UIColor.white
         } else {
+            if state.dateBelongsTo == .thisMonth {
+                cell.dateLabel.textColor = peachTint
+            } else {
+                cell.dateLabel.textColor = peachTint(withAlpha: 0.5)
+            }
             cell.backgroundColor = UIColor.clear
-            cell.dateLabel.textColor = peachTint
             cell.dotUnderDate.textColor = peachTint
             }
     }
