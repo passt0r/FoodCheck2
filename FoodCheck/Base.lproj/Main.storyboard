@@ -121,7 +121,7 @@
                             <constraint firstItem="fYx-Y5-WAa" firstAttribute="top" secondItem="PEI-fh-xQs" secondAttribute="bottom" constant="60" id="sl1-gI-5PE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Read Bar Code" id="dBE-Oe-s27">
+                    <navigationItem key="navigationItem" title="Read QR Code" id="dBE-Oe-s27">
                         <barButtonItem key="leftBarButtonItem" image="Back_icon" id="306-Ko-2bZ">
                             <connections>
                                 <action selector="backToYourFood" destination="es4-AK-QQs" id="CQ3-Li-JBT"/>
@@ -364,8 +364,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqh-dJ-YcU">
-                                                    <rect key="frame" x="10" y="23" width="64" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqh-dJ-YcU">
+                                                    <rect key="frame" x="10" y="23" width="66" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -645,7 +645,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RsA-4I-n4w">
-                                <rect key="frame" x="0.0" y="430" width="320" height="138"/>
+                                <rect key="frame" x="0.0" y="435" width="320" height="133"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodAtDateCell" id="7JI-zq-8cy" customClass="FoodAtDateTableViewCell" customModule="FoodCheck" customModuleProvider="target">
@@ -677,6 +677,10 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Jq-QW-Ldr" secondAttribute="trailing" constant="10" id="hMw-eF-WWt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foodIcon" destination="RDL-rC-NrI" id="Tz7-hK-0vv"/>
+                                            <outlet property="foodNameLabel" destination="7Jq-QW-Ldr" id="33J-Mw-iCu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -690,7 +694,7 @@
                             <constraint firstItem="gng-F2-bGb" firstAttribute="top" secondItem="lqI-uT-gta" secondAttribute="bottom" id="J5D-Qx-eL3"/>
                             <constraint firstItem="lqI-uT-gta" firstAttribute="top" secondItem="Msj-pH-8fx" secondAttribute="bottom" id="XP4-vh-6vF"/>
                             <constraint firstItem="gng-F2-bGb" firstAttribute="leading" secondItem="9CA-0h-gsJ" secondAttribute="leading" id="bed-Nb-00j"/>
-                            <constraint firstItem="RsA-4I-n4w" firstAttribute="top" secondItem="gng-F2-bGb" secondAttribute="bottom" id="pus-o5-Ohu"/>
+                            <constraint firstItem="RsA-4I-n4w" firstAttribute="top" secondItem="gng-F2-bGb" secondAttribute="bottom" constant="5" id="pus-o5-Ohu"/>
                             <constraint firstAttribute="trailing" secondItem="RsA-4I-n4w" secondAttribute="trailing" id="stX-bq-xWL"/>
                         </constraints>
                     </view>

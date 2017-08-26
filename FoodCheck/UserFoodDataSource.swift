@@ -134,7 +134,7 @@ class UserDataSource: MutableFoodDataSource {
             let components = DateComponents(day: 1, second: -1)
             return Calendar.current.date(byAdding: components, to: beginOfDay)!
         }()
-        let predicate = NSPredicate(format: "endDate BETWEEN %@", [beginOfDay, endOfDay])
+        let predicate = NSPredicate(format: "endDate >= %@ AND endDate <= %@", argumentArray: [beginOfDay, endOfDay])
         let resultOfQuerying = dataBase.objects(UserFood.self).filter(predicate)
         var resultArray = [UserFood]()
         for result in resultOfQuerying {

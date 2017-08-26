@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController {
     var dataSource: MutableFoodDataSource!
     
     var selectedDate: Date = Date()
+    let todayDate: Date = Date()
     var foodThatShelfLifeEndAtSelectedDate: [UserFood] = [UserFood]()
     var foodForMonth: [UserFood] = [UserFood]()
 
@@ -43,7 +44,7 @@ class CalendarViewController: UIViewController {
         view.setBackground(image: backgroundImage!)
         
         //dataSource preparetions
-        foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
+        prepareStartInfo()
         
         prepareLabels()
         prepareTableView()
@@ -65,6 +66,34 @@ class CalendarViewController: UIViewController {
     private func prepareCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
+        
+        calendarView.visibleDates({ visibleDates in
+            self.changeMonthAndYearLabels(from: visibleDates)
+        })
+        calendarView.scrollToDate(todayDate, animateScroll: false)
+    }
+    
+    private func prepareStartInfo() {
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = Calendar.current.timeZone
+        formatter.locale = Calendar.current.locale
+        
+        let startDate: Date = {
+            
+            let startMonthDateFirstDay = Calendar.Component.day
+            let date = Calendar.current.date(bySetting: startMonthDateFirstDay, value: 1, of: todayDate)!
+            
+            return date
+        }()
+        
+        let endDate: Date = {
+            let components = DateComponents(month: 1, day: -1)
+            return Calendar.current.date(byAdding: components, to: startDate)!
+        }()
+        
+        foodForMonth = dataSource.getFood(fromDate: startDate, toDate: endDate)
+        foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: todayDate)
+        
     }
     
 
@@ -92,7 +121,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         let startDate: Date = {
             let currentDate = Date()
         
-            let sixMonthAgoDateComponent = DateComponents(month: -6)
+            let sixMonthAgoDateComponent = DateComponents(month: -2)
             let sixMonthAgoDateFirstDay = Calendar.Component.day
             let date = Calendar.current.date(byAdding: sixMonthAgoDateComponent, to: currentDate)!
             let firstDayOfHalfOfYearAgoDate = Calendar.current.date(bySetting: sixMonthAgoDateFirstDay, value: 1, of: date)!
@@ -117,24 +146,60 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         cell.layer.cornerRadius = 5
         
         changeSelection(of: cell, with: cellState, at: date)
-        //TODO: if any food at this date end it's shelf life, than make cproperty visible: 
-//        for food in foodForMonth {
-//            //FIXME: fix date compare
-//            if food.endDate == date {
-//                cell.dotUnderDate.isHidden = false
-//            }
-//        }
+        
+        //FIXME: works wrong: 1) not correctly marks with dots
+        markIfFoodEndShelfLife(cell, at: cellState.date)
         
         return cell
+    }
+    //FIXME: Fix it!
+    private func markIfFoodEndShelfLife(_ cell: CalendarItemCell, at date: Date) {
+        formatter.dateFormat = "dd MM yyyy"
+        let dateString = formatter.string(from: date)
+        var wasFound = false
+        //MARK: problem in food for month
+        for food in foodForMonth {
+            let endDateString = formatter.string(from: food.endDate)
+            if endDateString == dateString {
+                cell.dotUnderDate.isHidden = false
+                wasFound = true
+                break
+            }
+        }
+        if !wasFound {
+            cell.dotUnderDate.isHidden = true
+        }
+
     }
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
         let headerView = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: monthHeaderView, for: indexPath) as! CalendarHeaderView
         headerView.setTextColor(to: grassGreen)
         
-        foodForMonth = dataSource.getFood(fromDate: range.start, toDate: range.end)
-        
         return headerView
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        
+        changeMonthAndYearLabels(from: visibleDates)
+    }
+    
+    private func getFoodForVisibleDates(from visibleDates: DateSegmentInfo) {
+        guard let firstVisibleDate = visibleDates.indates.first?.date else { return }
+        guard let lastVisibleDate = visibleDates.outdates.last?.date else { return  }
+        
+        foodForMonth = dataSource.getFood(fromDate: firstVisibleDate, toDate: lastVisibleDate)
+    }
+    
+    func changeMonthAndYearLabels(from visibleDates: DateSegmentInfo) {
+        guard let date = visibleDates.monthDates.first?.date else { return  }
+        formatter.dateFormat = "yyyy"
+        yearLabel.text = formatter.string(from: date)
+        
+        formatter.dateFormat = "MMMM"
+        monthLabel.text = formatter.string(from: date)
+        
+        getFoodForVisibleDates(from: visibleDates)
     }
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
@@ -146,10 +211,14 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         changeSelection(of: selectedCell, with: cellState, at: date)
         foodTable.beginUpdates()
         deleteRowsFromPreviousSelection()
-        //get new date from selected index
+        foodTable.endUpdates()
+        
         selectedDate = date
         //get new food from new date
         foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
+        
+        foodTable.beginUpdates()
+        //get new date from selected index
         //insert new rows
         insertRowsFronNewSelection()
         foodTable.endUpdates()
@@ -169,13 +238,24 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             cell.dotUnderDate.textColor = UIColor.white
         } else {
             if state.dateBelongsTo == .thisMonth {
-                cell.dateLabel.textColor = peachTint
+                checkIfToday(cell: cell, at: date)
             } else {
                 cell.dateLabel.textColor = peachTint(withAlpha: 0.5)
             }
             cell.backgroundColor = UIColor.clear
-            cell.dotUnderDate.textColor = peachTint
+            cell.dotUnderDate.textColor = grassGreen
             }
+    }
+    
+    private func checkIfToday(cell: CalendarItemCell, at date: Date) {
+        formatter.dateFormat = "dd MM yyyy"
+        let todayDateString = formatter.string(from: todayDate)
+        let cellDateString = formatter.string(from: date)
+        if cellDateString == todayDateString {
+            cell.dateLabel.textColor = grassGreen
+        } else {
+            cell.dateLabel.textColor = peachTint
+        }
     }
     
     //TODO: Fix this to check insertion from empty array
@@ -184,12 +264,10 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         var rowsForDeleting = [IndexPath]()
         for food in foodThatShelfLifeEndAtSelectedDate {
             guard let rowIndex = foodThatShelfLifeEndAtSelectedDate.index(of: food) else { return }
-            //MARK: if remove must be here?
-            foodThatShelfLifeEndAtSelectedDate.remove(at: rowIndex)
             let indexPath = IndexPath(row: rowIndex, section: 0)
             rowsForDeleting.append(indexPath)
         }
-
+        foodThatShelfLifeEndAtSelectedDate.removeAll()
         foodTable.deleteRows(at: rowsForDeleting, with: .fade)
     }
     
@@ -201,7 +279,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             let indexPath = IndexPath(row: rowIndex, section: 0)
             rowsForInserting.append(indexPath)
         }
-        foodTable.insertRows(at: rowsForInserting, with: .right)
+        foodTable.insertRows(at: rowsForInserting, with: .fade)
     }
     
 }
@@ -229,7 +307,15 @@ extension CalendarViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedFood = foodThatShelfLifeEndAtSelectedDate[indexPath.row]
-        dataSource.delete(food: selectedFood)
+        deleteFood(selectedFood)
         tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    private func deleteFood(_ food: UserFood) {
+        guard let indexAtSelectedDate = foodThatShelfLifeEndAtSelectedDate.index(of: food) else { return }
+        guard let indexAtMonthFood = foodForMonth.index(of: food) else { return }
+        foodThatShelfLifeEndAtSelectedDate.remove(at: indexAtSelectedDate)
+        foodForMonth.remove(at: indexAtMonthFood)
+        dataSource.delete(food: food)
     }
 }
