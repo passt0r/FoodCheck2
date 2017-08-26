@@ -20,6 +20,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var foodTable: UITableView!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
     
     var dataSource: MutableFoodDataSource!
     
@@ -38,19 +39,32 @@ class CalendarViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func startPreparing() {
+    private func startPreparing() {
         view.setBackground(image: backgroundImage!)
-        //tableView preparations
+        
+        //dataSource preparetions
+        foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
+        
+        prepareLabels()
+        prepareTableView()
+        prepareCalendarView()
+    }
+    
+    private func prepareLabels() {
+        yearLabel.textColor = peachTint//UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
+        monthLabel.textColor = grassGreen
+    }
+    
+    private func prepareTableView() {
         foodTable.dataSource = self
         foodTable.delegate = self
         
         foodTable.backgroundColor = UIColor.clear
-        
-        yearLabel.textColor = peachTint//UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
-        monthLabel.textColor = grassGreen
-        
-        //dataSource preparetions
-        foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
+    }
+    
+    private func prepareCalendarView() {
+        calendarView.minimumLineSpacing = 0
+        calendarView.minimumInteritemSpacing = 0
     }
     
 
@@ -101,6 +115,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: calendarCellID, for: indexPath) as! CalendarItemCell
         cell.dateLabel.text = cellState.text
         cell.layer.cornerRadius = 5
+        
+        changeSelection(of: cell, with: cellState, at: date)
         //TODO: if any food at this date end it's shelf life, than make cproperty visible: 
         //cell.dotUnderDate.isHidden = false
         
@@ -121,8 +137,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        let selectedCell = cell as! CalendarItemCell
-        changeSelection(of: selectedCell)
+        guard let selectedCell = cell as? CalendarItemCell else { return }
+        changeSelection(of: selectedCell, with: cellState, at: date)
         foodTable.beginUpdates()
         deleteRowsFromPreviousSelection()
         //get new date from selected index
@@ -137,12 +153,12 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        let selectedCell = cell as! CalendarItemCell
-        changeSelection(of: selectedCell)
+        guard let selectedCell = cell as? CalendarItemCell else { return }
+        changeSelection(of: selectedCell, with: cellState, at: date)
     }
     
-    private func changeSelection(of cell: CalendarItemCell) {
-        if cell.isSelected {
+    private func changeSelection(of cell: CalendarItemCell, with state: CellState, at date: Date) {
+        if state.isSelected {
             cell.backgroundColor = peachTint
             cell.dateLabel.textColor = UIColor.white
             cell.dotUnderDate.textColor = UIColor.white

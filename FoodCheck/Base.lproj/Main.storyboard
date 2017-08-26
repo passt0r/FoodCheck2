@@ -707,6 +707,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="calendarView" destination="l2o-WA-Lb9" id="a4J-dj-M1h"/>
                         <outlet property="foodTable" destination="RsA-4I-n4w" id="JfU-ZT-oqe"/>
                         <outlet property="monthLabel" destination="GgU-t0-ILf" id="5RT-YN-g2f"/>
                         <outlet property="yearLabel" destination="igT-qY-D7X" id="4Mr-GU-fFF"/>
