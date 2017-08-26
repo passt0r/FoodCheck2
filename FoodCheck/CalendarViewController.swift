@@ -46,7 +46,7 @@ class CalendarViewController: UIViewController {
         
         foodTable.backgroundColor = UIColor.clear
         
-        yearLabel.textColor = UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 0.6)
+        yearLabel.textColor = peachTint//UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
         monthLabel.textColor = grassGreen
         
         //dataSource preparetions

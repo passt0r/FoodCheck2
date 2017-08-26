@@ -197,7 +197,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mH3-3k-QQ5">
-                                            <rect key="frame" x="10" y="10" width="300" height="46"/>
+                                            <rect key="frame" x="10" y="10" width="300" height="52"/>
                                             <state key="normal" title="Add Food"/>
                                             <connections>
                                                 <segue destination="KZe-bg-PE2" kind="presentation" identifier="AddNewFood" id="IxA-hg-7d9"/>
@@ -205,7 +205,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="mH3-3k-QQ5" secondAttribute="bottom" constant="10" id="0nV-We-lpv"/>
+                                        <constraint firstAttribute="bottom" secondItem="mH3-3k-QQ5" secondAttribute="bottom" constant="4" id="0nV-We-lpv"/>
                                         <constraint firstItem="mH3-3k-QQ5" firstAttribute="leading" secondItem="QKM-q6-zAS" secondAttribute="leading" constant="10" id="Bi7-7p-OCL"/>
                                         <constraint firstItem="mH3-3k-QQ5" firstAttribute="top" secondItem="QKM-q6-zAS" secondAttribute="top" constant="10" id="D16-q9-K0Q"/>
                                         <constraint firstAttribute="trailing" secondItem="mH3-3k-QQ5" secondAttribute="trailing" constant="10" id="Xvo-I4-4Me"/>
