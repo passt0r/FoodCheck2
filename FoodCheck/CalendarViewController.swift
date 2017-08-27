@@ -52,7 +52,7 @@ class CalendarViewController: UIViewController {
     }
     
     private func prepareLabels() {
-        yearLabel.textColor = peachTint//UIColor(red: 240/255, green: 140/255, blue: 60/255, alpha: 1.0)
+        yearLabel.textColor = peachTint
         monthLabel.textColor = grassGreen
     }
     
@@ -71,27 +71,17 @@ class CalendarViewController: UIViewController {
             self.changeMonthAndYearLabels(from: visibleDates)
         })
         calendarView.scrollToDate(todayDate, animateScroll: false)
+        calendarView.selectDates([todayDate])
     }
     
     private func prepareStartInfo() {
-        formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
         
-        let startDate: Date = {
-            
-            let startMonthDateFirstDay = Calendar.Component.day
-            let date = Calendar.current.date(bySetting: startMonthDateFirstDay, value: 1, of: todayDate)!
-            
-            return date
-        }()
+        let monthComponent = Calendar.Component.month
+        guard let dates = Calendar.current.dateInterval(of: monthComponent, for: todayDate) else {
+            return
+        }
         
-        let endDate: Date = {
-            let components = DateComponents(month: 1, day: -1)
-            return Calendar.current.date(byAdding: components, to: startDate)!
-        }()
-        
-        foodForMonth = dataSource.getFood(fromDate: startDate, toDate: endDate)
+        foodForMonth = dataSource.getFood(fromDate: dates.start, toDate: dates.end)
         foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: todayDate)
         
     }
@@ -124,7 +114,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
             let sixMonthAgoDateComponent = DateComponents(month: -2)
             let sixMonthAgoDateFirstDay = Calendar.Component.day
             let date = Calendar.current.date(byAdding: sixMonthAgoDateComponent, to: currentDate)!
-            let firstDayOfHalfOfYearAgoDate = Calendar.current.date(bySetting: sixMonthAgoDateFirstDay, value: 1, of: date)!
+            let firstDayOfHalfOfYearAgoDate = Calendar.current.date(bySetting: sixMonthAgoDateFirstDay, value: 2, of: date)!
             
             return firstDayOfHalfOfYearAgoDate
         }()
@@ -147,12 +137,11 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         
         changeSelection(of: cell, with: cellState, at: date)
         
-        //FIXME: works wrong: 1) not correctly marks with dots
         markIfFoodEndShelfLife(cell, at: cellState.date)
         
         return cell
     }
-    //FIXME: Fix it!
+
     private func markIfFoodEndShelfLife(_ cell: CalendarItemCell, at date: Date) {
         formatter.dateFormat = "dd MM yyyy"
         let dateString = formatter.string(from: date)
@@ -211,14 +200,11 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         changeSelection(of: selectedCell, with: cellState, at: date)
         foodTable.beginUpdates()
         deleteRowsFromPreviousSelection()
-        foodTable.endUpdates()
         
         selectedDate = date
         //get new food from new date
         foodThatShelfLifeEndAtSelectedDate = dataSource.getFood(with: selectedDate)
         
-        foodTable.beginUpdates()
-        //get new date from selected index
         //insert new rows
         insertRowsFronNewSelection()
         foodTable.endUpdates()
@@ -258,7 +244,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         }
     }
     
-    //TODO: Fix this to check insertion from empty array
     private func deleteRowsFromPreviousSelection() {
         //delete previous rows with animations
         var rowsForDeleting = [IndexPath]()
@@ -317,5 +302,12 @@ extension CalendarViewController: UITableViewDelegate {
         foodThatShelfLifeEndAtSelectedDate.remove(at: indexAtSelectedDate)
         foodForMonth.remove(at: indexAtMonthFood)
         dataSource.delete(food: food)
+        
+        reloadSelectedDateCell()
+    }
+    
+    private func reloadSelectedDateCell() {
+        guard let selectedDate = calendarView.selectedDates.first else { return }
+        calendarView.reloadDates([selectedDate])
     }
 }
