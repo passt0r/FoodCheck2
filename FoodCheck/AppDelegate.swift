@@ -128,14 +128,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func handleNewLaunch() {
         let userDefaults = UserDefaults.standard
+        userDefaults.set(false, forKey: isFirstLaunch)
         let previousLaunchCount = userDefaults.integer(forKey: numbersOfLaunch)
         userDefaults.set(previousLaunchCount + 1, forKey: numbersOfLaunch)
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        customizeAppearance()
+    private func launchDefaultsPreparations() {
         registerDefaults()
         handleNewLaunch()
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        customizeAppearance()
+        launchDefaultsPreparations()
         
         listenForRealmErrorNotification()
         initialDataSource()
