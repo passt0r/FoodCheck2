@@ -17,7 +17,7 @@ class AboutAppTableViewController: UITableViewController {
     var dataSource: MutableFoodDataSource!
     
     private let buttonCornerRadius:CGFloat = 10
-    private let textCornerRadius:CGFloat = 20
+    private let textCornerRadius:CGFloat = 15
     private let aboutAppFileName = NSLocalizedString("about_en", comment: "About app file name, without extension")
 
     override func viewDidLoad() {

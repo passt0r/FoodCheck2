@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -85,15 +86,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //TODO: In next version of app add first time presentation of app
     }
     
+    private func handleAppRaiting() {
+        let userDefaults = UserDefaults.standard
+        let willShowRaiting = userDefaults.bool(forKey: willShowRaitingAlert)
+        guard willShowRaiting else {
+            return
+        }
+        
+        let numberOfLaunch = userDefaults.integer(forKey: numbersOfLaunch)
+        guard numberOfLaunch % 4 == 0 else {
+            return
+        }
+        
+        showAppRatingAlert()
+    }
     
+    private func showAppRatingAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Rate Us", comment: "Title for rate us alert"), message: NSLocalizedString("Do you like our app?\nIf so, rate us!", comment: "Message for rate us alert"), preferredStyle: .alert)
+        let no = UIAlertAction(title: NSLocalizedString("No", comment: "Title for no action on rate us alert"), style: .default, handler: { _ in
+            UserDefaults.standard.set(false, forKey: willShowRaitingAlert)
+            UserDefaults.standard.synchronize()
+        })
+        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: "Title for yes action on rate us alert"), style: .default, handler: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            strongSelf.showRaitingAlert()
+            UserDefaults.standard.set(false, forKey: willShowRaitingAlert)
+            UserDefaults.standard.synchronize()
+        })
+        let later = UIAlertAction(title: NSLocalizedString("Later", comment: "Title for later action on rate us alert"), style: .cancel, handler: nil)
+        
+        alert.addAction(yes)
+        alert.addAction(no)
+        alert.addAction(later)
+        
+        viewControllerForShowingAlert().present(alert, animated: true, completion: nil)
+    }
     
-    private func prepareDefaults() {
-        registerDefaults()
-        handleFirstTimeLaunch()
+    private func showRaitingAlert() {
+        SKStoreReviewController.requestReview()
+    }
+    
+    private func handleNewLaunch() {
+        let userDefaults = UserDefaults.standard
+        let previousLaunchCount = userDefaults.integer(forKey: numbersOfLaunch)
+        userDefaults.set(previousLaunchCount + 1, forKey: numbersOfLaunch)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         customizeAppearance()
+        registerDefaults()
+        handleNewLaunch()
         
         listenForRealmErrorNotification()
         initialDataSource()
@@ -127,6 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             viewControllerForShowingAlert().present(presentLaunchAlert, animated: true, completion: nil)
             launchAlert = nil
         }
+        
+        handleAppRaiting()
+//        handleFirstTimeLaunch()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
