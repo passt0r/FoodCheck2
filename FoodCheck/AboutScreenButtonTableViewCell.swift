@@ -16,7 +16,8 @@ class AboutScreenButtonTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        configurateForFridgeCell()
+//        configurateForFridgeCell()
+        self.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

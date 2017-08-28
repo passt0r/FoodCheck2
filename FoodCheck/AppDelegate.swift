@@ -71,6 +71,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return controller
     }
     
+    private func registerDefaults() {
+        let defaultsDictionary: [String: Any] = [
+            numbersOfLaunch:0,
+            willShowRaitingAlert:true,
+            isFirstLaunch:true
+        ]
+        
+        UserDefaults.standard.register(defaults: defaultsDictionary)
+    }
+    
+    private func handleFirstTimeLaunch() {
+        //TODO: In next version of app add first time presentation of app
+    }
+    
+    
+    
+    private func prepareDefaults() {
+        registerDefaults()
+        handleFirstTimeLaunch()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         customizeAppearance()
         

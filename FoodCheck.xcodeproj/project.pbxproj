@@ -20,6 +20,7 @@
 		593B9CDC1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */; };
 		593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE821F325C0700CC7E27 /* MockFood.swift */; };
 		593EDE8B1F32618600CC7E27 /* FoodCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */; };
+		594A027D1F54B601006B5A39 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594A027C1F54B601006B5A39 /* UserDefaultsKeys.swift */; };
 		595804461F471314000BC5C6 /* bindedBaseFood.realm in Resources */ = {isa = PBXBuildFile; fileRef = 595804451F471314000BC5C6 /* bindedBaseFood.realm */; };
 		5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */; };
 		5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9501F0D67FA0006B5F9 /* Main.storyboard */; };
@@ -89,6 +90,7 @@
 		593EDE881F32618500CC7E27 /* FoodCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		593EDE8A1F32618600CC7E27 /* FoodCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCheckTests.swift; sourceTree = "<group>"; };
 		593EDE8C1F32618600CC7E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		594A027C1F54B601006B5A39 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		595804451F471314000BC5C6 /* bindedBaseFood.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = bindedBaseFood.realm; sourceTree = "<group>"; };
 		5975C9491F0D67FA0006B5F9 /* FoodCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				59F38CBC1F4A18E50032838C /* Error_handling.swift */,
 				59F38CBE1F4A19040032838C /* Colors.swift */,
 				59F38CC01F4A199C0032838C /* LocalizedDictionaries.swift */,
+				594A027C1F54B601006B5A39 /* UserDefaultsKeys.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */,
 				59AC70AF1F4E2501003094B9 /* FoodAtDateTableViewCell.swift in Sources */,
 				59AC70AB1F4E1DB4003094B9 /* CalendarHeaderView.swift in Sources */,
+				594A027D1F54B601006B5A39 /* UserDefaultsKeys.swift in Sources */,
 				59F1C2551F4B5398007EBD21 /* AddIconTableViewCell.swift in Sources */,
 				59F1C2491F4B3AF6007EBD21 /* AddFoodTableViewController.swift in Sources */,
 				59F38CC71F4A388E0032838C /* UITableViewCell+ConfigurateForFridgeCell.swift in Sources */,
