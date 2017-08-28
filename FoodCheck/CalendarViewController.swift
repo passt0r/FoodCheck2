@@ -14,7 +14,7 @@ class CalendarViewController: UIViewController {
     let monthHeaderView = "MounthHeaderView"
     let calendarCellID = "CalendarItemCell"
     let foodAtDateCellID = "FoodAtDateCell"
-    let smallRowHeight:CGFloat = 44
+    let smallRowHeight:CGFloat = 55
     let formatter = DateFormatter()
     
     @IBOutlet weak var yearLabel: UILabel!
@@ -87,15 +87,21 @@ class CalendarViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        switch (segue.identifier ?? "") {
+        case "Show_app_info":
+            let destination = segue.destination as! AboutAppTableViewController
+            destination.dataSource = dataSource
+        default :
+            let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
+            record(error: error)
+        }
     }
-    */
+    
 
 }
 

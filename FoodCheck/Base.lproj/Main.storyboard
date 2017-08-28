@@ -706,7 +706,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Info_icon" id="Brj-vE-2mf">
                             <connections>
-                                <segue destination="PrJ-bp-SAp" kind="show" identifier="Show_app_info" id="vOe-ac-0yg"/>
+                                <segue destination="nX4-YN-8rz" kind="show" identifier="Show_app_info" id="Sv5-Z8-6CX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -722,23 +722,97 @@
             </objects>
             <point key="canvasLocation" x="2983.125" y="-573.5915492957746"/>
         </scene>
-        <!--Info Screen-->
-        <scene sceneID="lT0-QW-8dG">
+        <!--About App-->
+        <scene sceneID="pVa-PU-der">
             <objects>
-                <viewController title="About App" id="PrJ-bp-SAp" userLabel="Info Screen" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="p1q-M4-I5d"/>
-                        <viewControllerLayoutGuide type="bottom" id="68f-rm-KW8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="79b-T3-zln">
+                <tableViewController title="About App" id="nX4-YN-8rz" customClass="AboutAppTableViewController" customModule="FoodCheck" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kjg-cK-0FQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Tl-kw-EUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <sections>
+                            <tableViewSection id="mhn-E8-zM4">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextDescriptionRow" rowHeight="200" id="bHY-uJ-DPe" customClass="AboutDescriptionTableViewCell" customModule="FoodCheck" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHY-uJ-DPe" id="zb1-Kx-J0o">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ind-sV-UUb">
+                                                    <rect key="frame" x="138" y="8" width="44" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="About app description" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVC-Fk-elC">
+                                                    <rect key="frame" x="8" y="60" width="304" height="240"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionButtonRow" rowHeight="66" id="dVj-6H-uSL" customClass="AboutScreenButtonTableViewCell" customModule="FoodCheck" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="200" width="320" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dVj-6H-uSL" id="pSu-dg-lpU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUd-v4-sTZ">
+                                                    <rect key="frame" x="10" y="10" width="300" height="51.5"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="TUd-v4-sTZ" secondAttribute="bottom" constant="4" id="Hjm-do-jfc"/>
+                                                <constraint firstItem="TUd-v4-sTZ" firstAttribute="leading" secondItem="pSu-dg-lpU" secondAttribute="leading" constant="10" id="NEB-0f-7hg"/>
+                                                <constraint firstAttribute="trailing" secondItem="TUd-v4-sTZ" secondAttribute="trailing" constant="10" id="k2Y-zx-9oa"/>
+                                                <constraint firstItem="TUd-v4-sTZ" firstAttribute="top" secondItem="pSu-dg-lpU" secondAttribute="top" constant="10" id="nkq-Gk-vVJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionButtonRow" rowHeight="66" id="i1Z-w5-sFX" customClass="AboutScreenButtonTableViewCell" customModule="FoodCheck" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="266" width="320" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i1Z-w5-sFX" id="siL-fI-Rpg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DT7-oH-kaf">
+                                                    <rect key="frame" x="10" y="10" width="300" height="51.5"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="DT7-oH-kaf" secondAttribute="trailing" constant="10" id="FKR-rS-afF"/>
+                                                <constraint firstAttribute="bottom" secondItem="DT7-oH-kaf" secondAttribute="bottom" constant="4" id="Mmh-7q-fyz"/>
+                                                <constraint firstItem="DT7-oH-kaf" firstAttribute="leading" secondItem="siL-fI-Rpg" secondAttribute="leading" constant="10" id="nvW-Ow-NMm"/>
+                                                <constraint firstItem="DT7-oH-kaf" firstAttribute="top" secondItem="siL-fI-Rpg" secondAttribute="top" constant="10" id="xmD-pT-Quc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="nX4-YN-8rz" id="fMO-B5-Wv7"/>
+                            <outlet property="delegate" destination="nX4-YN-8rz" id="rjx-kx-DoA"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="deleteUserInfoButton" destination="DT7-oH-kaf" id="T43-F0-5ot"/>
+                        <outlet property="descriptionTextView" destination="vVC-Fk-elC" id="ekg-7U-AP5"/>
+                        <outlet property="logoImageView" destination="ind-sV-UUb" id="QhH-4b-jWh"/>
+                        <outlet property="ratingButton" destination="TUd-v4-sTZ" id="w2h-t8-k1q"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V6S-UF-eeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4044" y="-574"/>
+            <point key="canvasLocation" x="3939.375" y="-574.64788732394368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YJg-gR-Dps">

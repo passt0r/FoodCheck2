@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol MutableFoodDataSource: class {
-    //TODO: Use generics to implement protocol
+    //TODO: Add e delegate to model for handling a notifications on modifications
     init() throws
     
     ///Return array that consist all Food Types with their info

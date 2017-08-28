@@ -28,6 +28,10 @@
 		59AC70AB1F4E1DB4003094B9 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */; };
 		59AC70AD1F4E201D003094B9 /* UIView+bounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */; };
 		59AC70AF1F4E2501003094B9 /* FoodAtDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AE1F4E2501003094B9 /* FoodAtDateTableViewCell.swift */; };
+		59B64C5F1F5455E000E20DDC /* AboutAppTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B64C5E1F5455E000E20DDC /* AboutAppTableViewController.swift */; };
+		59B64C631F546B8700E20DDC /* about_en.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 59B64C621F546B8700E20DDC /* about_en.rtf */; };
+		59B64C651F546D2200E20DDC /* AboutDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B64C641F546D2200E20DDC /* AboutDescriptionTableViewCell.swift */; };
+		59B64C671F546D4100E20DDC /* AboutScreenButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B64C661F546D4100E20DDC /* AboutScreenButtonTableViewCell.swift */; };
 		59B8F8491F485A0800F4B2C7 /* UIView+ResizeForBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B8F8481F485A0800F4B2C7 /* UIView+ResizeForBackground.swift */; };
 		59BB953C1F3C55C00077447F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953B1F3C55C00077447F /* CalendarViewController.swift */; };
 		59BB953E1F3C56B50077447F /* ReadQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BB953D1F3C56B50077447F /* ReadQRViewController.swift */; };
@@ -95,6 +99,10 @@
 		59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+bounce.swift"; sourceTree = "<group>"; };
 		59AC70AE1F4E2501003094B9 /* FoodAtDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodAtDateTableViewCell.swift; sourceTree = "<group>"; };
+		59B64C5E1F5455E000E20DDC /* AboutAppTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppTableViewController.swift; sourceTree = "<group>"; };
+		59B64C621F546B8700E20DDC /* about_en.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about_en.rtf; sourceTree = "<group>"; };
+		59B64C641F546D2200E20DDC /* AboutDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		59B64C661F546D4100E20DDC /* AboutScreenButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutScreenButtonTableViewCell.swift; sourceTree = "<group>"; };
 		59B8F8481F485A0800F4B2C7 /* UIView+ResizeForBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ResizeForBackground.swift"; sourceTree = "<group>"; };
 		59BB953B1F3C55C00077447F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		59BB953D1F3C56B50077447F /* ReadQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadQRViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +261,7 @@
 				595B29751F349D8A003C2DD4 /* Models */,
 				595B29761F349DA3003C2DD4 /* Views */,
 				595B29771F349DC2003C2DD4 /* Controllers */,
-				59BFEA1E1F33EC8100B92F98 /* LottieAnimations */,
+				59B64C601F546B1A00E20DDC /* Resources */,
 				5975C9531F0D67FA0006B5F9 /* Assets.xcassets */,
 				59092A191F2E55BC00EBB75D /* iTunesArtwork */,
 				5975C9581F0D67FA0006B5F9 /* Info.plist */,
@@ -305,6 +313,7 @@
 		59A651251F34D180005BA42C /* About */ = {
 			isa = PBXGroup;
 			children = (
+				59B64C5E1F5455E000E20DDC /* AboutAppTableViewController.swift */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -347,8 +356,27 @@
 		59A6512B1F34D1E9005BA42C /* About */ = {
 			isa = PBXGroup;
 			children = (
+				59B64C641F546D2200E20DDC /* AboutDescriptionTableViewCell.swift */,
+				59B64C661F546D4100E20DDC /* AboutScreenButtonTableViewCell.swift */,
 			);
 			name = About;
+			sourceTree = "<group>";
+		};
+		59B64C601F546B1A00E20DDC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				59B64C611F546B5500E20DDC /* AboutAppDescriptions */,
+				59BFEA1E1F33EC8100B92F98 /* LottieAnimations */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		59B64C611F546B5500E20DDC /* AboutAppDescriptions */ = {
+			isa = PBXGroup;
+			children = (
+				59B64C621F546B8700E20DDC /* about_en.rtf */,
+			);
+			name = AboutAppDescriptions;
 			sourceTree = "<group>";
 		};
 		59B8F8471F4859E300F4B2C7 /* Extentions */ = {
@@ -512,6 +540,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59B64C631F546B8700E20DDC /* about_en.rtf in Resources */,
 				59BFEA221F33ECB400B92F98 /* checked_done.json in Resources */,
 				5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */,
 				59092A1A1F2E55BC00EBB75D /* iTunesArtwork in Resources */,
@@ -658,9 +687,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				59F1C2511F4B41EC007EBD21 /* AddNewFoodTableViewCell.swift in Sources */,
+				59B64C671F546D4100E20DDC /* AboutScreenButtonTableViewCell.swift in Sources */,
+				59B64C5F1F5455E000E20DDC /* AboutAppTableViewController.swift in Sources */,
 				59092A1E1F2E5AD400EBB75D /* ShelfCollectionReusableView.swift in Sources */,
 				59AC70AD1F4E201D003094B9 /* UIView+bounce.swift in Sources */,
 				59F38CBD1F4A18E50032838C /* Error_handling.swift in Sources */,
+				59B64C651F546D2200E20DDC /* AboutDescriptionTableViewCell.swift in Sources */,
 				593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */,
 				5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */,
 				59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */,
