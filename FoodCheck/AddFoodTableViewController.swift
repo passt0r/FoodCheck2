@@ -50,8 +50,10 @@ class AddFoodTableViewController: UITableViewController, MutatingUserAddedFoodCo
         didSet {
             if let _ = qrCode {
                 qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.Added]
+                qrCodeAddedLabel.textColor = grassGreen
             } else {
                 qrCodeAddedLabel.text = qrCodeLabelStatusMessage[.NotAdded]
+                qrCodeAddedLabel.textColor = peachTint
             }
         }
     }
@@ -350,14 +352,20 @@ extension AddFoodTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         addFoodButton.isEnabled = checkIfAddingAvailable()
-        guard let tapRecognizer = closeKeyboardTouchRecognizer else { return true }
-        self.view.removeGestureRecognizer(tapRecognizer)
+        removeRecognizer()
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        removeRecognizer()
         closeKeyboardTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
         closeKeyboardTouchRecognizer?.cancelsTouchesInView = true
         self.view.addGestureRecognizer(closeKeyboardTouchRecognizer!)
+    }
+    
+    private func removeRecognizer() {
+        if let gestueRecognizer = closeKeyboardTouchRecognizer {
+            self.view.removeGestureRecognizer(gestueRecognizer)
+        }
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

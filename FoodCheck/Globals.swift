@@ -15,6 +15,11 @@ let secondsInDay: Double = 86400
 
 //MARK: Massage Label generation
 
+func icon(for food: UserFood) -> UIImage {
+    guard let foodIcon = UIImage(named: food.iconName) else { return UIImage(named: baseFoodIconName)! }
+    return foodIcon
+}
+
 func generateMassageLabel() -> UILabel {
     let label = UILabel()
     label.textColor = grassGreen

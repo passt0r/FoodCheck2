@@ -81,7 +81,7 @@ class UserDataSource: MutableFoodDataSource {
     func findFoodBy(name: String) -> AddedUserFood? {
             let predicate = NSPredicate(format: "name == %@", name)
             let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
-            guard let findedFood = resultOfSearching.first else {
+            guard let findedFood = resultOfSearching.last else {
                 return nil }
             return findedFood
     }
@@ -89,7 +89,7 @@ class UserDataSource: MutableFoodDataSource {
     func findFoodBy(qr: String) -> AddedUserFood? {
         let predicate = NSPredicate(format: "qrCode == %@", qr)
         let resultOfSearching = dataBase.objects(AddedUserFood.self).filter(predicate).sorted(byKeyPath: "name")
-        guard let findedFood = resultOfSearching.first else { return nil }
+        guard let findedFood = resultOfSearching.last else { return nil }
         return findedFood
     }
     
@@ -126,6 +126,34 @@ class UserDataSource: MutableFoodDataSource {
     
     func getFood(at indexPath: IndexPath) -> UserFood {
         return resultOfQueryingUserFood[indexPath.item]
+    }
+    
+    func getFood(with endDate: Date) -> [UserFood] {
+        let beginOfDay = Calendar.current.startOfDay(for: endDate)
+        let endOfDay: Date = {
+            let components = DateComponents(day: 1, second: -1)
+            return Calendar.current.date(byAdding: components, to: beginOfDay)!
+        }()
+        let predicate = NSPredicate(format: "endDate >= %@ AND endDate <= %@", argumentArray: [beginOfDay, endOfDay])
+        let resultOfQuerying = dataBase.objects(UserFood.self).filter(predicate)
+        var resultArray = [UserFood]()
+        for result in resultOfQuerying {
+            resultArray.append(result)
+        }
+        return resultArray
+    }
+    
+    func getFood(fromDate: Date, toDate: Date) -> [UserFood] {
+        let beginDate = Calendar.current.startOfDay(for: fromDate)
+        let endDate = Calendar.current.startOfDay(for: toDate)
+        
+        let predicate = NSPredicate(format: "endDate BETWEEN %@", [beginDate, endDate])
+        let resultOfQuerying = dataBase.objects(UserFood.self).filter(predicate)
+        var resultArray = [UserFood]()
+        for result in resultOfQuerying {
+            resultArray.append(result)
+        }
+        return resultArray
     }
     
     func delete(food: UserFood) {

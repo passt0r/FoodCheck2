@@ -1,20 +1,108 @@
+
+/* Class = "UILabel"; text = "Icon"; ObjectID = "1I4-NQ-I9G"; */
+"1I4-NQ-I9G.text" = "Icon";
+
+/* Class = "UILabel"; text = "Fri"; ObjectID = "2u3-nR-uPf"; */
+"2u3-nR-uPf.text" = "Fri";
+
+/* Class = "UITextField"; placeholder = "Necessary"; ObjectID = "5SM-hV-coc"; */
+"5SM-hV-coc.placeholder" = "Necessary";
+
+/* Class = "UILabel"; text = "Wen"; ObjectID = "6Gh-Pe-b1d"; */
+"6Gh-Pe-b1d.text" = "Wen";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "6J4-Wp-Yik"; */
+"6J4-Wp-Yik.text" = "Title";
+
+/* Class = "UILabel"; text = "FoodName"; ObjectID = "7Jq-QW-Ldr"; */
+"7Jq-QW-Ldr.text" = "FoodName";
+
+/* Class = "UITableViewController"; title = "Choose Food"; ObjectID = "BCq-Rv-zjr"; */
+"BCq-Rv-zjr.title" = "Choose Food";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Csl-QT-qSD"; */
+"Csl-QT-qSD.text" = "Name";
+
 /* Class = "UICollectionViewController"; title = "Your Food"; ObjectID = "D9e-1b-Zwx"; */
 "D9e-1b-Zwx.title" = "Your Food";
 
-/* Class = "UIViewController"; title = "About App"; ObjectID = "PrJ-bp-SAp"; */
-"PrJ-bp-SAp.title" = "About App";
+/* Class = "UIButton"; normalTitle = "Delete all data"; ObjectID = "DT7-oH-kaf"; */
+"DT7-oH-kaf.normalTitle" = "Delete all data";
 
-/* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "Ub1-SB-zvX"; */
-"Ub1-SB-zvX.title" = "Add Food";
+/* Class = "UILabel"; text = "Tue"; ObjectID = "GIn-kH-s1p"; */
+"GIn-kH-s1p.text" = "Tue";
+
+/* Class = "UILabel"; text = "Month"; ObjectID = "GgU-t0-ILf"; */
+"GgU-t0-ILf.text" = "Month";
+
+/* Class = "UILabel"; text = "."; ObjectID = "HkD-V6-xAx"; */
+"HkD-V6-xAx.text" = ".";
+
+/* Class = "UILabel"; text = "Thu"; ObjectID = "K7I-8h-8ds"; */
+"K7I-8h-8ds.text" = "Thu";
+
+/* Class = "UITableViewController"; title = "Choose Food Type"; ObjectID = "MAj-Dk-6mr"; */
+"MAj-Dk-6mr.title" = "Choose Food Type";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "MPo-Zu-mZT"; */
+"MPo-Zu-mZT.text" = "Status";
+
+/* Class = "UIButton"; normalTitle = "Add manual"; ObjectID = "PEI-fh-xQs"; */
+"PEI-fh-xQs.normalTitle" = "Add manual";
 
 /* Class = "UINavigationItem"; title = "Your Food"; ObjectID = "Y4i-UR-T7k"; */
 "Y4i-UR-T7k.title" = "Your Food";
 
-/* Class = "UINavigationItem"; title = "Read Bar Code"; ObjectID = "dBE-Oe-s27"; */
-"dBE-Oe-s27.title" = "Read Bar Code";
+/* Class = "UILabel"; text = "Icon Name"; ObjectID = "Zts-fR-smD"; */
+"Zts-fR-smD.text" = "Icon Name";
+
+/* Class = "UINavigationItem"; title = "Read QR Code"; ObjectID = "dBE-Oe-s27"; */
+"dBE-Oe-s27.title" = "Read QR Code";
+
+/* Class = "UILabel"; text = "QR code"; ObjectID = "fqh-dJ-YcU"; */
+"fqh-dJ-YcU.text" = "QR code";
+
+/* Class = "UITextField"; placeholder = "Necessary"; ObjectID = "i8V-e8-6bS"; */
+"i8V-e8-6bS.placeholder" = "Necessary";
+
+/* Class = "UILabel"; text = "year"; ObjectID = "igT-qY-D7X"; */
+"igT-qY-D7X.text" = "year";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "kLk-kC-ypi"; */
+"kLk-kC-ypi.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Add Food"; ObjectID = "mH3-3k-QQ5"; */
+"mH3-3k-QQ5.normalTitle" = "Add Food";
 
 /* Class = "UINavigationItem"; title = "Food Calendar"; ObjectID = "mlA-e6-mYQ"; */
 "mlA-e6-mYQ.title" = "Food Calendar";
 
+/* Class = "UILabel"; text = "Mon"; ObjectID = "mt5-kO-1Hr"; */
+"mt5-kO-1Hr.text" = "Mon";
+
+/* Class = "UITableViewController"; title = "About App"; ObjectID = "nX4-YN-8rz"; */
+"nX4-YN-8rz.title" = "About App";
+
 /* Class = "UILabel"; text = "Name"; ObjectID = "nZd-gH-hvr"; */
 "nZd-gH-hvr.text" = "Name";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "nfq-eF-s94"; */
+"nfq-eF-s94.text" = "Title";
+
+/* Class = "UILabel"; text = "Not Added"; ObjectID = "ojn-mJ-qig"; */
+"ojn-mJ-qig.text" = "Not Added";
+
+/* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "pOq-24-3zK"; */
+"pOq-24-3zK.title" = "Add Food";
+
+/* Class = "UILabel"; text = "Shelf life in days"; ObjectID = "seA-Eh-S1W"; */
+"seA-Eh-S1W.text" = "Shelf life in days";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "usn-ax-Go0"; */
+"usn-ax-Go0.text" = "Sat";
+
+/* Class = "UITextView"; text = "About app description"; ObjectID = "vVC-Fk-elC"; */
+"vVC-Fk-elC.text" = "About app description";
+
+/* Class = "UILabel"; text = "Sun"; ObjectID = "z0D-Dy-pgs"; */
+"z0D-Dy-pgs.text" = "Sun";

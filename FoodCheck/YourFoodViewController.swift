@@ -20,22 +20,11 @@ class YourFoodViewController: UICollectionViewController {
         return generateMassageLabel()
     }()
     
-    private func addBackgroundView() {
-        collectionView?.backgroundView = generateBackgroundImageView()
+    @IBAction func unwindFromCalendar(segue: UIStoryboardSegue) {
+        //User may interact with data, you must reload data to recalculate layout
+        collectionView?.reloadData()
     }
     
-    private func checkEmptyFridge() {
-        let itemsCount = dataSource.getFoodItemCount()
-        if itemsCount == 0 {
-        view.addSubview(messageLabel)
-        messageLabel.setupMessage(with: emptyMassage)
-            
-        } else {
-            messageLabel.removeFromSuperview()
-            
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,6 +42,23 @@ class YourFoodViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    private func addBackgroundView() {
+        collectionView?.backgroundView = generateBackgroundImageView()
+    }
+    
+    private func checkEmptyFridge() {
+        let itemsCount = dataSource.getFoodItemCount()
+        if itemsCount == 0 {
+            view.addSubview(messageLabel)
+            messageLabel.setupMessage(with: emptyMassage)
+            
+        } else {
+            messageLabel.removeFromSuperview()
+            
+        }
+    }
+
 
     
     // MARK: - Navigation
@@ -67,6 +73,10 @@ class YourFoodViewController: UICollectionViewController {
             let destination = destinationNV.topViewController as! ReadQRViewController
             destination.dataSource = dataSource
             destination.delegate = self
+        case "PresentCalendar":
+            let destinationNC = segue.destination as! UINavigationController
+            let destination = destinationNC.topViewController as! CalendarViewController
+            destination.dataSource = dataSource
         default :
             let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
@@ -97,15 +107,24 @@ class YourFoodViewController: UICollectionViewController {
     }
     
     func configure(cell: FoodItemCell, with foodItem: UserFood) {
-        let foodIcon = UIImage(named: foodItem.iconName)
         let foodName = foodItem.name
         
         cell.foodName.text = foodName
+        cell.foodIcon.image = icon(for: foodItem)
         
-        if let foodIcon = foodIcon {
-            cell.foodIcon.image = foodIcon
-        } else {
-            cell.foodIcon.image = UIImage(named: "fruit")!
+        let timesLeft = foodItem.endDate.timeIntervalSinceNow
+        configure(cell, basedOn: timesLeft)
+    }
+    
+    func configure(_ cell: FoodItemCell, basedOn timeLeft: TimeInterval) {
+        let daysLeft = timeLeft.inDays()
+        switch daysLeft {
+        case let x where x >= 3:
+            cell.freshStage = .Normal
+        case let x where x >= 0:
+            cell.freshStage = .SoonEnd
+        default:
+            cell.freshStage = .End
         }
     }
 
