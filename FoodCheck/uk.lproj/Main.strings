@@ -1,21 +1,108 @@
 
+/* Class = "UILabel"; text = "Icon"; ObjectID = "1I4-NQ-I9G"; */
+"1I4-NQ-I9G.text" = "Іконка";
+
+/* Class = "UILabel"; text = "Fri"; ObjectID = "2u3-nR-uPf"; */
+"2u3-nR-uPf.text" = "Пт";
+
+/* Class = "UITextField"; placeholder = "Necessary"; ObjectID = "5SM-hV-coc"; */
+"5SM-hV-coc.placeholder" = "Обов'язково";
+
+/* Class = "UILabel"; text = "Wen"; ObjectID = "6Gh-Pe-b1d"; */
+"6Gh-Pe-b1d.text" = "Ср";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "6J4-Wp-Yik"; */
+"6J4-Wp-Yik.text" = "Title";
+
+/* Class = "UILabel"; text = "FoodName"; ObjectID = "7Jq-QW-Ldr"; */
+"7Jq-QW-Ldr.text" = "FoodName";
+
+/* Class = "UITableViewController"; title = "Choose Food"; ObjectID = "BCq-Rv-zjr"; */
+"BCq-Rv-zjr.title" = "Виберіть продукт";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Csl-QT-qSD"; */
+"Csl-QT-qSD.text" = "Ім'я";
+
 /* Class = "UICollectionViewController"; title = "Your Food"; ObjectID = "D9e-1b-Zwx"; */
 "D9e-1b-Zwx.title" = "Ваша Їжа";
 
-/* Class = "UIViewController"; title = "About App"; ObjectID = "PrJ-bp-SAp"; */
-"PrJ-bp-SAp.title" = "Про додаток";
+/* Class = "UIButton"; normalTitle = "Delete all data"; ObjectID = "DT7-oH-kaf"; */
+"DT7-oH-kaf.normalTitle" = "Очистити всі дані";
 
-/* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "Ub1-SB-zvX"; */
-"Ub1-SB-zvX.title" = "Додати";
+/* Class = "UILabel"; text = "Tue"; ObjectID = "GIn-kH-s1p"; */
+"GIn-kH-s1p.text" = "Вт";
+
+/* Class = "UILabel"; text = "Month"; ObjectID = "GgU-t0-ILf"; */
+"GgU-t0-ILf.text" = "Місяць";
+
+/* Class = "UILabel"; text = "."; ObjectID = "HkD-V6-xAx"; */
+"HkD-V6-xAx.text" = ".";
+
+/* Class = "UILabel"; text = "Thu"; ObjectID = "K7I-8h-8ds"; */
+"K7I-8h-8ds.text" = "Чт";
+
+/* Class = "UITableViewController"; title = "Choose Food Type"; ObjectID = "MAj-Dk-6mr"; */
+"MAj-Dk-6mr.title" = "Виберіть Тип Продукту";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "MPo-Zu-mZT"; */
+"MPo-Zu-mZT.text" = "Статус";
+
+/* Class = "UIButton"; normalTitle = "Add manual"; ObjectID = "PEI-fh-xQs"; */
+"PEI-fh-xQs.normalTitle" = "Додати Вручну";
 
 /* Class = "UINavigationItem"; title = "Your Food"; ObjectID = "Y4i-UR-T7k"; */
 "Y4i-UR-T7k.title" = "Ваша Їжа";
 
-/* Class = "UINavigationItem"; title = "Read Bar Code"; ObjectID = "dBE-Oe-s27"; */
+/* Class = "UILabel"; text = "Icon Name"; ObjectID = "Zts-fR-smD"; */
+"Zts-fR-smD.text" = "Іконка";
+
+/* Class = "UINavigationItem"; title = "Read QR Code"; ObjectID = "dBE-Oe-s27"; */
 "dBE-Oe-s27.title" = "Зчитати QR";
 
+/* Class = "UILabel"; text = "QR code"; ObjectID = "fqh-dJ-YcU"; */
+"fqh-dJ-YcU.text" = "QR Код";
+
+/* Class = "UITextField"; placeholder = "Necessary"; ObjectID = "i8V-e8-6bS"; */
+"i8V-e8-6bS.placeholder" = "Обов'язково";
+
+/* Class = "UILabel"; text = "year"; ObjectID = "igT-qY-D7X"; */
+"igT-qY-D7X.text" = "рік";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "kLk-kC-ypi"; */
+"kLk-kC-ypi.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Add Food"; ObjectID = "mH3-3k-QQ5"; */
+"mH3-3k-QQ5.normalTitle" = "Додати Продукт";
+
 /* Class = "UINavigationItem"; title = "Food Calendar"; ObjectID = "mlA-e6-mYQ"; */
-"mlA-e6-mYQ.title" = "Календар";
+"mlA-e6-mYQ.title" = "Календар Свіжості";
+
+/* Class = "UILabel"; text = "Mon"; ObjectID = "mt5-kO-1Hr"; */
+"mt5-kO-1Hr.text" = "Пн";
+
+/* Class = "UITableViewController"; title = "About App"; ObjectID = "nX4-YN-8rz"; */
+"nX4-YN-8rz.title" = "Про Программу";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "nZd-gH-hvr"; */
-"nZd-gH-hvr.text" = "Найменування";
+"nZd-gH-hvr.text" = "Назва";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "nfq-eF-s94"; */
+"nfq-eF-s94.text" = "Назва";
+
+/* Class = "UILabel"; text = "Not Added"; ObjectID = "ojn-mJ-qig"; */
+"ojn-mJ-qig.text" = "Не Добавлено";
+
+/* Class = "UINavigationItem"; title = "Add Food"; ObjectID = "pOq-24-3zK"; */
+"pOq-24-3zK.title" = "Добавити Продукт";
+
+/* Class = "UILabel"; text = "Shelf life in days"; ObjectID = "seA-Eh-S1W"; */
+"seA-Eh-S1W.text" = "Строк придатності в днях";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "usn-ax-Go0"; */
+"usn-ax-Go0.text" = "Сб";
+
+/* Class = "UITextView"; text = "About app description"; ObjectID = "vVC-Fk-elC"; */
+"vVC-Fk-elC.text" = "About app description";
+
+/* Class = "UILabel"; text = "Sun"; ObjectID = "z0D-Dy-pgs"; */
+"z0D-Dy-pgs.text" = "Нд";

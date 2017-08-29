@@ -74,13 +74,10 @@
 		2E15104D3E372139089B4E9A /* Pods-FoodCheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodCheckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodCheckTests/Pods-FoodCheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5904CDA11F48C1E100B8671D /* UILabel+SetupWithMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+SetupWithMessage.swift"; sourceTree = "<group>"; };
 		59092A191F2E55BC00EBB75D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		59092A1B1F2E59A700EBB75D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
-		59092A1C1F2E59B800EBB75D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		59092A1D1F2E5AD400EBB75D /* ShelfCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelfCollectionReusableView.swift; sourceTree = "<group>"; };
 		59092A1F1F2E5B2C00EBB75D /* YourFoodFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourFoodFlowLayout.swift; sourceTree = "<group>"; };
 		59092A211F2E5CBC00EBB75D /* YourFoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourFoodViewController.swift; sourceTree = "<group>"; };
 		59092A231F2E5D5100EBB75D /* FoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCell.swift; sourceTree = "<group>"; };
-		590A82231F3A4A7500386E48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFoodDataSource.swift; sourceTree = "<group>"; };
 		5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFoodDataSource.swift; sourceTree = "<group>"; };
 		5914FBFB1F3BA4C000B8C89D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -128,6 +125,9 @@
 		59F38CC01F4A199C0032838C /* LocalizedDictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedDictionaries.swift; sourceTree = "<group>"; };
 		59F38CC41F4A20D50032838C /* ChooseFoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFoodTableViewCell.swift; sourceTree = "<group>"; };
 		59F38CC61F4A388E0032838C /* UITableViewCell+ConfigurateForFridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+ConfigurateForFridgeCell.swift"; sourceTree = "<group>"; };
+		59FE7B2A1F5571C900774B95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		59FE7B2C1F5571CE00774B95 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
+		59FE7B2E1F5571D300774B95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		93E85AADFD5F936307E17316 /* Pods_FoodCheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodCheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		973DE88B2492B353E51DAFB7 /* Pods-FoodCheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodCheckTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodCheckTests/Pods-FoodCheckTests.release.xcconfig"; sourceTree = "<group>"; };
 		9DD97D00125E0E7975DBFE88 /* Pods_FoodCheckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodCheckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +519,8 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
+				ru,
 			);
 			mainGroup = 5975C9401F0D67FA0006B5F9;
 			productRefGroup = 5975C94A1F0D67FA0006B5F9 /* Products */;
@@ -748,9 +750,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				5975C9511F0D67FA0006B5F9 /* Base */,
-				59092A1B1F2E59A700EBB75D /* uk */,
-				59092A1C1F2E59B800EBB75D /* ru */,
-				590A82231F3A4A7500386E48 /* en */,
+				59FE7B2A1F5571C900774B95 /* en */,
+				59FE7B2C1F5571CE00774B95 /* uk */,
+				59FE7B2E1F5571D300774B95 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -97,7 +97,7 @@ class CalendarViewController: UIViewController {
             let destination = segue.destination as! AboutAppTableViewController
             destination.dataSource = dataSource
         default :
-            let error = NSError(domain: "YourFoodSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
+            let error = NSError(domain: "CalendarSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
         }
     }
