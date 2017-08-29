@@ -15,6 +15,9 @@
 		59092A241F2E5D5100EBB75D /* FoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59092A231F2E5D5100EBB75D /* FoodItemCell.swift */; };
 		5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */; };
 		5911BA971F3B4E9C004406C3 /* BaseFoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */; };
+		59132ED01F557D670030F603 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59132ECE1F557D670030F603 /* Localizable.strings */; };
+		59132ED51F557F9A0030F603 /* about_ru.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 59132ED41F557F9A0030F603 /* about_ru.rtf */; };
+		59132ED71F557FA00030F603 /* about_ua.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 59132ED61F557FA00030F603 /* about_ua.rtf */; };
 		5914FBFC1F3BA4C000B8C89D /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFB1F3BA4C000B8C89D /* Globals.swift */; };
 		5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */; };
 		593B9CDC1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */; };
@@ -80,6 +83,12 @@
 		59092A231F2E5D5100EBB75D /* FoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCell.swift; sourceTree = "<group>"; };
 		5911BA941F3B4E81004406C3 /* UserFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFoodDataSource.swift; sourceTree = "<group>"; };
 		5911BA961F3B4E9C004406C3 /* BaseFoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFoodDataSource.swift; sourceTree = "<group>"; };
+		59132ECF1F557D670030F603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		59132ED11F557D6A0030F603 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		59132ED21F557D6C0030F603 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		59132ED31F557D6D0030F603 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		59132ED41F557F9A0030F603 /* about_ru.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about_ru.rtf; sourceTree = "<group>"; };
+		59132ED61F557FA00030F603 /* about_ua.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about_ua.rtf; sourceTree = "<group>"; };
 		5914FBFB1F3BA4C000B8C89D /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		5914FBFD1F3BCA6B00B8C89D /* FoodDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSource.swift; sourceTree = "<group>"; };
 		593B9CDB1F49A8C100F63C76 /* AddFoodToFridgeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodToFridgeDelegate.swift; sourceTree = "<group>"; };
@@ -377,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				59B64C621F546B8700E20DDC /* about_en.rtf */,
+				59132ED41F557F9A0030F603 /* about_ru.rtf */,
+				59132ED61F557FA00030F603 /* about_ua.rtf */,
 			);
 			name = AboutAppDescriptions;
 			sourceTree = "<group>";
@@ -413,6 +424,7 @@
 		59F38CB91F4A18BC0032838C /* Globals */ = {
 			isa = PBXGroup;
 			children = (
+				59132ECE1F557D670030F603 /* Localizable.strings */,
 				59B8F8471F4859E300F4B2C7 /* Extentions */,
 				5914FBFB1F3BA4C000B8C89D /* Globals.swift */,
 				59F38CBA1F4A18D70032838C /* Images.swift */,
@@ -547,9 +559,12 @@
 			files = (
 				59B64C631F546B8700E20DDC /* about_en.rtf in Resources */,
 				59BFEA221F33ECB400B92F98 /* checked_done.json in Resources */,
+				59132ED51F557F9A0030F603 /* about_ru.rtf in Resources */,
 				5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */,
 				59092A1A1F2E55BC00EBB75D /* iTunesArtwork in Resources */,
 				5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */,
+				59132ED71F557FA00030F603 /* about_ua.rtf in Resources */,
+				59132ED01F557D670030F603 /* Localizable.strings in Resources */,
 				595804461F471314000BC5C6 /* bindedBaseFood.realm in Resources */,
 				59BFEA201F33ECAE00B92F98 /* warning.json in Resources */,
 			);
@@ -746,6 +761,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		59132ECE1F557D670030F603 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59132ECF1F557D670030F603 /* Base */,
+				59132ED11F557D6A0030F603 /* en */,
+				59132ED21F557D6C0030F603 /* uk */,
+				59132ED31F557D6D0030F603 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		5975C9501F0D67FA0006B5F9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -12,11 +12,11 @@ import Foundation
 //TODO: Implement better way for localized food type names
 let localizedFoodTypesArray: [String: String] = [
     "Fruit": NSLocalizedString("Fruit", comment: "Food type description for fruit"),
-    "Meet": NSLocalizedString("Meet", comment: "Food type description for meet"),
+    "Meat": NSLocalizedString("Meat", comment: "Food type description for meet"),
     "Fish": NSLocalizedString("Fish", comment: "Food type description for fish"),
     "Milk": NSLocalizedString("Milk", comment: "Food type description for milk"),
     "Bread": NSLocalizedString("Bread", comment: "Food type description for bread"),
-    "Vegitables": NSLocalizedString("Vegitables", comment: "Food type description for vegitables"),
+    "Vegetables": NSLocalizedString("Vegetables", comment: "Food type description for vegitables"),
     "Sweets": NSLocalizedString("Sweets", comment: "Food type description for sweets"),
     "Canned Food": NSLocalizedString("Canned Food", comment: "Food type description for canned food"),
     "User Added": NSLocalizedString("User Added", comment: "Food type description for user added food"),
