@@ -702,7 +702,7 @@
                     <navigationItem key="navigationItem" title="Food Calendar" id="mlA-e6-mYQ">
                         <barButtonItem key="leftBarButtonItem" image="Back_icon" style="done" id="P36-Qp-pb4">
                             <connections>
-                                <segue destination="Zl7-ob-0IT" kind="unwind" unwindAction="unwindFromCalendarWithSegue:" id="ETd-Hw-c7g"/>
+                                <segue destination="Zl7-ob-0IT" kind="unwind" identifier="UnwindFromCalendar" unwindAction="unwindFromCalendarWithSegue:" id="ETd-Hw-c7g"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Info_icon" id="Brj-vE-2mf">

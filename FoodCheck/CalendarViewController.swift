@@ -96,6 +96,8 @@ class CalendarViewController: UIViewController {
         case "Show_app_info":
             let destination = segue.destination as! AboutAppTableViewController
             destination.dataSource = dataSource
+        case "UnwindFromCalendar":
+            break
         default :
             let error = NSError(domain: "CalendarSegueError", code: 1, userInfo: ["SegueIdentifier":segue.identifier ?? "nil"])
             record(error: error)
