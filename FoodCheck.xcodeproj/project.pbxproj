@@ -28,6 +28,7 @@
 		5975C94D1F0D67FA0006B5F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C94C1F0D67FA0006B5F9 /* AppDelegate.swift */; };
 		5975C9521F0D67FA0006B5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9501F0D67FA0006B5F9 /* Main.storyboard */; };
 		5975C9541F0D67FA0006B5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C9531F0D67FA0006B5F9 /* Assets.xcassets */; };
+		5999DB031F57321E00F37147 /* NotificationHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5999DB021F57321E00F37147 /* NotificationHub.swift */; };
 		59A6511F1F34CE8E005BA42C /* FoodDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */; };
 		59AC70AB1F4E1DB4003094B9 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */; };
 		59AC70AD1F4E201D003094B9 /* UIView+bounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */; };
@@ -103,6 +104,7 @@
 		5975C9511F0D67FA0006B5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5975C9531F0D67FA0006B5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C9581F0D67FA0006B5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5999DB021F57321E00F37147 /* NotificationHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHub.swift; sourceTree = "<group>"; };
 		59A6511E1F34CE8E005BA42C /* FoodDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataSourceProtocol.swift; sourceTree = "<group>"; };
 		59AC70AA1F4E1DB4003094B9 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		59AC70AC1F4E201D003094B9 /* UIView+bounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+bounce.swift"; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				59F38CBE1F4A19040032838C /* Colors.swift */,
 				59F38CC01F4A199C0032838C /* LocalizedDictionaries.swift */,
 				594A027C1F54B601006B5A39 /* UserDefaultsKeys.swift */,
+				5999DB021F57321E00F37147 /* NotificationHub.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				593EDE831F325C0700CC7E27 /* MockFood.swift in Sources */,
 				5914FBFE1F3BCA6B00B8C89D /* FoodDataSource.swift in Sources */,
 				59BFEA1D1F33DE6000B92F98 /* MockFoodDataSource.swift in Sources */,
+				5999DB031F57321E00F37147 /* NotificationHub.swift in Sources */,
 				59092A221F2E5CBC00EBB75D /* YourFoodViewController.swift in Sources */,
 				59F10C1B1F4DBFED00F2DBCB /* CalendarItemCell.swift in Sources */,
 				5911BA951F3B4E81004406C3 /* UserFoodDataSource.swift in Sources */,
