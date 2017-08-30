@@ -32,6 +32,9 @@ class NotificationHub: NSObject {
     func scheduleNotificationsToFuture(from date: Date, for days: Int) {
         deleteOldNotifications()
         
+        guard isNotificationsEnable else {
+            return
+        }
         guard let availableDataSource = dataSource else { return }
         
         let calendar = Calendar.current
