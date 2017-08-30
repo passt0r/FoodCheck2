@@ -919,6 +919,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 2J5NKCM3ET;
 				INFOPLIST_FILE = FoodCheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.passt0r.FoodCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -934,6 +935,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 2J5NKCM3ET;
 				INFOPLIST_FILE = FoodCheck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.passt0r.FoodCheck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
