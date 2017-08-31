@@ -10,7 +10,7 @@ import XCTest
 
 @testable import FoodCheck
 //TODO: Rewrite this for testing general data source and user mutable data source
-let validQRCodeInfo = "kek"
+let validQRCodeInfo = "Sample milk for FoodCheck"
 let validFoodName = "Milk"
 let validIconName = "fruit"
 let userAddedFoodType = "User Added"
