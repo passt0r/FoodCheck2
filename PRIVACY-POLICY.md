@@ -49,7 +49,7 @@ absolute security.
 
 ## Changes To This Privacy Policy
 
-This Privacy Policy is effective as of September 1, 2016 and will remain in effect except with respect to any
+This Privacy Policy is effective as of September 1, 2017 and will remain in effect except with respect to any
 changes in its provisions in the future, which will be in effect immediately after being posted on this
 page.
 
