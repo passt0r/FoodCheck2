@@ -34,7 +34,7 @@ Personal Data collected: geographic position, unique device identifiers for adve
 
 ### Camera using
 
-For barcode scanning feature app need access to user's device camera. App did not collect any data from camera, exept user user manual get permission for detecting and decoding info from barcode, provided by user. App did not share this info with somebody and does not store information anywhere except user's own device. User can anytime delete this data from device.
+For barcode scanning feature app need access to user's device camera. App did not collect any data from camera, exept user manual get permission for detecting and decoding info from barcode, provided by user. App did not share this info with somebody and does not store information anywhere except user's own device. User can anytime delete this data from device.
 
 ## Information Sharing
 
