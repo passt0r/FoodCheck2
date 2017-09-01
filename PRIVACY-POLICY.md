@@ -2,7 +2,7 @@
 
 Last Updated: September 1, 2017
 
-This document informs you of the policies regarding the collection, use and disclosure of Personal Information I, Dmitro Pasinchuk (the "Owner" or "I"), receive from users of FoodCheck (the "App").
+This document informs you of the policies regarding the collection, use and disclosure of Personal Information I, Dmitro Pasinchuk (the "Owner" or "I"), receive from users of FoodChecker (the "App").
 
 I, the Owner, use your Personal Information only for providing and improving the App. By using the App, you agree to the collection and use of information in accordance with this policy.
 
